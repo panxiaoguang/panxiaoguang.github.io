@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="<i>Don't forget to be awesome!</i>" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        关于
+      </a>
+    
+      <a href="/my_vue_learning/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        Glims2Shell
+      </a>
+    
+    <a href="https://xiaohanys.me/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        生物信息
+      </h1>
+      <div class="shadow-box bg-white  border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/LncRNA/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          一文读懂lncRNA分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-17</div>
+      <div class="mb-4 text-gray-500 ">
+        <h3 id="1对测序下机数据进行质量检测qc">1:对测序下机数据进行质量检测（QC）</h3>
+<p>使用软件：<strong>fastqc</strong></p>
+<p>命令行参数：</p>
+<pre><code class="language-bash">-o --outdir:输出路径
+--extract：结果文件解压缩
+--noextract：结果文件压缩
+-f --format:输入文件格式.支持bam,sam,fastq文件格式
+-t --threads:线程数
+-c --contaminants：制定污染序列。文件格式 name[tab]sequence
+-a --adapters：指定接头序列。文件格式name[tab]sequence
+-k --kmers：指定kmers长度（2-10bp,默认7bp）
+-q --quiet： 安静模式
+</code></pre>
+
+      </div>
+      <a href="https://xiaohanys.me/LncRNA/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/stream/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          使用STREAM对单细胞数据进行伪时间分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2019-12-20</div>
+      <div class="mb-4 text-gray-500 ">
+        <h3 id="软件介绍">软件介绍</h3>
+<p>STREAM (<strong>S</strong>ingle-cell <strong>T</strong>rajectories <strong>R</strong>econstruction, <strong>E</strong>xploration <strong>A</strong>nd <strong>M</strong>apping) 软件是一个伪时间分析软件，通过一系列的特征选择，降纬（MLLE），轨迹推断（EPG）等步骤，逐步构建细胞发育轨迹，从而帮助我们更好的理解发育进化过程。</p>
+<h3 id="下载地址">下载地址</h3>
+
+      </div>
+      <a href="https://xiaohanys.me/stream/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+</body>
+</html>

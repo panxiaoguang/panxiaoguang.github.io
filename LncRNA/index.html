@@ -1,0 +1,1024 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>一文读懂lncRNA分析 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="一文读懂lncRNA分析 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="1:对测序下机数据进行质量检测（QC）
+使用软件：fastqc
+命令行参数：
+-o --outdir:输出路径
+--extract：结果文件解压缩
+--noextract：结果文件压缩
+-f --format:输入文件格式.支持bam,sa..." />
+  <meta property="og:title" content="一文读懂lncRNA分析 - Guang&#39;s Home Page">
+  <meta property="og:description" content="1:对测序下机数据进行质量检测（QC）
+使用软件：fastqc
+命令行参数：
+-o --outdir:输出路径
+--extract：结果文件解压缩
+--noextract：结果文件压缩
+-f --format:输入文件格式.支持bam,sa..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/LncRNA/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="一文读懂lncRNA分析 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="1:对测序下机数据进行质量检测（QC）
+使用软件：fastqc
+命令行参数：
+-o --outdir:输出路径
+--extract：结果文件解压缩
+--noextract：结果文件压缩
+-f --format:输入文件格式.支持bam,sa...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/LncRNA/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          一文读懂lncRNA分析
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-17 · 42 min read</div>
+          
+            <a href="https://xiaohanys.me/kJ1aCbm_y/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              生物信息
+            </a>
+          
+            <a href="https://xiaohanys.me/WYxGkH9uWj/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              lncRNA
+            </a>
+          
+            <a href="https://xiaohanys.me/o-brCmwnSp/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              骨质疏松
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h3 id="1对测序下机数据进行质量检测qc">1:对测序下机数据进行质量检测（QC）</h3>
+<p>使用软件：<strong>fastqc</strong></p>
+<p>命令行参数：</p>
+<pre><code class="language-bash">-o --outdir:输出路径
+--extract：结果文件解压缩
+--noextract：结果文件压缩
+-f --format:输入文件格式.支持bam,sam,fastq文件格式
+-t --threads:线程数
+-c --contaminants：制定污染序列。文件格式 name[tab]sequence
+-a --adapters：指定接头序列。文件格式name[tab]sequence
+-k --kmers：指定kmers长度（2-10bp,默认7bp）
+-q --quiet： 安静模式
+</code></pre>
+<!--more-->
+<p>运行命令：</p>
+<pre><code class="language-bash">fastqc -f fastq -t 8 -o ./QCreport/ fastq1 fastq2
+</code></pre>
+<p>注意：当样本数量很多时，我们可以采用 multiqc 软件将 fastqc 软件的结果进行合并</p>
+<pre><code class="language-shell">multiqc ./*.zip
+</code></pre>
+<!--more-->
+<h3 id="2对-qc-后的数据进行过滤">2.对 qc 后的数据进行过滤</h3>
+<p>使用软件：<strong>fastp</strong></p>
+<p>命令行参数：</p>
+<pre><code class="language-bash">usage: fastp -i &lt;in1&gt; -o &lt;out1&gt; [-I &lt;in1&gt; -O &lt;out2&gt;] [options...]
+options:
+  # I/O options   即输入输出文件设置
+  -i, --in1                          read1 input file name (string)
+  -o, --out1                         read1 output file name (string [=])
+  -I, --in2                          read2 input file name (string [=])
+  -O, --out2                         read2 output file name (string [=])
+  -6, --phred64                      indicates the input is using phred64 scoring (it'll be converted to phred33, so the output will still be phred33)
+  -z, --compression                  compression level for gzip output (1 ~ 9). 1 is fastest, 9 is smallest, default is 2. (int [=2])
+    --reads_to_process               specify how many reads/pairs to be processed. Default 0 means process all reads. (int [=0])
+
+  # adapter trimming options   过滤序列接头参数设置
+  -A, --disable_adapter_trimming     adapter trimming is enabled by default. If this option is specified, adapter trimming is disabled
+  -a, --adapter_sequence               the adapter for read1. For SE data, if not specified, the adapter will be auto-detected. For PE data, this is used if R1/R2 are found not overlapped. (string [=auto])
+      --adapter_sequence_r2            the adapter for read2 (PE data only). This is used if R1/R2 are found not overlapped. If not specified, it will be the same as &lt;adapter_sequence&gt; (string [=])
+
+  # global trimming options   剪除序列起始和末端的低质量碱基数量参数
+  -f, --trim_front1                  trimming how many bases in front for read1, default is 0 (int [=0])
+  -t, --trim_tail1                   trimming how many bases in tail for read1, default is 0 (int [=0])
+  -F, --trim_front2                  trimming how many bases in front for read2. If it's not specified, it will follow read1's settings (int [=0])
+  -T, --trim_tail2                   trimming how many bases in tail for read2. If it's not specified, it will follow read1's settings (int [=0])
+
+  # polyG tail trimming, useful for NextSeq/NovaSeq data   polyG剪裁
+  -g, --trim_poly_g                  force polyG tail trimming, by default trimming is automatically enabled for Illumina NextSeq/NovaSeq data
+      --poly_g_min_len                 the minimum length to detect polyG in the read tail. 10 by default. (int [=10])
+  -G, --disable_trim_poly_g          disable polyG tail trimming, by default trimming is automatically enabled for Illumina NextSeq/NovaSeq data
+
+  # polyX tail trimming
+  -x, --trim_poly_x                    enable polyX trimming in 3' ends.
+      --poly_x_min_len                 the minimum length to detect polyX in the read tail. 10 by default. (int [=10])
+
+  # per read cutting by quality options   划窗裁剪
+  -5, --cut_by_quality5              enable per read cutting by quality in front (5'), default is disabled (WARNING: this will interfere deduplication for both PE/SE data)
+  -3, --cut_by_quality3              enable per read cutting by quality in tail (3'), default is disabled (WARNING: this will interfere deduplication for SE data)
+  -W, --cut_window_size              the size of the sliding window for sliding window trimming, default is 4 (int [=4])
+  -M, --cut_mean_quality             the bases in the sliding window with mean quality below cutting_quality will be cut, default is Q20 (int [=20])
+
+  # quality filtering options   根据碱基质量来过滤序列
+  -Q, --disable_quality_filtering    quality filtering is enabled by default. If this option is specified, quality filtering is disabled
+  -q, --qualified_quality_phred      the quality value that a base is qualified. Default 15 means phred quality &gt;=Q15 is qualified. (int [=15])
+  -u, --unqualified_percent_limit    how many percents of bases are allowed to be unqualified (0~100). Default 40 means 40% (int [=40])
+  -n, --n_base_limit                 if one read's number of N base is &gt;n_base_limit, then this read/pair is discarded. Default is 5 (int [=5])
+
+  # length filtering options   根据序列长度来过滤序列
+  -L, --disable_length_filtering     length filtering is enabled by default. If this option is specified, length filtering is disabled
+  -l, --length_required              reads shorter than length_required will be discarded, default is 15. (int [=15])
+
+  # low complexity filtering
+  -y, --low_complexity_filter          enable low complexity filter. The complexity is defined as the percentage of base that is different from its next base (base[i] != base[i+1]).
+  -Y, --complexity_threshold           the threshold for low complexity filter (0~100). Default is 30, which means 30% complexity is required. (int [=30])
+
+  # filter reads with unwanted indexes (to remove possible contamination)
+      --filter_by_index1               specify a file contains a list of barcodes of index1 to be filtered out, one barcode per line (string [=])
+      --filter_by_index2               specify a file contains a list of barcodes of index2 to be filtered out, one barcode per line (string [=])
+      --filter_by_index_threshold      the allowed difference of index barcode for index filtering, default 0 means completely identical. (int [=0])
+
+  # base correction by overlap analysis options   通过overlap来校正碱基
+  -c, --correction                   enable base correction in overlapped regions (only for PE data), default is disabled
+
+  # UMI processing
+  -U, --umi                          enable unique molecular identifer (UMI) preprocessing
+      --umi_loc                      specify the location of UMI, can be (index1/index2/read1/read2/per_index/per_read, default is none (string [=])
+      --umi_len                      if the UMI is in read1/read2, its length should be provided (int [=0])
+      --umi_prefix                   if specified, an underline will be used to connect prefix and UMI (i.e. prefix=UMI, UMI=AATTCG, final=UMI_AATTCG). No prefix by default (string [=])
+      --umi_skip                       if the UMI is in read1/read2, fastp can skip several bases following UMI, default is 0 (int [=0])
+
+  # overrepresented sequence analysis
+  -p, --overrepresentation_analysis    enable overrepresented sequence analysis.
+  -P, --overrepresentation_sampling    One in (--overrepresentation_sampling) reads will be computed for overrepresentation analysis (1~10000), smaller is slower, default is 20. (int [=20])
+
+  # reporting options
+  -j, --json                         the json format report file name (string [=fastp.json])
+  -h, --html                         the html format report file name (string [=fastp.html])
+  -R, --report_title                 should be quoted with ' or &quot;, default is &quot;fastp report&quot; (string [=fastp report])
+
+  # threading options   设置线程数
+  -w, --thread                       worker thread number, default is 3 (int [=3])
+
+  # output splitting options
+  -s, --split                        split output by limiting total split file number with this option (2~999), a sequential number prefix will be added to output name ( 0001.out.fq, 0002.out.fq...), disabled by default (int [=0])
+  -S, --split_by_lines               split output by limiting lines of each file with this option(&gt;=1000), a sequential number prefix will be added to output name ( 0001.out.fq, 0002.out.fq...), disabled by default (long [=0])
+  -d, --split_prefix_digits          the digits for the sequential number padding (1~10), default is 4, so the filename will be padded as 0001.xxx, 0 to disable padding (int [=4])
+
+  # help
+  -?, --help                         print this message
+</code></pre>
+<p>运行命令：</p>
+<pre><code class="language-bash">fastp -c -i fastq1 -o ./cleandata/ -I fastq2 -O ./cleandata/
+</code></pre>
+<h3 id="3对干净数据去除-rrna-操作存疑">3.对干净数据去除 rRNA 操作（存疑）</h3>
+<p>在 ncbi 下载 rRNA 数据保存为 hg19_rRNA.fasta</p>
+<p>使用 bwa 建立索引文件</p>
+<pre><code class="language-bash">bwa index hg19_rRNA.fasta
+</code></pre>
+<p>使用 bwa 将测序数据比对到 rRNA 数据库，去除比对上的数据，并恢复为 fastq 文件</p>
+<pre><code class="language-bash">bwa mem hg19_rRNA.fasta fastq1 fastq2 | samtools view -bf4 |samtools -c 9 -1 paired1.fq.gz -2 paired2.fq.gz -
+</code></pre>
+<h3 id="4将去除-rrna-的数据比对到-hg19hg38-上">4.将去除 rRNA 的数据比对到 hg19|hg38 上</h3>
+<p><strong>使用软件</strong>：subread</p>
+<p><strong>建立索引</strong>：</p>
+<pre><code class="language-bash">subread-buildindex -o hg19 ./database/hg19.fasta
+</code></pre>
+<p><strong>比对</strong>：</p>
+<pre><code class="language-bash">subjunc -T 5 -i hg19 -r fastq1 -R fastq2 -o out.bam
+</code></pre>
+<p><strong>统计 readcounts</strong></p>
+<pre><code class="language-bash">featureCounts -p -T 6 -t exon -g transcript_id -a all_lncRNA_know.gtf -o sample.lncRNA.readcount out.bam
+</code></pre>
+<blockquote>
+<p>这里需要注意：因为一个基因会包含多个转录本，一个转录本又包含多个外显子和内含子，所以为了精确比对结果，我们需要基于外显子进行比对<code>-t exon</code>，软件会自动根据注释文件进行合并同一个转录本的计数结果，并计算出转录本的长度汇总到结果中.</p>
+</blockquote>
+<blockquote>
+<p>另外，需要注意的是，正因为可变剪切的存在，我们不能简单的认为转录本的计数结果相加即为对应基因的计数结果，这是不准确的，所以，要想知道基因的计数结果，我们还需要修改参数，另行计算<code>-g gene_id</code></p>
+</blockquote>
+<p><strong>将计数的结果提取出来</strong>：</p>
+<pre><code class="language-bash">awk -F '\t' '{print $1,$7}' OFS='\t' sample.lncRNA.readcount &gt; ./tiqu/sample.counts
+</code></pre>
+<blockquote>
+<p>注：对于结果中的 length，有人以为就是有效长度（effctive length),但事实是，这个长度仅仅只是一个转录本上所有外显子长度的加和而已，因此，并不能作为有效长度。网上有估算有效长度的公式：</p>
+</blockquote>
+<blockquote>
+<pre><code class="language-R">efflength = transcripts_length - LFD +1
+</code></pre>
+<p>LFD 是测序时的平均片段长度，这个可以估算，但不准确，最好的方法是询问测序人员这个数值。</p>
+</blockquote>
+<h3 id="5整合所有样本信息到表达矩阵并计算-tpm">5.整合所有样本信息到表达矩阵并计算 TPM</h3>
+<p>计算完 readcount，转录组测序的打基础过程已经完毕，后续的分析都是基于此的，但是，为了下游分析的方便，我们有必要将所有的数据整理到一个表达矩阵中。</p>
+<p>使用<strong>python</strong>或者<strong>R</strong>或者<strong>shell</strong>，我建议使用 python,因为简单快速易控：</p>
+<pre><code class="language-python">import pandas as pd
+import glob
+#使用pandas速度要更快，先预读一个样本作为dataframe的起始框架
+df=pd.read_csv(&quot;sample.lncRNA.trans.counts&quot;,sep=&quot;\t&quot;,skiprows=1)
+#featurecount的计算结果提取后通常有这样的表头
+df=df[['Geneid','LncRNA/bidui/normal/sample.subjunc.bam']]
+df.columns=['id','counts']
+#遍历所有样本，使用pd.join整合到一个大表
+for name in glob.glob(&quot;*.counts&quot;):
+    sample=name.replace(&quot;.lncRNA.trans.counts&quot;,&quot;&quot;)
+    df2=pd.read_csv(name,sep=&quot;\t&quot;,skiprows=1)
+    df2.columns=['id','counts','ot']
+    df2=df2[['counts']]
+    df2.columns=[sample]
+    df=pd.concat([df,df2],axis=1)
+#删除预读样本信息，并写入文件
+df.drop('counts',axis=1).set_index(&quot;id&quot;).to_csv(&quot;normal_lncRNA_trans_allcounts.csv&quot;,sep=&quot;\t&quot;)
+</code></pre>
+<p>目前主流的表达量标准化方法多种多样，有 RPKM，FPKM，TPM，CPM 等，下游差异分析软件 deseq2 也有自己的标准化方法，但是，为了保证生物学意义，同时又保证数据的可比性，我还是建议选择 TPM。</p>
+<h5 id="reads-count">reads Count</h5>
+<p><strong>定义</strong>: 高通量测序中比对到 exon 上的 reads 数。可使用 featureCount 等软件进行计算。</p>
+<p>**优点：**可有效说明该区域是否真的有表达及真实的表达丰度。能够近似呈现真实的表达情况。有利于实验验证。</p>
+<p>**缺点：**由于 exon 长度不同，难以进行不同 exon 丰度比较；由于测序总数不同，难以对不同测序样本间进行比较。</p>
+<h5 id="rpkmfpkm">RPKM/FPKM</h5>
+<p><strong>定义：</strong><br>
+RPKM: Reads Per Kilobase of exon model per Million mapped reads (每千个碱基的转录每百万映射读取的 reads)；<br>
+FPKM: Fragments Per Kilobase of exon model per Million mapped fragments(每千个碱基的转录每百万映射读取的 fragments)<br>
+<strong>公式：</strong></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>P</mi><mi>K</mi><mi>M</mi><mo>=</mo><mfrac><mrow><mi>E</mi><mi>x</mi><mi>o</mi><mi>n</mi><mi>M</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mi>R</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><mrow><mi>T</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mi>M</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mi>R</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mo>∗</mo><mi>E</mi><mi>x</mi><mi>o</mi><mi>n</mi><mi>L</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">RPKM =\frac{ExonMappedReads  * 10^9 }{TotalMappedReads * ExonLength}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.371548em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">L</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>上述公式可从下面公式推导而出：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>P</mi><mi>K</mi><mi>M</mi><mo>=</mo><mfrac><mrow><mi>E</mi><mi>x</mi><mi>o</mi><mi>n</mi><mi>M</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mi>R</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mi mathvariant="normal">/</mi><mi>E</mi><mi>x</mi><mi>o</mi><mi>n</mi><mi>L</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><mrow><mi>T</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mi>M</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mi mathvariant="normal">/</mi><mi>G</mi><mi>e</mi><mi>n</mi><mi>o</mi><mi>m</mi><mi>e</mi><mi>L</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">RPKM=\frac{ExonMappedReads/ExonLength*10^9}{TotalMappedreads/GenomeLength}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.427108em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mord">/</span><span class="mord mathdefault">G</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">L</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">L</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>解释</strong>：ExonMappedReads 即为比对到该 exon 上的 reads count； TotalMappedReads 即为比对到基因组上所有 reads count 的总和；ExonLength 为该 Exon 的长度；GenomeLength 即为基因组全长，因为是相同基因组，所以该数值可消除。</p>
+<p>**优点：**tophat-cufflinks 流程固定，应用范围广。理论上，可弥补 reads Count 的缺点，消除样本间和基因间差异。</p>
+<p>**讨论：**有人说 RPKM/FPKM 标准化特别不合理，看着是个大牛 YellowTree。公式 2 中，TotalMappedReads/GenomeLength 为测序深度，ExonMappedReads / ExonLength 可以简单的认为是该 Exon 上的“测序深度”。两者相除，就得出该 Exon 依据测序深度而进行的标准化，那么因 Exon 长短、测序深度造成的样本间造成的偏差，都可以消除。因一般是相同物种，基因组一般相同，所以公式 2 换算并消去 GenomeLength，就成为公式 1 的形式了。不知道哪里错了，斗胆提出质疑：RPKM/FPKM 怎么就不能消除两种类型的 bias？不过有论文陈述说 RPKM 的结果难以消除组间测序造成的差异，可能未采用比对到基因组上所有的 reads 数，而是采用了比对到所有 Exon 的 reads 数作为 TotalMappedReads 吧。不是很确定。</p>
+<p>**FPKM：**与 RPKM 计算过程类似。只有一点差异：RPKM 计算的是 reads，FPKM 计算的是 fragments。single-end/paired-end 测序数据均可计算 reads count，fragments count 只能通过 paired-end 测序数据计算。paired-end 测序数据时，两端的 reads 比对到相同区域，且方向相反，即计数 1 个 fragments；如果只有单端 reads 比对到该区域，则一个 reads 即计数 1 个 fragments。所以 fragments count 接近且小于 2 * reads count。</p>
+<h5 id="rpm">RPM</h5>
+<p>**定义：**RPM/CPM: Reads/Counts of exon model per Million mapped reads (每百万映射读取的 reads)</p>
+<p><strong>公式：</strong></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>P</mi><mi>M</mi><mo>=</mo><mfrac><mrow><mi>E</mi><mi>x</mi><mi>o</mi><mi>n</mi><mi>M</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mi>R</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><mrow><mi>T</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mi>M</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mi>R</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">RPM = \frac{ExonMappedReads * 10^6}{TotalMappedReads}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.371548em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>**优点：**利于进行样本间比较。根据比对到基因组上的总 reads count，进行标准化。即：不论比对到基因组上的总 reads count 是多少，都将总 reads count 标准化为 10^6。</p>
+<p>**缺点：**未消除 exon 长度造成的表达差异，难以进行样本内 exon 差异表达的比较。</p>
+<h5 id="tpm">TPM</h5>
+<p>**定义：**TPM: Transcripts Per Kilobase of exon model per Million mapped reads (每千个碱基的转录每百万映射读取的 Transcripts)</p>
+<p><strong>公式：</strong></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>P</mi><mi>M</mi><mo>=</mo><mfrac><mrow><msub><mi>N</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><msub><mi>L</mi><mi>i</mi></msub><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>(</mo><msub><mi>N</mi><mn>1</mn></msub><mi mathvariant="normal">/</mi><msub><mi>L</mi><mn>1</mn></msub><mo>+</mo><msub><mi>N</mi><mn>2</mn></msub><mi mathvariant="normal">/</mi><msub><mi>L</mi><mn>2</mn></msub><mo>+</mo><mo separator="true">⋅</mo><mo separator="true">⋅</mo><mo>+</mo><msub><mi>N</mi><mi>n</mi></msub><mi mathvariant="normal">/</mi><msub><mi>L</mi><mi>n</mi></msub><mo>)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">TPM=\frac{N_i/L_i*10^6}{sum(N_1/L_1+N_2/L_2+··+N_n/L_n)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.427108em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">+</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">+</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>**解释：**Ni 为比对到第 i 个 exon 的 reads 数； Li 为第 i 个 exon 的长度；sum(N1/L1+N2/L2 + ... + Nn/Ln)为所有 (n 个)exon 按长度进行标准化之后数值的和。</p>
+<p>**计算过程：**首先对每个 exon 计算 Pi=Ni/Li，即按长度对 reads count 进行标准化；随后计算过程类似 RPM (将 Pi 作为正常的 ExonMappedReads，然后以 RPM 的公式计算 TPM)。</p>
+<p>**优点：**首先消除 exon 长度造成的差异，随后消除样本间测序总 reads count 不同造成的差异。</p>
+<p>**缺点：**因为不是采用比对到基因组上的总 reads count，所以特殊情况下不够准确。例如：某突变体对 exon 造成整体影响时，难以找出差异。</p>
+<h5 id="相互关系">相互关系</h5>
+<p>**评价：**以上几种计算 exon 表达丰度的方法，差异不是非常大。如果结果是显著的，那么采用上面任一计算方法大多均可找出显著结果。但是当表达风度差异不是那么显著时，不易区分不同类别，需要根据实际需要选择对应的标准化方法。</p>
+<p>**注意：**以上 TotalMappedReads 推荐首选比对到基因组上的总 reads 数，而不是比对到 exon 或者 gene 上总 reads 数。这同样需要根据实际情况而确定。</p>
+<h5 id="如何根据-counts-计算-tpm">如何根据 counts 计算 TPM？</h5>
+<p>这里摘取一段网络代码：</p>
+<pre><code class="language-R">countToTpm &lt;- function(counts, effLen)
+{
+    rate &lt;- log(counts) - log(effLen)
+    denom &lt;- log(sum(exp(rate)))
+    exp(rate - denom + log(1e6))
+}
+
+countToFpkm &lt;- function(counts, effLen)
+{
+    N &lt;- sum(counts)
+    exp( log(counts) + log(1e9) - log(effLen) - log(N) )
+}
+
+fpkmToTpm &lt;- function(fpkm)
+{
+    exp(log(fpkm) - log(sum(fpkm)) + log(1e6))
+}
+
+countToEffCounts &lt;- function(counts, len, effLen)
+{
+    counts * (len / effLen)
+}
+
+################################################################################
+# An example
+################################################################################
+cnts &lt;- c(4250, 3300, 200, 1750, 50, 0)
+lens &lt;- c(900, 1020, 2000, 770, 3000, 1777)
+countDf &lt;- data.frame(count = cnts, length = lens)
+
+# assume a mean(FLD) = 203.7
+countDf$effLength &lt;- countDf$length - 203.7 + 1
+countDf$tpm &lt;- with(countDf, countToTpm(count, effLength))
+countDf$fpkm &lt;- with(countDf, countToFpkm(count, effLength))
+with(countDf, all.equal(tpm, fpkmToTpm(fpkm)))
+countDf$effCounts &lt;- with(countDf, countToEffCounts(count, length, effLength))
+</code></pre>
+<p>显而易见，要想通过 counts 计算 TPM，必须知道 count,efflength,但最难的也是这个有效长度</p>
+<h5 id="what-is-effective-length-of-the-feature">what is effective length of the feature?</h5>
+<p>I traced back to this paper by Lior pachter group <a href="http://www.nature.com/nbt/journal/v28/n5/full/nbt.1621.html">Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation</a>.</p>
+<p>It is quite mathematical, but the <a href="https://groups.google.com/forum/#!searchin/kallisto-sleuth-users/Effective$20Length/kallisto-sleuth-users/SlJWXFMEEiM/ftkrtPZyAQAJ">general idea is</a>:</p>
+<blockquote>
+<p>If we take the fragment length to be fixed, then the effective length is how many fragments can occur in the transcript. This turns out to be length - frag_len +1. The number of fragments coming from a transcript will be proportional to this number, regardless of whether you sequenced one or both ends of the fragment. In turn, when it comes to probabilistically assigning reads to transcripts the effective length plays a similar role again. Thus for short transcripts, there can be quite a difference between two fragment lengths. To go back to your example if you have transcript of length 310, your effective length is 10 (if fragment length is 300) or 160 (if fragment length is 150) in either case, which explains the discrepancy you see.</p>
+</blockquote>
+<p>From @Rob</p>
+<blockquote>
+<p>The effective length is computed by using the fragment length distribution to determine the effective number of positions that can be sampled on each transcript. You can think of this as convolving the fragment length distribution with the characteristic function (the function that simply takes a value of 1) over the transcript. For example if we observe fragments of length 50 --- 1000, a position more than 1000 bases from the end of the transcript will contribute a value of 1 to the effective length, while a position 150 bases will contribute a value of F(150), where F is the cumulative distribution function of the fragment length distribution. For single end data, where we can't learn an empirical FLD, we use a gaussian whose mean and standard deviation can be set with --fldMean and --fldSD respectively.</p>
+</blockquote>
+<p>From Harold Pimentel's post above. He is in Lior Pachter's group.</p>
+<blockquote>
+<p>Effective length refers to the number of possible start sites a feature could have generated a fragment of that particular length. In practice, the effective length is usually computed as:</p>
+</blockquote>
+<blockquote>
+<p>where uFDL is the mean of the fragment length distribution which was learned from the aligned read. If the abundance estimation method you’re using incorporates sequence bias modeling (such as eXpress or Cufflinks), the bias is often incorporated into the effective length by making the feature shorter or longer depending on the effect of the bias.</p>
+</blockquote>
+<p>所以说，自己计算 efflength 相当麻烦而且可能出错，有没有简单的方法呢？</p>
+<p>有： 使用 salmon 软件会进行伪比对计算 TPM 和 count 同时会得到对应转录本的有效长度，将其计算结果中有效长度提取出来即可。</p>
+<p>首先，提取对应有效长度给 fc 计算结果：</p>
+<pre><code class="language-python">import pandas as pd
+import os,glob
+fc_dir=&quot;lncRNA/normal/tiqu_trans&quot;
+sm_dir=&quot;LncRNA/salmon/normal/lncRNA&quot;
+
+fc=glob.glob(os.path.join(fc_dir,&quot;*.lncRNA.trans.counts&quot;))
+
+for fs in fc:
+    sample_name=fs.replace(&quot;lncRNA/normal/tiqu_trans/&quot;,&quot;&quot;).replace(&quot;.lncRNA.trans.counts&quot;,&quot;&quot;)
+    df=pd.read_csv(fs,sep=&quot;\t&quot;,header=0,skiprows=1).iloc[:,[0,1]].set_index(&quot;Geneid&quot;)
+    df.columns=['count']
+    df2=pd.read_csv(os.path.join(sm_dir,&quot;{}_quant&quot;.format(sample_name),&quot;quant.sf&quot;),sep=&quot;\t&quot;,header=0).set_index(&quot;Name&quot;)
+    df1=df.join(df2[['EffectiveLength']])
+    df1.to_csv(os.path.join(fc_dir,&quot;{}.lncRNA.trans_eff.counts&quot;.format(sample_name)),sep=&quot;\t&quot;)
+
+</code></pre>
+<p>然后计算 TPM：</p>
+<pre><code class="language-R">options(scipen = 200)
+options(digits = 3)
+for (name in Sys.glob(&quot;*.lncRNA.trans_eff.counts&quot;)){
+    countdata&lt;-read.table(name,sep=&quot;\t&quot;,header = TRUE,row.names = &quot;Geneid&quot;)
+    countToTpm &lt;- function(counts, effLen){
+        rate &lt;- log(counts) - log(effLen)
+        denom &lt;- log(sum(exp(rate)))
+        exp(rate - denom + log(1e6))
+    }
+    countdata&lt;-na.omit(countdata)
+    countdata$TPM&lt;-with(countdata,countToTpm(countdata$count,countdata$EffectiveLength))
+    id&lt;-unlist(strsplit(name,&quot;[.]&quot;))[1]
+    write.table(countdata,paste(id,&quot;.lncRNA.trans.TPM&quot;,sep = &quot;&quot;),quote = FALSE,sep=&quot;\t&quot;)
+}
+
+</code></pre>
+<p>然后，将所有的 TPM 再次整合到表达矩阵中：</p>
+<pre><code class="language-python">
+import pandas as pd
+import glob
+df=pd.read_csv(&quot;sample.lncRNA.trans.TPM&quot;,sep=&quot;\t&quot;)
+df=df[['TPM']]
+for name in glob.glob(&quot;*.TPM&quot;):
+    sample=name.replace(&quot;.lncRNA.trans.TPM&quot;,&quot;&quot;)
+    df2=pd.read_csv(name,sep=&quot;\t&quot;)
+    df2=df2[['TPM']]
+    df2.columns=[sample]
+    df=df.join(df2)
+
+df.drop(['TPM'],axis=1).to_csv(&quot;normal_lncRNA_trans_TPM.csv&quot;,sep=&quot;\t&quot;)
+</code></pre>
+<p>现在，又有一个问题了。……<br>
+基因的表达量怎么算呢，基因的有效长度没法算啊，因为 salmon 只能计算转录本的表达量啊。这里，我们可以通过转录本推算基因有效长度：</p>
+<pre><code class="language-python">import argparse
+import pandas as pd
+import numpy as np
+import sys
+
+def main(args):
+    gtable = pd.read_csv(args.ginput,skiprows=1,sep=&quot;\t&quot;).set_index('Geneid')
+    gtable = gtable.iloc[:,0:1]
+    gtable.columns = ['Count']
+    ttable = pd.read_table(args.tinput).set_index('Name')
+    tgmap = pd.read_table(args.tgmap, names=['t', 'g']).set_index('t')
+    gene_lengths = {}
+    j = 0
+
+    # Map over all gene groups (a gene and its associated transcripts)
+    for g, txps in tgmap.groupby('g').groups.iteritems():
+        if j % 500 == 1:
+            print(&quot;Processed {} genes&quot;.format(j))
+        j += 1
+        # The set of transcripts present in our salmon index
+        tset = []
+        for t in txps:
+            if t in ttable.index:
+                tset.append(t)
+        # If at least one of the transcripts was present
+        if len(tset) &gt; 0:
+            # The denominator is the sum of all TPMs
+            totlen = ttable.loc[tset,'TPM'].sum()
+            # Turn the relative TPMs into a proper partition of unity
+            if totlen &gt; 0:
+                tpm_fracs = ttable.loc[tset, 'TPM'].values / ttable.loc[tset,'TPM'].sum()
+            else:
+                tpm_fracs = np.ones(len(tset)) / float(len(tset))
+            # Compute the gene's effective length as the abundance-weight
+            # sum of the transcript lengths
+            elen = 0.0
+            for i,t in enumerate(tset):
+                elen += tpm_fracs[i] * ttable.loc[t, 'EffectiveLength']
+            gene_lengths[g] = elen
+
+    # Give the table an effective length field
+    gtable['EffectiveLength'] = gtable.apply(lambda r : gene_lengths[r.name] if r.name in gene_lengths else 1.0, axis=1)
+    # Write it to the output file
+    gtable.to_csv(args.output, sep='\t', index_label='Name')
+
+if __name__ == &quot;__main__&quot;:
+    parser = argparse.ArgumentParser(description=&quot;Compute gene-level effective lengths&quot;)
+    parser.add_argument('--ginput', type=str, help='gene level input table')
+    parser.add_argument('--tinput', type=str, help='transcript level input table')
+    parser.add_argument('--tgmap', type=str, help='transcript -&gt; gene mapping')
+    parser.add_argument('--output', type=str, help='output table with extra column')
+
+    args = parser.parse_args()
+    main(args)
+</code></pre>
+<pre><code class="language-shell">python inferlength.py --ginput sample.lncRNA.counts --tinput sample.quant.sf --tgmap lnc_tx2gene.txt --output sample.eff.lnc.counts
+</code></pre>
+<p>然后，老办法计算 TPM,然后整合。</p>
+<h3 id="6差异分析">6.差异分析</h3>
+<p>差异分析有两种情况，一种是组间差异，一种是样本间差异，组间差异的意思就是，有两组样本做比较，每组样本默认其都是重复性实验，即两组进行比较；而样本间差异意思就是虽然也是两个组进行比较，但是每个组内的样本是独立的，之间也是有差异的。</p>
+<p>对于两种情况，分别推荐组间差异分析使用<strong>deseq2</strong>;样本间差异分析使用<strong>degseq</strong></p>
+<p>通常情况下就是，使用 deseq2 捕获不到的差异，会被 degseq 得到，但是否符合心中预期，还需要进一步衡量，一般要做热图的话，degseq 得到的差异基因很难形成红白对照，聚类的话，样本和组很难聚在一起。</p>
+<h5 id="deseq2">deseq2:</h5>
+<pre><code class="language-R">library(DESeq2)
+path=getwd()
+normal&lt;-read.table(paste(path,&quot;/&quot;,&quot;normal_lncRNA_smcounts.csv&quot;,sep = &quot;&quot;),header = TRUE,row.names = &quot;Name&quot;,check.names=FALSE)
+sick&lt;-read.table(paste(path,&quot;/&quot;,&quot;sick_lncRNA_smcounts.csv&quot;,sep = &quot;&quot;),header = TRUE,row.names = &quot;Name&quot;,check.names=FALSE)
+mydata&lt;-cbind(normal,sick)
+sample&lt;-colnames(mydata)
+group_lst=c(rep(&quot;normal&quot;,length(colnames(normal))),rep(&quot;sick&quot;,length(colnames(sick))))
+colData &lt;- data.frame(row.names=sample,group_list=group_lst)
+dds &lt;- DESeqDataSetFromMatrix(countData = round(mydata),colData = colData,design = ~ group_list)
+register(MulticoreParam(4))
+dds2&lt;-DESeq(dds,parallel=TRUE)
+saveRDS(dds2,paste(path,&quot;/&quot;,&quot;lncRNA_normlized_by_deseq2_sm.rds&quot;,sep = &quot;&quot;))
+#suppressMessages(dds2)
+res &lt;-  results(dds2, contrast=c(&quot;group_list&quot;,&quot;normal&quot;,&quot;sick&quot;))
+resOrdered &lt;- res[order(res$padj),]
+resOrdered=as.data.frame(resOrdered)
+diff_gene_deseq &lt;-subset(res, padj &lt; 0.05 &amp; abs(log2FoldChange) &gt; 1)
+write.table(diff_gene_deseq,file = paste(path,&quot;/&quot;,&quot;lncRNA_top_diff2_sm.txt&quot;,sep = &quot;&quot;),quote = FALSE,sep=&quot;\t&quot;)
+plotdata&lt;-counts(dds2, normalized = TRUE)
+write.table(plotdata,file = paste(path,&quot;/&quot;,&quot;lncRNA_normlized_by_deseq2_sm.txt&quot;,sep = &quot;&quot;),quote = FALSE,sep=&quot;\t&quot;)
+</code></pre>
+<h3 id="degseq">degseq:</h3>
+<pre><code class="language-R">library(qvalue)
+library(samr)
+library(impute)
+library(matrixStats)
+library(&quot;DEGseq&quot;)
+path=getwd()
+normal&lt;-read.table(paste(path,&quot;/&quot;,&quot;normal_lncRNA_smcounts.csv&quot;,sep = &quot;&quot;),header = TRUE,row.names = &quot;Name&quot;,check.names=FALSE)
+sick&lt;-read.table(paste(path,&quot;/&quot;,&quot;sick_lncRNA_smcounts.csv&quot;,sep = &quot;&quot;),header = TRUE,row.names = &quot;Name&quot;,check.names=FALSE)
+mydata&lt;-cbind(normal,sick)
+write.table(mydata,paste(path,&quot;/&quot;,&quot;lncRNA_all_smcounts.txt&quot;,sep = &quot;&quot;),quote=FALSE,sep=&quot;\t&quot;)
+matrix1 &lt;- readGeneExp(paste(path,&quot;/&quot;,&quot;lncRNA_all_smcounts.txt&quot;,sep = &quot;&quot;), geneCol=1, valCol=c(2:83))
+matrix2 &lt;- readGeneExp(paste(path,&quot;/&quot;,&quot;lncRNA_all_smcounts.txt&quot;,sep = &quot;&quot;), geneCol=1, valCol=c(84:207))
+DEGexp(geneExpMatrix1=matrix1, geneCol1=1, expCol1=c(2:83), groupLabel1=&quot;nomal&quot;,
+               geneExpMatrix2=matrix2, geneCol2=1, expCol2=c(2:125), groupLabel2=&quot;sick&quot;,
+                pValue=1e-3, zScore=4, qValue=1e-3, foldChange=2, thresholdKind=5,
+               method=&quot;MARS&quot;, outputDir=path)
+</code></pre>
+<h5 id="合并-casecontrol-的-tpm-到一个矩阵">合并 case，control 的 TPM 到一个矩阵：</h5>
+<pre><code class="language-R">path=getwd()
+normal&lt;-read.table(paste(path,&quot;/&quot;,&quot;normal_mRNA_smTPM.csv&quot;,sep = &quot;&quot;),row.names=&quot;Name&quot;,header = TRUE,check.names=FALSE)
+sick&lt;-read.table(paste(path,&quot;/&quot;,&quot;sick_mRNA_smTPM.csv&quot;,sep = &quot;&quot;),row.names=&quot;Name&quot;,header = TRUE,check.names=FALSE)
+mydata&lt;-cbind(normal,sick)
+
+write.table(mydata,&quot;mRNA.salmon.TPM.txt&quot;,sep=&quot;\t&quot;,quote=FALSE)
+</code></pre>
+<h5 id="将表达量为-0-的过滤掉">将表达量为 0 的过滤掉：</h5>
+<pre><code class="language-R">path=getwd()
+mydata&lt;-read.table(paste(path,&quot;mRNA.salmon.TPM.txt&quot;,sep=&quot;/&quot;),header=TRUE)
+#这里也可以在read.table里面添加check.names=FALSE
+colnames(mydata)&lt;-gsub(&quot;X&quot;,&quot;&quot;,colnames(mydata))
+top_m&lt;-read.table(paste(path,&quot;top_mRNA_degseq_fliter.csv&quot;,sep=&quot;/&quot;),header=TRUE,sep=&quot;\t&quot;)
+top_m_TPM&lt;-mydata[top_m$GeneNames,]
+top_m_filter&lt;-top_m_TPM[apply(top_m_TPM,1,mean)&gt;0,]
+write.table(top_m_filter,&quot;top_m_filter.txt&quot;,sep=&quot;\t&quot;,quote=FALSE)
+</code></pre>
+<h3 id="7对获取到的差异转录本做-go-pathway-富集分析">7.对获取到的差异转录本做 GO PATHWAY 富集分析</h3>
+<p>不推荐使用 Y 叔的<code>clusterprofile</code>,这个软件虽然易用，但是注释信息非常有限，功能也不完善，做富集分析和注释，还是需要使用在线的数据库注释，这里推荐几个非常好的网站：</p>
+<ul>
+<li><a href="https://david.ncifcrf.gov/tools.jsp">DAVID</a></li>
+<li><a href="http://metascape.org/gp/index.html#/main/step1">metascape</a></li>
+<li><a href="http://www.webgestalt.org/">webgestalt</a></li>
+<li><a href="https://biodbnet-abcc.ncifcrf.gov/">BioDbNet</a></li>
+</ul>
+<p><strong>DAVID</strong>这个网站被诟病许久，大家都在吐槽它更新缓慢的数据库，但是用起来还是真香，滑稽。</p>
+<p><strong>metascape</strong>是我用过的迄今为止最好用的网站，它可以接受几乎所有的 id，做的分析有一般分析和自定义分析，自定义分析里面可以帮助挑选出我们想要的通路，得到其对应的基因，这个真的非常好用，而且它有一个 excel 插件，可以直接在 Excel 里面运行，</p>
+<p><strong>webgestalt</strong>这个可能我还没发觉它真正的功能，我用着不好用，富集不全，但是图做的好，这个没得黑。</p>
+<p><strong>BioDbNet</strong>这个网站简直全能，可以做 id 转换，还可以做全注释，强无敌！！！</p>
+<p>对 LncRNA 的注释，可以使用 R 包<strong>LncPath</strong>，这个包用法简单，但最好需要配合<strong>WGCNA</strong>使用</p>
+<h3 id="8对得到的差异基因做可视化">8.对得到的差异基因做可视化</h3>
+<p>目前我所做的可视化无非两种，一种是聚类热图，另一种是箱线图或者小提琴图，一种应用于大量基因，另一种是少量基因的情况。</p>
+<p>热图很简单，直接用表达矩阵和分组信息做就可以了，默认参数，数据最好 log2(n+1)</p>
+<p>箱线图同理，ggplot2 就可以做了</p>
+<p>另外一种图是网络交互图，使用 igraph</p>
+<h3 id="9寻找-lncrna-的靶基因">9.寻找 lncRNA 的靶基因</h3>
+<p>针对 lncRNA 研究，其中比较关键的点是确定 lncRNA 的靶基因，如果能够有方法预测到 lncRNA 的靶基因，会减轻我们的工作量。而如何去测 lncRNA 的靶基因，可以从 lncRNA 不同的作用模式入手。</p>
+<p>lncRNAs 作用范围广泛，机制非常复杂。根据 lncRNA 不同的作用模式比如顺式（cis）和反式（trans）之分，比如 Signal，Decoy，Duide，Scaffold，也可以根据 lncRNA 与不同的分子分为 DNA、RNA 和蛋白，总体上包括了转录和转录后水平。</p>
+<h5 id="根据顺式cis和反式trans的作用模式来预测">根据顺式（cis）和反式（trans）的作用模式来预测</h5>
+<p>RNA 聚合酶转录得到一个与调控蛋白相关的 LncRNA 从而影响附近区域的编码基因。</p>
+<p>cis 作用靶基因预测，认为 LncRNA 的功能与其坐标临近的蛋白编码基因相关，位于编码蛋白上下游的 LncRNA 可能与启动子或者共表达基因的其他顺式作用元件有交集，从而在转录或者转录后水平对基因的表达进行调控。判断一个 LncRNA 具有 Cis 调控作用通常要同时满足以下几个条件：</p>
+<ul>
+<li>附近的基因表达情况与其保持一致；</li>
+<li>该基因失活后会影响周围基因的表达；</li>
+<li>会影响附近同一位点的基因表达。</li>
+</ul>
+<p>对于满足以上条件的 LncRNA，首先找出位于其上游或者下游附近（10K）的编码蛋白基因，通过对编码蛋白的功能富集分析，从而预测 LncRNA 的主要功能，为后续 Cis 作用分析打下基础。</p>
+<p>LncRNA 与 DNA 结合蛋白相关联，并调控相关靶基因的表达。</p>
+<p>Trans 作用靶基因预测基本原理认为 LncRNA 的功能跟编码基因的位置关系没有关系，而与其共表达的蛋白编码基因相关。也就是说，当 LncRNA 与一些距离较远的基因在表达量上存在正相关或负相关的情况时，就可以通过样本间 lncRNA 与蛋白编码基因的表达量相关性分析或 WGCNA 共表达分析来预测其靶基因。</p>
+<p>需要注意的是，lncRNA 的 Trans 作用靶基因预测只适合于样本量大的情况，如果样本量太少（如 6 个以下），分析将不可靠。</p>
+<p>所以，我的分析方法是，首先分析相关性，使用 p 值（FDR）和相关性参数确定相关性较强的基因作为备选</p>
+<p>然后，分析 mRNA 上游 10K 和下游 20K 的 lncRNA 作为 cis；不在范围内的使用 RNAplex 计算结合能，结合能小于-30 作为 trans</p>
+<p><strong>计算相关性：</strong></p>
+<pre><code class="language-R">library(&quot;fdrtool&quot;)
+base&lt;-getwd()
+mydata&lt;-read.table(paste(base,&quot;top_m_filter.txt&quot;,sep=&quot;/&quot;),header=TRUE,check.names=FALSE)
+mydata&lt;-as.data.frame(t(mydata))
+chayi&lt;-read.table(paste(base,&quot;top_lnc_filter.txt&quot;,sep=&quot;/&quot;),header=TRUE,check.names=FALSE)
+chayi&lt;-as.data.frame(t(chayi))
+core&lt;-function(x,y){
+  cor.test(x,y)$estimate
+}
+pval&lt;-function(x,y){
+  cor.test(x,y)$p.value
+}
+fdr&lt;-function(x){
+  fdr&lt;-fdrtool(x,statistic=&quot;pvalue&quot;)
+  fdr$qval
+}
+mycor&lt;-data.frame(test=rep(0,length(colnames(mydata))))
+for (i in 1:length(colnames(chayi))){
+  haha&lt;-0
+  for (j in 1:length(colnames(mydata))){
+    xiangguan&lt;-core(chayi[,i],mydata[,j])
+    haha&lt;-c(haha,xiangguan)
+  }
+  mycor&lt;-cbind(mycor,as.data.frame(haha)[-1,])
+}
+mycor&lt;-mycor[,-1]
+colnames(mycor)&lt;-colnames(chayi)
+rownames(mycor)&lt;-colnames(mydata)
+write.table(mycor,paste(base,&quot;correlation2.txt&quot;,sep=&quot;/&quot;),quote=FALSE)
+myp&lt;-data.frame(test=rep(0,length(colnames(mydata))))
+for (i in 1:length(colnames(chayi))){
+  haha&lt;-0
+  for (j in 1:length(colnames(mydata))){
+    xiangguan&lt;-pval(chayi[,i],mydata[,j])
+    haha&lt;-c(haha,xiangguan)
+  }
+  myp&lt;-cbind(myp,as.data.frame(haha)[-1,])
+}
+myp&lt;-myp[,-1]
+colnames(myp)&lt;-colnames(chayi)
+rownames(myp)&lt;-colnames(mydata)
+mfdr&lt;-apply(myp,2,fdr)
+write.table(mfdr,paste(base,&quot;p_values(FDR)2.txt&quot;,sep=&quot;/&quot;),quote=FALSE)
+
+##guolv
+haha&lt;-data.frame(&quot;correlation&quot;=0,&quot;mRNA&quot;=0,&quot;lncRNA&quot;=0)
+xiangguan&lt;-read.table(paste(base,&quot;correlation2.txt&quot;,sep=&quot;/&quot;),header = TRUE)
+for (i in colnames(xiangguan)){
+  if (length(row.names(subset(xiangguan,abs(xiangguan[,i])&gt;0.6,select = i)))==0){
+    next
+  }else{
+  xiang&lt;-subset(xiangguan,abs(xiangguan[,i])&gt;0.6,select = i)
+  colnames(xiang)&lt;-&quot;correlation&quot;
+  xiang$mRNA&lt;-rownames(xiang)
+  xiang$lncRNA&lt;-i
+  rownames(xiang)&lt;-NULL
+  haha&lt;-rbind(haha,xiang)
+  }
+}
+
+heihei&lt;-data.frame('p_values(FDR)'=0,&quot;mRNA&quot;=0,&quot;lncRNA&quot;=0)
+colnames(heihei)[1]&lt;-&quot;p_values(FDR)&quot;
+xiangguan&lt;-read.table(paste(base,&quot;p_values(FDR)2.txt&quot;,sep=&quot;/&quot;),header = TRUE)
+for (i in colnames(xiangguan)){
+  if (length(row.names(subset(xiangguan,xiangguan[,i]&lt;0.05,select = i)))==0){
+    next
+  }else{
+    xiang&lt;-subset(xiangguan,xiangguan[,i]&lt;0.05,select = i)
+    colnames(xiang)&lt;-&quot;p_values(FDR)&quot;
+    xiang$mRNA&lt;-rownames(xiang)
+    xiang$lncRNA&lt;-i
+    rownames(xiang)&lt;-NULL
+    heihei&lt;-rbind(heihei,xiang)
+  }
+}
+haha&lt;-haha[-1,]
+heihei&lt;-heihei[-1,]
+fin&lt;-merge(haha,heihei,by.x = c(&quot;lncRNA&quot;,&quot;mRNA&quot;),by.y = c(&quot;lncRNA&quot;,&quot;mRNA&quot;))
+write.table(fin,paste(base,&quot;xiangguanxing2.txt&quot;,sep=&quot;/&quot;),quote = FALSE,row.names = FALSE)
+</code></pre>
+<blockquote>
+<p>note: 这里计算的方法是使用 for 循环迭代结算，效率较低，不适合与大量数据，而且这里两个数据表一定要有相同的样本顺序，不然计算的相关性和 P 值会有显著的不同。最后，对于 FDR 矫正，这里只是针对一个 lncRNA 和多个 mRNA 的 P 值做了矫正。</p>
+</blockquote>
+<pre><code class="language-R">library(Hmisc)
+library(reshape2)
+library(fdrtool)
+lncRNA&lt;-read.table(&quot;lncRNA_difference.txt&quot;,header = TRUE,check.names = FALSE,stringsAsFactors = FALSE,sep=&quot;\t&quot;)
+mRNA&lt;-read.table(&quot;mRNA_difference.txt&quot;,header = TRUE,check.names = FALSE,stringsAsFactors = FALSE,sep=&quot;\t&quot;)
+n_lnc&lt;-nrow(lncRNA)
+n_mRNA&lt;-nrow(mRNA)
+alldata&lt;-rbind(lncRNA,mRNA)
+mydata&lt;-as.matrix(t(alldata))
+p&lt;-rcorr(mydata)
+cor&lt;-p[[&quot;r&quot;]][1:n_lnc,(n_lnc+1):nrow(alldata)]
+pvalue&lt;-p[[&quot;P&quot;]][1:n_lnc,(n_lnc+1):nrow(alldata)]
+cor&lt;-cbind(rownames(cor),cor)
+colnames(cor)[1]&lt;-&quot;LncRNA&quot;
+pvalue&lt;-cbind(rownames(pvalue),pvalue)
+colnames(pvalue)[1]&lt;-&quot;LncRNA&quot;
+new_cor&lt;-melt(as.data.frame(cor),id.vars=&quot;LncRNA&quot;,variable.name = &quot;mRNA&quot;,value.name = &quot;correlation&quot;)
+new_p&lt;-melt(as.data.frame(pvalue),id.vars=&quot;LncRNA&quot;,variable.name = &quot;mRNA&quot;,value.name = &quot;p.value&quot;)
+jiaozheng&lt;-function(x){fdrtool(x,statistic = &quot;pvalue&quot;,plot = FALSE,verbose = FALSE)$qval}
+all_cor&lt;-merge(new_cor, new_p, by.x=c(&quot;LncRNA&quot;,&quot;mRNA&quot;), by.y=c(&quot;LncRNA&quot;,&quot;mRNA&quot;))
+all_cor&lt;-na.omit(all_cor)
+all_cor$p.value&lt;-as.numeric(all_cor$p.value)
+all_cor$correlation&lt;-as.numeric(all_cor$correlation)
+all_cor$p.asjust&lt;-jiaozheng(all_cor$p.value)
+all_fli&lt;-subset(all_cor,abs(all_cor$correlation)&gt;0.6&amp;all_cor$p.asjust&lt;0.05)
+write.table(all_fli,&quot;xiangguanxing.txt&quot;,quote=FALSE,row.names=FALSE)
+</code></pre>
+<blockquote>
+<p>这个脚本可以解决迭代问题，而且避免了样本不一致的情况。<br>
+<strong>计算 cis</strong></p>
+</blockquote>
+<p>首先，获取 bed 文件</p>
+<pre><code class="language-R">anno_m&lt;-read.table(&quot;LncRNA/readscounts/gene_hit/hg19_all_transcript.bed&quot;,sep = &quot;\t&quot;,header = FALSE)
+anno_lnc&lt;-read.table(&quot;LncRNA/readscounts/gene_hit/NONCODE.bed&quot;,sep = &quot;\t&quot;,header = FALSE)
+chayi&lt;-read.table(&quot;xiangguanxing2.txt&quot;,header = TRUE)
+lncRNA&lt;-subset(anno_lnc,V4%in%chayi$lncRNA)
+mRNA&lt;-subset(anno_m,V4%in%chayi$mRNA)
+write.table(lncRNA,&quot;lncRNA.bed&quot;,sep = &quot;\t&quot;,row.names = FALSE,col.names = FALSE,quote = FALSE)
+write.table(mRNA,&quot;mRNA.bed&quot;,sep = &quot;\t&quot;,row.names = FALSE,col.names = FALSE,quote = FALSE)
+</code></pre>
+<p>所有基因的 bed 文件 noncode.bed 和 hg19.bed 可以在网上下载，也可以自己做，自己做的话使用 python 的 gtf_parse 包对 gtf 文件进行解析，然后做一个就行了</p>
+<p>然后，使用 bedtools 计算位置信息：</p>
+<pre><code class="language-bash">windowBed -a mRNA.bed -b LncRNA.bed -l 10240 -r 20480 -sm &gt; cis.txt
+</code></pre>
+<p><strong>计算 trans 结合能，需要首先获取转录组序列，然后运行 RNAplex</strong></p>
+<pre><code class="language-python">import pandas as pd
+import subprocess,os,re
+from Bio import SeqIO
+hg19=&quot;LncRNA/testdir/all_mRNA_know.fa&quot;
+noncode=&quot;LncRNA/testdir/all_lncRNA_know.fa&quot;
+base=&quot;LncRNA/readscounts/salmon/gene_hit&quot;
+hg19_fasta={seq_record.id:str(seq_record.seq) for seq_record in SeqIO.parse(hg19,'fasta')}
+lnc_fasta={seq_record.id:str(seq_record.seq) for seq_record in SeqIO.parse(noncode,'fasta')}
+
+
+
+def get_energy(lncRNA,mRNA):
+
+
+    fa=&quot;lnc_tmp.fasta&quot;
+    fa2=&quot;mRNA_tmp.fasta&quot;
+    with open(fa2,'w') as f:
+        f.write(&quot;&gt;{}\n{}&quot;.format(mRNA,hg19_fasta[mRNA]))
+    with open(fa,'w') as l:
+        l.write(&quot;&gt;{}\n{}&quot;.format(lncRNA,lnc_fasta[lncRNA]))
+
+
+    get_energy=['app/RNAplex-0.2/RNAplex/bin/RNAplex','-t',fa2,'-q',fa]
+
+    cm3=subprocess.Popen(get_energy,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+
+    out,err=cm3.communicate()
+    ans=0
+    for line in out.decode(&quot;utf-8&quot;).splitlines():
+        if not line.startswith(&quot;&gt;&quot;):
+            ans=re.findall(&quot;\(-?\w+.?\w+\)&quot;,line)[0].replace(&quot;(&quot;,&quot;&quot;).replace(&quot;)&quot;,&quot;&quot;)
+    #print(ans)
+
+    os.remove(fa2)
+    os.remove(fa)
+    return ans
+
+with open(&quot;xiangguanxing2.txt&quot;) as f:
+    for line2 in f:
+        if line2.startswith(&quot;NONH&quot;):
+            lncRNA,mRNA,*ot=line2.split(&quot; &quot;)
+            print(&quot;{}--{}:&quot;.format(lncRNA,mRNA),get_energy(lncRNA,mRNA))
+</code></pre>
+<blockquote>
+<p>注意：这里想要获取转录本序列，千万不要使用 bedtools getfast，因为这样获取的是整个转录本的基因组序列，包含内含子，所以，我们使用 cufflinks 软件中 gffread 命令来获取转录本序列</p>
+</blockquote>
+<pre><code class="language-bash">gffread  -w out.fa -g hg19.fa in.gtf
+</code></pre>
+<h5 id="根据-lncrna-结合的核酸序列来预测">根据 lncRNA 结合的核酸序列来预测</h5>
+<p>实际上这种方式是最容易想到的，因为 lncRNA 是核酸，而核酸与核酸之间是有碱基互补配对的，不管是 lncRNA 与 RNA（比如 microRNA，mRNA）之间还是 lncRNA 与 DNA 之间，我们可以根据互补配对这一特性进行预测。这里我们展开举三个例子：</p>
+<p><strong>A、lncRNA-microRNA-mRNA</strong></p>
+<p>microRNA 对 mRNA 靶基因预测的方式可以反过来用于 lncRNA 靶基因预测，这里适用的模式就是 lncRNA 作为 microRNA sponge 吸附 microRNA，或者进一步通过 ceRNA 的作用机制调控靶基因，原理都是 microRNA 与 lncRNA 和 mRNA 的序列结合，这种方式也是现在预测靶基因用的最多的，比如网站：starbase（http://starbase.sysu.edu.cn/）。</p>
+<p><strong>B、lncRNA-mRNA</strong></p>
+<p>在上面这种模式里，lncRNA 对靶基因 mRNA 的调控是通过 microRNA 来介导的，当然 lncRNA 与 mRNA 之间的直接互补也能帮我们预测靶基因，这种模式我们以前说过，比较常见的是反义 lncRNA（Antisense lncRNA）通过与 mRNA 结合形成 RNA 二聚体https://www.jianshu.com/p/92451bd7c030，保护 mRNA 使之更难被 RNA 酶降解。因此这种模式来预测靶基因的原理是预测 lncRNA 序列与 mRNA 序列结合的自由能，自由能越小，越容易结合。这种模式的在线工具有 lncRNATargets（http://www.herbbol.org:8001/lrt/）</p>
+<p><strong>C、lncRNA-DNA</strong></p>
+<p>在以前文章中我们也介绍过 lncRNA 通过结合单链 DNA 发挥调控作用的：</p>
+<p>因此，基于同样的原理，理论上我们也可以进行预测，这种预测工具 lncRNATargets 同样可实现。</p>
+<h5 id="根据蛋白的结合特性来预测">根据蛋白的结合特性来预测:</h5>
+<p>lncRNA 核酸与核酸结合依据的是碱基配对原理，同样某些蛋白与核酸的结合也有一定规律，比如 RNA 结合蛋白，因此，我们可以依据这些规律预测 lncRNA 的结合蛋白，比如工具包括 RBPDB（http://rbpdb.ccbr.utoronto.ca/index.php）、RNAcommender（http://rnacommender.disi.unitn.it/）等。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1%E5%AF%B9%E6%B5%8B%E5%BA%8F%E4%B8%8B%E6%9C%BA%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%B4%A8%E9%87%8F%E6%A3%80%E6%B5%8Bqc">1:对测序下机数据进行质量检测（QC）</a></li>
+<li><a href="#2%E5%AF%B9-qc-%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4">2.对 qc 后的数据进行过滤</a></li>
+<li><a href="#3%E5%AF%B9%E5%B9%B2%E5%87%80%E6%95%B0%E6%8D%AE%E5%8E%BB%E9%99%A4-rrna-%E6%93%8D%E4%BD%9C%E5%AD%98%E7%96%91">3.对干净数据去除 rRNA 操作（存疑）</a></li>
+<li><a href="#4%E5%B0%86%E5%8E%BB%E9%99%A4-rrna-%E7%9A%84%E6%95%B0%E6%8D%AE%E6%AF%94%E5%AF%B9%E5%88%B0-hg19hg38-%E4%B8%8A">4.将去除 rRNA 的数据比对到 hg19|hg38 上</a></li>
+<li><a href="#5%E6%95%B4%E5%90%88%E6%89%80%E6%9C%89%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF%E5%88%B0%E8%A1%A8%E8%BE%BE%E7%9F%A9%E9%98%B5%E5%B9%B6%E8%AE%A1%E7%AE%97-tpm">5.整合所有样本信息到表达矩阵并计算 TPM</a><br>
+*
+<ul>
+<li><a href="#reads-count">reads Count</a></li>
+<li><a href="#rpkmfpkm">RPKM/FPKM</a></li>
+<li><a href="#rpm">RPM</a></li>
+<li><a href="#tpm">TPM</a></li>
+<li><a href="#%E7%9B%B8%E4%BA%92%E5%85%B3%E7%B3%BB">相互关系</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE-counts-%E8%AE%A1%E7%AE%97-tpm">如何根据 counts 计算 TPM？</a></li>
+<li><a href="#what-is-effective-length-of-the-feature">what is effective length of the feature?</a></li>
+</ul>
+</li>
+<li><a href="#6%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90">6.差异分析</a><br>
+*
+<ul>
+<li><a href="#deseq2">deseq2:</a></li>
+</ul>
+</li>
+<li><a href="#degseq">degseq:</a><br>
+*
+<ul>
+<li><a href="#%E5%90%88%E5%B9%B6-casecontrol-%E7%9A%84-tpm-%E5%88%B0%E4%B8%80%E4%B8%AA%E7%9F%A9%E9%98%B5">合并 case，control 的 TPM 到一个矩阵：</a></li>
+<li><a href="#%E5%B0%86%E8%A1%A8%E8%BE%BE%E9%87%8F%E4%B8%BA-0-%E7%9A%84%E8%BF%87%E6%BB%A4%E6%8E%89">将表达量为 0 的过滤掉：</a></li>
+</ul>
+</li>
+<li><a href="#7%E5%AF%B9%E8%8E%B7%E5%8F%96%E5%88%B0%E7%9A%84%E5%B7%AE%E5%BC%82%E8%BD%AC%E5%BD%95%E6%9C%AC%E5%81%9A-go-pathway-%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90">7.对获取到的差异转录本做 GO PATHWAY 富集分析</a></li>
+<li><a href="#8%E5%AF%B9%E5%BE%97%E5%88%B0%E7%9A%84%E5%B7%AE%E5%BC%82%E5%9F%BA%E5%9B%A0%E5%81%9A%E5%8F%AF%E8%A7%86%E5%8C%96">8.对得到的差异基因做可视化</a></li>
+<li><a href="#9%E5%AF%BB%E6%89%BE-lncrna-%E7%9A%84%E9%9D%B6%E5%9F%BA%E5%9B%A0">9.寻找 lncRNA 的靶基因</a><br>
+*
+<ul>
+<li><a href="#%E6%A0%B9%E6%8D%AE%E9%A1%BA%E5%BC%8Fcis%E5%92%8C%E5%8F%8D%E5%BC%8Ftrans%E7%9A%84%E4%BD%9C%E7%94%A8%E6%A8%A1%E5%BC%8F%E6%9D%A5%E9%A2%84%E6%B5%8B">根据顺式（cis）和反式（trans）的作用模式来预测</a></li>
+<li><a href="#%E6%A0%B9%E6%8D%AE-lncrna-%E7%BB%93%E5%90%88%E7%9A%84%E6%A0%B8%E9%85%B8%E5%BA%8F%E5%88%97%E6%9D%A5%E9%A2%84%E6%B5%8B">根据 lncRNA 结合的核酸序列来预测</a></li>
+<li><a href="#%E6%A0%B9%E6%8D%AE%E8%9B%8B%E7%99%BD%E7%9A%84%E7%BB%93%E5%90%88%E7%89%B9%E6%80%A7%E6%9D%A5%E9%A2%84%E6%B5%8B">根据蛋白的结合特性来预测:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

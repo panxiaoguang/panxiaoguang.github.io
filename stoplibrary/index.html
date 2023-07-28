@@ -1,0 +1,776 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>人类，小鼠和猪的stop 数据库芯片构建 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="人类，小鼠和猪的stop 数据库芯片构建 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="项目目的
+
+利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-ST..." />
+  <meta property="og:title" content="人类，小鼠和猪的stop 数据库芯片构建 - Guang&#39;s Home Page">
+  <meta property="og:description" content="项目目的
+
+利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-ST..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/stoplibrary/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="人类，小鼠和猪的stop 数据库芯片构建 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="项目目的
+
+利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-ST...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/stoplibrary/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          人类，小鼠和猪的stop 数据库芯片构建
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-05-13 · 17 min read</div>
+          
+            <a href="https://xiaohanys.me/zN7QYCZw3/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              CBE
+            </a>
+          
+            <a href="https://xiaohanys.me/0E3YG_rw_r/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              stop
+            </a>
+          
+            <a href="https://xiaohanys.me/PXA_WZ9r6/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              CRISPR
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="项目目的">项目目的</h2>
+<blockquote>
+<p>利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-STOP的gRNA效率数据库，供做base-editing相关研究的科研人员使用。</p>
+</blockquote>
+<h2 id="算法">算法</h2>
+<ol>
+<li>找出human、pig、mouse的所有已知基因及其全长序列，建立3个基因数据集（所有protein coding gene，不包含非编码RNA基因）,这里直接使用物种的exon序列即可；</li>
+<li>提取所有基因的前3个exon，如果只有1-3个exon的，保留所有exon(<strong>需要过滤掉在UTR上的外显子，还需要过滤掉外显子长度小于23bp的</strong>)；</li>
+<li>找出前3个外显子中所有正义和反义链上的gRNA（20 bp序列).</li>
+<li>做一定程度的过滤：
+<ul>
+<li>去除23bp中有BsmBI（5‘-CGTCTC-3‘，5‘-GAGACG-3‘）酶切位点的gRNA</li>
+<li>去除23bp中有4个及以上连续T的gRNA</li>
+<li>GC content(20bp)在40%~90%之间</li>
+<li>记录脱靶数目</li>
+</ul>
+</li>
+<li>在每条剩余的gRNA（4-8）bp序列上寻找CGA，CAG，CAA，TGG（反向互补），并判断其是否为潜在的综止密码子</li>
+<li>组装</li>
+</ol>
+<h2 id="具体实现步骤">具体实现步骤</h2>
+<h3 id="step_1">step_1</h3>
+<p>过滤外显子,从Ensembl上获取所有编码基因的所有外显子序eg:<code>AllExonSeq.fa</code>,外显子信息eg:<code>AllExonInfo.txt</code>首先从信息文件入手，每个外显子<strong>去除UTR部分同时要保证序列长度是大于23bp的</strong>并且只保留前3个外显子并和序列<em>merge</em>在一起</p>
+<p>首先，用R简单过滤信息表格较为方便</p>
+<pre><code class="language-R">library(readr)
+library(dplyr)
+exon &lt;-
+  read_delim(
+    &quot;AllExonInfo.txt&quot;,
+    delim = &quot;\t&quot;,
+    col_names = FALSE,
+    col_types = cols(&quot;n&quot;, &quot;n&quot;, &quot;c&quot;, &quot;n&quot;, &quot;n&quot;, &quot;c&quot;, &quot;n&quot;, &quot;n&quot;, &quot;c&quot;)
+  )
+names(exon) &lt;-
+  c(
+    &quot;Exon region start (bp)&quot;,
+    &quot;Exon region end (bp)&quot;,
+    &quot;Gene name&quot;,
+    &quot;5' UTR start&quot;,
+    &quot;5' UTR end&quot;,
+    &quot;Strand&quot;,
+    &quot;3' UTR start&quot;,
+    &quot;3' UTR end&quot;,
+    &quot;Chromosome&quot;
+  )
+##先去掉UTR,在过滤掉长度小于32bp的，去重，按照每个基因保留前3个exon
+need &lt;-
+  exon %&gt;% filter(is.na(`5' UTR start`) | is.na(`3' UTR end`)) %&gt;%
+  mutate(
+    seqLength = `Exon region end (bp)` - `Exon region start (bp)` + 1,
+    seqName = paste0(
+      &quot;&gt;&quot;,
+      `Gene name`,
+      &quot;|&quot;,
+      `Exon region start (bp)`,
+      &quot;|&quot;,
+      `Exon region end (bp)`,
+      &quot;|&quot;,
+      Strand
+    )
+  ) %&gt;%
+  filter(seqLength &gt; 32) %&gt;%
+  distinct(seqName, .keep_all = TRUE) %&gt;%
+  group_by(`Gene name`) %&gt;%
+  slice(1:3) %&gt;%
+  select(3, 9, 1, 2, 6, 11) %&gt;%
+  arrange(Chromosome) %&gt;%
+  ungroup()
+write.table(
+  need,
+  &quot;AllExonInfoTop3.txt&quot;,
+  sep = &quot;\t&quot;,
+  row.names = FALSE,
+  quote = FALSE
+)
+</code></pre>
+<p>然后，用python脚本读取fasta序列，并利用pandas库和信息表整合</p>
+<pre><code class="language-python">import pandas as pd
+
+name_lst = []
+allseq_lst = []
+seq_lst = [&quot;test&quot;]
+with open(&quot;AllExonSeq.fa&quot;, &quot;r&quot;) as f:
+    for line in f:
+        if line.startswith(&quot;&gt;&quot;):
+            allseq_lst.append(&quot;&quot;.join(seq_lst))
+            seq_lst = []
+            name = line.strip(&quot;\n&quot;)
+            name_lst.append(name)
+        else:
+            seq_lst.append(line.strip(&quot;\n&quot;))
+allseq_lst.remove(&quot;test&quot;)
+allseq_lst.append(seq_lst)
+df = pd.DataFrame({&quot;seqName&quot;: name_lst, &quot;sequence&quot;: allseq_lst})
+df2 = pd.read_csv(&quot;AllExonInfoTop3.txt&quot;, sep=&quot;\t&quot;, header=0)
+df = df.set_index(&quot;seqName&quot;)
+df2 = df2.set_index(&quot;seqName&quot;)
+df3 = df2.join(df, how=&quot;inner&quot;)
+df3 = df3.reset_index()
+df3.drop_duplicates(&quot;seqName&quot;, keep=&quot;first&quot;, inplace=True)
+df3.to_csv(&quot;exonWithAnno.txt&quot;, sep=&quot;\t&quot;, index=None)
+ss = df3[&quot;seqName&quot;].tolist()
+sn = df3[&quot;sequence&quot;].tolist()
+with open(&quot;AllGeneTop3Exon.fa&quot;, &quot;a&quot;) as l:
+    for name, seq in zip(ss, sn):
+        l.write(&quot;{}\n{}\n&quot;.format(name, seq))
+</code></pre>
+<h3 id="step_2">step_2</h3>
+<p><s>exon序列小调<br>
+这里获取的序列如果是反向序列的话，就会造成后期寻找gRNA的不便，为此，我们先把所有的exon序列转换为统一的方向</s></p>
+<pre><code class="language-python">import pandas as pd
+
+
+def complement(seq):
+    return seq.translate(str.maketrans(&quot;ACGT&quot;, &quot;TGCA&quot;))
+
+
+def revcomp(seq):
+    return complement(seq)[::-1]
+
+
+df = pd.read_csv(&quot;exonWithAnno.txt&quot;, sep=&quot;\t&quot;, header=0)
+df2 = df[df[&quot;Strand&quot;] &lt; 0]
+df1 = df[df[&quot;Strand&quot;] &gt; 0]
+df2[&quot;sequence&quot;] = df2[&quot;sequence&quot;].apply(revcomp)
+fin = pd.concat([df1, df2], axis=0, ignore_index=True)
+ss = fin[&quot;seqName&quot;].tolist()
+nn = fin[&quot;sequence&quot;].tolist()
+with open(&quot;allexoninzhengliantop3.fa&quot;, &quot;a&quot;) as f:
+    for name, seq in zip(ss, nn):
+        f.write(f&quot;{name}\n{seq}\n&quot;)
+</code></pre>
+<p><s>接着，外显子序列数目巨大，很难放在一起寻找gRNA，因此，我们先将该序列拆分，每分留6000条序列</s></p>
+<pre><code class="language-bash">seqkit split2 allexoninzhengliantop3.fa -s 6000 -f
+</code></pre>
+<blockquote>
+<p>事实证明，做这一步反而让后面的分析变得麻烦了</p>
+</blockquote>
+<h3 id="step_3">step_3</h3>
+<p>运行FlashFry软件发现所有的gRNA并打分，<br>
+首先，要在ENSEMBL上下载完整的HG38基因组并构建索引</p>
+<pre><code class="language-bash">axel -n 50 ftp://ftp.ensembl.org/pub/release-100/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+mv Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz hg38.fa
+
+java -Xmx4g -jar /dellfsqd2/ST_LBI/USER/panxiaoguang/app/FlashFry/bin/flashfry \
+  index \
+    --tmpLocation ./GranTmp \
+    --database hg38 \
+    --reference ./hg38.fa \
+    --enzyme spcas9ngg
+</code></pre>
+<p>然后，分别对10份序列设计gRNA并打分</p>
+<pre><code class="language-bash">java -Xmx10g -jar /dellfsqd2/ST_LBI/USER/panxiaoguang/app/FlashFry/bin/flashfry \
+  discover \
+  --database hg38 \
+  --fasta ./test/allexoninzhengliantop3.fa.split/allexoninzhengliantop3.part_001.fa \
+  --output hg38_exon.part_001.out
+
+java -Xmx10g -jar /dellfsqd2/ST_LBI/USER/panxiaoguang/app/FlashFry/bin/flashfry  \
+  score  \
+  --input hg38_exon.part_001.out  \
+  --output hg38_exon.part_001.scored  \
+  --scoringMetrics doench2016cfd,moreno2015,rank,minot  \
+  --database hg38
+</code></pre>
+<h3 id="step_4">step_4</h3>
+<p>对打分结果做初步过滤，主要包括<strong>GC含量，BSMB1位点，4个以上连续T</strong></p>
+<p>用R语言内置函数对数据表过滤很方便,这里额外获取了<strong>gRNA的基因，正负链以及在基因组上的位置信息</strong></p>
+<pre><code class="language-R">library(readr)
+library(dplyr)
+library(pystr)
+args = commandArgs(T)
+name_header&lt;-args[1]
+df &lt;-
+  read_delim(
+    pystr_format(&quot;{1}.scored&quot;,name_header),
+    delim = &quot;\t&quot;,
+    col_types = cols(
+      &quot;c&quot;,
+      &quot;d&quot;,
+      &quot;d&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;,
+      &quot;c&quot;
+    )
+  )
+df2 &lt;- read_delim(&quot;./test/exonWithAnno.txt&quot;, delim = &quot;\t&quot;)
+df2 &lt;- df2 %&gt;% select(`Gene name`, Chromosome) %&gt;% distinct(`Gene name`, .keep_all = TRUE)%&gt;%setNames(c(&quot;gene&quot;,&quot;chromosome&quot;))
+calGC &lt;- function(x) {
+  x &lt;- stringr::str_sub(x, 1, 20)
+  stringr::str_count(x, &quot;[GC]&quot;) / 20
+}
+df &lt;-
+  df %&gt;% select(contig, start, stop, target, orientation, `0-1-2-3-4_mismatch`) %&gt;%
+##记录0-4bp mismatch
+tidyr::separate(
+    `0-1-2-3-4_mismatch`,
+    into = c(&quot;mis0&quot;, &quot;mis1&quot;, &quot;mis2&quot;, &quot;mis3&quot;, &quot;mis4&quot;),
+    sep = &quot;,&quot;
+  ) %&gt;%
+##计算gRNA在基因组的起始和结束位点
+mutate(
+    genomestart = purrr::map_dbl(contig, function(x)
+      as.numeric(unlist(strsplit(
+        x, &quot;\\|&quot;
+      ))[2])),
+    genomestart = genomestart + start,
+    genomeend = genomestart + 22
+  ) %&gt;%
+##标记正负链
+mutate(
+    strand = purrr::map_dbl(contig, function(x)
+      as.numeric(unlist(strsplit(
+        x, &quot;\\|&quot;
+      ))[4])),
+    strand = if_else(strand &gt; 0, &quot;+&quot;, &quot;-&quot;)
+  ) %&gt;%
+    mutate(gene = purrr::map_chr(contig, function(x)
+    unlist(strsplit(x, &quot;\\|&quot;))[1])) %&gt;%
+##记录是否具有BSMB1位点
+mutate(bsmb1 = case_when(
+    stringr::str_detect(target, &quot;CGTCTC&quot;) ~ TRUE,
+    stringr::str_detect(target, &quot;GAGACG&quot;) ~ TRUE,
+    TRUE ~ FALSE
+  )) %&gt;%
+##记录是否具有4个以上的连续T
+mutate(nt = if_else(stringr::str_detect(target, &quot;TTTT+&quot;), TRUE, FALSE)) %&gt;%
+##记录GC含量
+mutate(gcContent = purrr::map_dbl(target, function(x)
+    calGC(x))) %&gt;%
+  filter(bsmb1 == FALSE &amp;
+           nt == FALSE &amp; gcContent &gt;= 0.4 &amp; gcContent &lt;= 0.9) %&gt;%
+           select(-2, -3)
+df &lt;- df %&gt;% left_join(df2, by = &quot;gene&quot;)
+write.table(
+  df,
+  pystr_format(&quot;./tmp/{1}.first_filter.txt&quot;,name_header),
+  sep = &quot;\t&quot;,
+  row.names = FALSE,
+  quote = FALSE
+)
+</code></pre>
+<h3 id="step_5">step_5</h3>
+<p>最后一步过滤，要求在gRNA4-8bp空间内具有stop位点，这里采用python脚本去下载好的ATG开头的CDS基因集中反向MAP，正反向 ** (这里的正反向不是基因的正反向，而是gRNA和cds方向的一致性，如果基因在正链上，那么gRNA正向设计的为顺，反向设计为逆；如果基因在负链上，那么gRNA正向设计的为逆，反向设计为顺) ** gRNA要分别运算，最后获取可用的gRNA和其对应的stop 位点。<br>
+为了加速最后一步过滤，分成三步完成，最核心的一步采用pypy</p>
+<p><em>step_1.py</em></p>
+<pre><code class="language-python">import pandas as pd
+import sys
+name_header = sys.argv[1]
+gRNA_filer = pd.read_csv(&quot;./tmp/{}.first_filter.txt&quot;.format(name_header), sep=&quot;\t&quot;, header=0)
+gRNA_Z = gRNA_filer[((gRNA_filer[&quot;orientation&quot;] == &quot;FWD&quot;) &amp; (gRNA_filer[&quot;strand&quot;] == &quot;+&quot;)) | ((gRNA_filer[&quot;orientation&quot;] == &quot;RVS&quot;) &amp; (gRNA_filer[&quot;strand&quot;] == &quot;-&quot;))].reset_index()[['gene','target']]
+gRNA_F = gRNA_filer[((gRNA_filer[&quot;orientation&quot;] == &quot;RVS&quot;)&amp;(gRNA_filer[&quot;strand&quot;] == &quot;+&quot;)) | ((gRNA_filer[&quot;orientation&quot;] == &quot;FWD&quot;)&amp;(gRNA_filer[&quot;strand&quot;] == &quot;-&quot;))].reset_index()[['gene','target']]
+gRNA_Z.to_csv(&quot;./tmp/{}.part_1.txt&quot;.format(name_header), sep=&quot;\t&quot;, index=None, header=None)
+gRNA_F.to_csv(&quot;./tmp/{}.part_2.txt&quot;.format(name_header), sep=&quot;\t&quot;, index=None, header=None)
+</code></pre>
+<p><em>step_2.py</em></p>
+<pre><code class="language-python">import re
+import sys
+name_header = sys.argv[1]
+def read_cds(fs):
+    name_lst = []
+    seq_lst=[]
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+                name_lst.append(name)
+            else:
+                seq_lst.append(line.strip(&quot;\n&quot;))
+    fin=[(key,value) for key,value in zip(name_lst,seq_lst) if 'unavailable' not in value]
+    return fin
+
+def complement(seq):
+    return seq.translate(str.maketrans('ACGT', 'TGCA'))
+
+def revcomp(seq):
+    return complement(seq)[::-1]
+
+def motif_Z(gRNA, site):
+    if gRNA[:20][site: site + 3] == &quot;CAG&quot;:
+        return &quot;CAG&quot;
+    elif gRNA[:20][site: site + 3] == &quot;CGA&quot;:
+        return &quot;CGA&quot;
+    elif gRNA[:20][site: site + 3] == &quot;CAA&quot;:
+        return &quot;CAA&quot;
+    else:
+        return 0
+def stop_test_for_Z(n, cds_lst, gRNA):
+    new_cds_lst = [cds for cds in cds_lst if gRNA in cds]
+    score_lst = []
+    if len(new_cds_lst) &gt; 0:
+        for haha in new_cds_lst:
+            m = haha.find(gRNA) + 1
+            score = (m - 1 + n - 1)
+            score_lst.append(score)
+        if len([new_score for new_score in score_lst if score % 3 == 0]) &gt; 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+def motif_F(gRNA, site):
+    if gRNA[:20][site: site + 3] == &quot;CCA&quot;:
+        return 1
+    elif gRNA[:20][site-1: site + 2] == &quot;CCA&quot;:
+        return 2
+    else:
+        return 0
+def stop_test_for_F(n, cds_lst, gRNA):
+    gRNA = revcomp(gRNA)
+    new_cds_lst = [cds for cds in cds_lst if gRNA in cds]
+    score_lst = []
+    if len(new_cds_lst) &gt; 0:
+        for haha in new_cds_lst:
+            m = haha.find(gRNA) + 1 - 1 + 23
+            score = (m - n)
+            score_lst.append(score)
+        if len([new_score for new_score in score_lst if score % 3 == 0]) &gt; 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+def detective_Z(gRNA, Gene):
+    #cds_lst=all_cds[all_cds['Gene']==Gene]['seq'].tolist()
+    cds_lst=[value for (key,value) in all_cds if key==Gene]
+    stopSitelst=[]
+    for m in re.finditer(&quot;C&quot;, gRNA[:20]):
+        if m.start() + 1 &gt;= 4 and m.start() + 1 &lt;= 8:
+            if motif_Z(gRNA, m.start()):
+                if stop_test_for_Z((m.start() + 1), cds_lst, gRNA):
+                    stopSitelst.append(str(m.start() + 1))
+    if len(stopSitelst) &gt; 0:
+        fin=&quot;/&quot;.join(stopSitelst)
+    else:
+        fin=&quot;None&quot;
+    return fin
+
+def detective_F(gRNA, Gene):
+    #cds_lst=all_cds[all_cds['Gene']==Gene]['seq'].tolist()
+    cds_lst=[value for (key,value) in all_cds if key==Gene]
+    stopSitelst=[]
+    for m in re.finditer(&quot;C&quot;, gRNA[:20]):
+        if m.start() + 1 &gt;= 4 and m.start() + 1 &lt;= 8:
+            if motif_F(gRNA, m.start()):
+                if stop_test_for_F(((gRNA[:20][m.start() - 1 : m.start() + 3]).find(&quot;CCA&quot;) + 1 + 2), cds_lst, gRNA):
+                    stopSitelst.append(str(m.start() + 1))
+    if len(stopSitelst) &gt; 0:
+        fin=&quot;/&quot;.join(stopSitelst)
+    else:
+        fin=&quot;None&quot;
+    return fin
+
+all_cds = read_cds(&quot;AllGeneCDS2.fa&quot;)
+shunshi=[]
+with open(&quot;./tmp/{}.part_1.txt&quot;.format(name_header),'r') as f:
+    for line in f:
+        gene,target=line.split(&quot;\t&quot;)
+        target=target.strip(&quot;\n&quot;)
+        shunshi.append((gene,target))
+
+new_lst=[(key,value,detective_Z(value,key)) for (key,value) in shunshi]
+
+with open(&quot;./tmp/{}.shunshi.out&quot;.format(name_header),&quot;a&quot;) as f:
+    for (gene,target,site) in new_lst:
+        f.write(&quot;{}\t{}\t{}\n&quot;.format(gene,target,site))
+
+fanshi=[]
+with open(&quot;./tmp/{}.part_2.txt&quot;.format(name_header),'r') as f:
+    for line in f:
+        gene,target=line.split(&quot;\t&quot;)
+        target=target.strip(&quot;\n&quot;)
+        fanshi.append((gene,target))
+
+new_lst2=[(key,value,detective_F(value,key)) for (key,value) in fanshi]
+
+with open(&quot;./tmp/{}.fanshi.out&quot;.format(name_header),&quot;a&quot;) as f:
+    for (gene,target,site) in new_lst2:
+        f.write(&quot;{}\t{}\t{}\n&quot;.format(gene,target,site))
+</code></pre>
+<p><em>step_3.py</em></p>
+<pre><code class="language-python">import pandas as pd
+import sys
+name_header = sys.argv[1]
+df1 = pd.read_csv(&quot;./tmp/{}.shunshi.out&quot;.format(name_header), sep=&quot;\t&quot;, header=None)
+df2 = pd.read_csv(&quot;./tmp/{}.fanshi.out&quot;.format(name_header), sep=&quot;\t&quot;, header=None)
+fin = pd.concat([df2, df1], ignore_index=True)
+fin.columns = ['gene', 'target', 'site']
+fin2 = fin[fin['site'] != &quot;None&quot;]
+fin2.to_csv(&quot;./tmp/{}.second_filter.txt&quot;.format(name_header),sep=&quot;\t&quot;,index=None)
+</code></pre>
+<p>最后整合的shell为：</p>
+<pre><code class="language-bash">#!/usr/bin/bash 
+name_header=&quot;hg38_exon.part_001&quot;
+/dellfsqd2/ST_LBI/USER/panxiaoguang/app/miniconda3/envs/Rlibs2/bin/Rscript first_filter.R $name_header
+echo &quot;first filter Done! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot; 
+echo &quot;first step: cut into two groups! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot; 
+/dellfsqd2/ST_LBI/USER/panxiaoguang/app/miniconda3/envs/pylibs/bin/python3 step_1.py $name_header
+echo &quot;step1 done! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot;
+echo &quot;second step: filter stop condon site! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot; 
+/dellfsqd2/ST_LBI/USER/panxiaoguang/app/miniconda3/envs/pypy/bin/pypy3 step_2.py $name_header
+echo &quot;step2 done! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot;
+echo &quot;second step: merge data! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot; 
+/dellfsqd2/ST_LBI/USER/panxiaoguang/app/miniconda3/envs/pylibs/bin/python3 step_3.py $name_header
+echo &quot;ALL done! $(date &quot;+%Y-%m-%d %H:%M:%S&quot;)&quot;
+
+csvtk -t join -f &quot;gene,target&quot; ./tmp/${name_header}.second_filter.txt ./tmp/${name_header}.first_filter.txt --left-join \
+ |csvtk -t cut -f gene,target,site,strand,orientation,chromosome,genomestart,genomeend,mis0,mis1,mis2,mis3,mis4,gcContent \
+ |csvtk pretty &gt; ./tmp/${name_header}.finally.txt
+  
+/dellfsqd2/ST_LBI/USER/panxiaoguang/app/miniconda3/envs/Rlibs2/bin/Rscript getbed.R $name_header
+
+bedtools getfasta -fi hg38.fa -bed ./tmp/${name_header}.bed -name -tab -s -fo ./tmp/${name_header}.trap.fa
+</code></pre>
+<h3 id="组装">组装</h3>
+<pre><code class="language-R">library(readr)
+library(dplyr)
+library(pystr)
+library(purrr)
+library(openxlsx)
+merge_data&lt;-function(x){
+    name_header&lt;-pystr_format(&quot;hg38_exon.part_0{1}&quot;,x)
+    df1&lt;-read_delim(pystr_format(&quot;{1}.finally.txt&quot;,name_header),delim=&quot;\t&quot;)
+    df2&lt;-read_delim(pystr_format(&quot;{1}.trap.fa&quot;,name_header),delim=&quot;\t&quot;,col_names=FALSE)
+    names(df2)&lt;-c(&quot;gene&quot;,&quot;trapSeq&quot;)
+    fin&lt;-bind_cols(df1,df2['trapSeq'])
+}
+fs_lst&lt;-c(&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;)
+test&lt;-map_dfr(fs_lst,merge_data)
+wocao&lt;-test%&gt;%
+       transmute(Gene=gene,
+                 Target=target,
+                 TrapSeq=trapSeq,
+                 GeneStrand=strand,
+                 gRNAstrand=orientation,
+                 Loc=paste0(&quot;chr&quot;,chromosome,&quot;:&quot;,genomestart,&quot;-&quot;,genomeend),
+                 `Mismatch(0-1-2-3-4)`=paste0(mis0,&quot;-&quot;,mis1,&quot;-&quot;,mis2,&quot;-&quot;,mis3,&quot;-&quot;,mis4),
+                 GCcontent=gcContent,
+                 StopSite=site)%&gt;%
+        arrange(Gene)
+wb &lt;- createWorkbook(&quot;test&quot;)
+addWorksheet(wb, &quot;humanstop&quot;)
+writeData(wb, sheet = &quot;humanstop&quot;, wocao, rowNames = FALSE)
+saveWorkbook(wb, &quot;HumanStopCBE.xlsx&quot;, overwrite = TRUE)
+</code></pre>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E7%9A%84">项目目的</a></li>
+<li><a href="#%E7%AE%97%E6%B3%95">算法</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">具体实现步骤</a>
+<ul>
+<li><a href="#step_1">step_1</a></li>
+<li><a href="#step_2">step_2</a></li>
+<li><a href="#step_3">step_3</a></li>
+<li><a href="#step_4">step_4</a></li>
+<li><a href="#step_5">step_5</a></li>
+<li><a href="#%E7%BB%84%E8%A3%85">组装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="<i>Don't forget to be awesome!</i>" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        关于
+      </a>
+    
+      <a href="/my_vue_learning/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        Glims2Shell
+      </a>
+    
+    <a href="https://xiaohanys.me/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        单细胞测序分析
+      </h1>
+      <div class="shadow-box bg-white  border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/ScRNASeq/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          单细胞测序分析流程
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-17</div>
+      <div class="mb-4 text-gray-500 ">
+        <ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8095678"><label class="task-list-item-label" for="task-item-8095678"> 本教程已更新，更新时间：</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3331950"><label class="task-list-item-label" for="task-item-3331950"> 2019/12/27</label></li>
+</ul>
+<h2 id="摘要">摘要</h2>
+<p>一文介绍单细胞测序生物信息分析完整流程，这可能是最新也是最全的流程</p>
+<h2 id="基础流程cellranger">基础流程（cellranger）</h2>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/27/wMSmukTrLyaBeql.png" alt="" loading="lazy"></figure>
+<h3 id="cellranger-数据拆分">cellranger 数据拆分</h3>
+<p><code>cellranger mkfastq</code>可用于将单细胞测序获得的 BCL 文件拆分为可以识别的 fastq 测序数据</p>
+
+      </div>
+      <a href="https://xiaohanys.me/ScRNASeq/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/stream/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          使用STREAM对单细胞数据进行伪时间分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2019-12-20</div>
+      <div class="mb-4 text-gray-500 ">
+        <h3 id="软件介绍">软件介绍</h3>
+<p>STREAM (<strong>S</strong>ingle-cell <strong>T</strong>rajectories <strong>R</strong>econstruction, <strong>E</strong>xploration <strong>A</strong>nd <strong>M</strong>apping) 软件是一个伪时间分析软件，通过一系列的特征选择，降纬（MLLE），轨迹推断（EPG）等步骤，逐步构建细胞发育轨迹，从而帮助我们更好的理解发育进化过程。</p>
+<h3 id="下载地址">下载地址</h3>
+
+      </div>
+      <a href="https://xiaohanys.me/stream/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+</body>
+</html>

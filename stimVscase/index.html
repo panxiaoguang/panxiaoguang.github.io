@@ -1,0 +1,455 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="本教程介绍了Kang等人（2017)的两组PBMC的对齐方式。在该实验中，将PBMC分为刺激组和对照组，并用干扰素β治疗刺激组。对干扰素的反应引起细胞类型特异性基因表达的变化，这使得对所有数据进行联合分析变得困难，并且细胞按刺激条件和细胞类..." />
+  <meta property="og:title" content="教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应 - Guang&#39;s Home Page">
+  <meta property="og:description" content="本教程介绍了Kang等人（2017)的两组PBMC的对齐方式。在该实验中，将PBMC分为刺激组和对照组，并用干扰素β治疗刺激组。对干扰素的反应引起细胞类型特异性基因表达的变化，这使得对所有数据进行联合分析变得困难，并且细胞按刺激条件和细胞类..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/stimVscase/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="本教程介绍了Kang等人（2017)的两组PBMC的对齐方式。在该实验中，将PBMC分为刺激组和对照组，并用干扰素β治疗刺激组。对干扰素的反应引起细胞类型特异性基因表达的变化，这使得对所有数据进行联合分析变得困难，并且细胞按刺激条件和细胞类...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/stimVscase/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2019-12-20 · 12 min read</div>
+          
+            <a href="https://xiaohanys.me/wHpU7pn7t/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              单细胞测序
+            </a>
+          
+            <a href="https://xiaohanys.me/HiHamgs_wR/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Seurat
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>本教程介绍了<a href="https://www.nature.com/articles/nbt.4042">Kang等人（2017)</a>的两组PBMC的对齐方式。在该实验中，将PBMC分为刺激组和对照组，并用干扰素β治疗刺激组。对干扰素的反应引起细胞类型特异性基因表达的变化，这使得对所有数据进行联合分析变得困难，并且细胞按刺激条件和细胞类型聚类。在这里，我们证明了我们的整合策略，如<a href="https://www.biorxiv.org/content/early/2018/11/02/460147">Stuart和Butler等人（2018年）</a>所述，用于执行整合分析以促进常见细胞类型的鉴定并进行比较分析。尽管此示例演示了两个数据集（条件）的集成，但这些方法已扩展到多个数据集。这个<a href="https://satijalab.org/seurat/pancreas_integration_label_transfer.html">工作流程</a>提供了整合四个胰岛数据集的示例。</p>
+<!--more-->
+<h1 id="整合目标">整合目标</h1>
+<p>以下教程旨在概述使用Seurat集成过程可能进行的复杂细胞类型的比较分析。在这里，我们解决了三个主要目标：</p>
+<ul>
+<li>识别两个数据集中都存在的单元格类型</li>
+<li>获得在对照和刺激细胞中均保守的细胞类型标记</li>
+<li>比较数据集以找到对刺激的细胞类型特异性反应</li>
+</ul>
+<h1 id="设置seurat对象">设置Seurat对象</h1>
+<p>为方便起见，我们通过<code>SeuratData</code>软件包分发此数据集。</p>
+<pre><code class="language-R">library(Seurat)
+library(SeuratData)
+library(cowplot)
+InstallData(&quot;ifnb&quot;)
+data(&quot;ifnb&quot;)
+ifnb.list &lt;- SplitObject(ifnb, split.by = &quot;stim&quot;)
+
+ifnb.list &lt;- lapply(X = ifnb.list, FUN = function(x) {
+    x &lt;- NormalizeData(x)
+    x &lt;- FindVariableFeatures(x, selection.method = &quot;vst&quot;, nfeatures = 2000)
+})
+</code></pre>
+<h1 id="执行整合">执行整合</h1>
+<p>然后，我们使用<code>FindIntegrationAnchors</code>函数来识别锚点，该函数将<code>Seurat</code>对象的列表作为输入，并使用这些锚点将两个数据集与集成在一起。</p>
+<pre><code class="language-R">immune.anchors &lt;- FindIntegrationAnchors(object.list = ifnb.list, dims = 1:20)
+immune.combined &lt;- IntegrateData(anchorset = immune.anchors, dims = 1:20)
+</code></pre>
+<h1 id="进行综合分析">进行综合分析</h1>
+<p>现在，我们可以在所有单元上运行单个集成分析！</p>
+<pre><code class="language-R">DefaultAssay(immune.combined) &lt;- &quot;integrated&quot;
+
+# Run the standard workflow for visualization and clustering
+immune.combined &lt;- ScaleData(immune.combined, verbose = FALSE)
+immune.combined &lt;- RunPCA(immune.combined, npcs = 30, verbose = FALSE)
+# t-SNE and Clustering
+immune.combined &lt;- RunUMAP(immune.combined, reduction = &quot;pca&quot;, dims = 1:20)
+immune.combined &lt;- FindNeighbors(immune.combined, reduction = &quot;pca&quot;, dims = 1:20)
+immune.combined &lt;- FindClusters(immune.combined, resolution = 0.5)
+# Visualization
+p1 &lt;- DimPlot(immune.combined, reduction = &quot;umap&quot;, group.by = &quot;stim&quot;)
+p2 &lt;- DimPlot(immune.combined, reduction = &quot;umap&quot;, label = TRUE)
+plot_grid(p1, p2)
+</code></pre>
+<p><img src="https://i.loli.net/2019/12/11/J7YB4t9FGzNgjUx.png" alt="" loading="lazy"><br>
+为了并排可视化这两个条件，我们可以使用split.by参数来显示每个以聚类着色的条件。</p>
+<pre><code class="language-R">DimPlot(immune.combined, reduction = &quot;umap&quot;, split.by = &quot;stim&quot;)
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/11/qKrMcbdkETNV81n.png" alt="" loading="lazy"></figure>
+<h1 id="识别保守的细胞类型标记">识别保守的细胞类型标记</h1>
+<p>为了确定跨条件保守的规范细胞类型标记基因，我们提供了该<code>FindConservedMarkers</code>功能。此功能对每个数据集/组执行差异基因表达测试，并使用<code>MetaDE</code>R软件包中的荟萃分析方法组合p值。例如，无论簇7中的刺激条件如何，我们都可以计算出保守标记的基因（NK细胞）。</p>
+<pre><code class="language-R">DefaultAssay(immune.combined) &lt;- &quot;RNA&quot;
+nk.markers &lt;- FindConservedMarkers(immune.combined, ident.1 = 7, grouping.var = &quot;stim&quot;, verbose = FALSE)
+head(nk.markers)
+##           CTRL_p_val CTRL_avg_logFC CTRL_pct.1 CTRL_pct.2 CTRL_p_val_adj
+## SNHG12 1.059703e-193      1.3678805      0.335      0.019  1.489200e-189
+## HSPH1  2.552539e-139      2.0586178      0.553      0.100  3.587083e-135
+## NR4A2  8.671555e-136      1.5545769      0.296      0.023  1.218614e-131
+## SRSF2  1.556024e-113      1.6410606      0.704      0.220  2.186680e-109
+## BATF    1.573042e-09      0.5991204      0.116      0.042   2.210596e-05
+## CD69   1.188324e-122      1.8357378      0.525      0.096  1.669952e-118
+##           STIM_p_val STIM_avg_logFC STIM_pct.1 STIM_pct.2 STIM_p_val_adj
+## SNHG12 8.090842e-159       1.054494      0.256      0.015  1.137006e-154
+## HSPH1   4.097380e-89       1.580183      0.471      0.114   5.758049e-85
+## NR4A2   3.130700e-78       1.009556      0.172      0.015   4.399572e-74
+## SRSF2  1.829674e-128       1.625081      0.675      0.182  2.571241e-124
+## BATF   9.234006e-126       1.354443      0.305      0.031  1.297655e-121
+## CD69    3.733167e-78       1.677068      0.688      0.291   5.246220e-74
+##             max_pval minimump_p_val
+## SNHG12 8.090842e-159  2.119406e-193
+## HSPH1   4.097380e-89  5.105078e-139
+## NR4A2   3.130700e-78  1.734311e-135
+## SRSF2  1.556024e-113  3.659348e-128
+## BATF    1.573042e-09  1.846801e-125
+## CD69    3.733167e-78  2.376649e-122
+</code></pre>
+<p>我们可以为每个簇探索这些标记基因，并使用它们将我们的簇注释为特定的细胞类型。</p>
+<pre><code class="language-R">FeaturePlot(immune.combined, features = c(&quot;CD3D&quot;, &quot;SELL&quot;, &quot;CREM&quot;, &quot;CD8A&quot;, &quot;GNLY&quot;, &quot;CD79A&quot;, &quot;FCGR3A&quot;, 
+    &quot;CCL2&quot;, &quot;PPBP&quot;), min.cutoff = &quot;q9&quot;)
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/12/11/LSz7HRaD1AovJQB.png" alt="" loading="lazy"></figure>
+<pre><code class="language-R">immune.combined &lt;- RenameIdents(immune.combined, `0` = &quot;CD14 Mono&quot;, `1` = &quot;CD4 Naive T&quot;, `2` = &quot;CD4 Memory T&quot;, 
+    `3` = &quot;CD16 Mono&quot;, `4` = &quot;B&quot;, `5` = &quot;CD8 T&quot;, `6` = &quot;T activated&quot;, `7` = &quot;NK&quot;, `8` = &quot;DC&quot;, `9` = &quot;B Activated&quot;, 
+    `10` = &quot;Mk&quot;, `11` = &quot;pDC&quot;, `12` = &quot;Eryth&quot;, `13` = &quot;Mono/Mk Doublets&quot;)
+
+DimPlot(immune.combined, label = TRUE)
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/12/11/N9qipvX6zWoeUaS.png" alt="" loading="lazy"></figure>
+<p><code>DotPlot</code>带有<code>split.by</code>参数的函数可用于查看各种条件下保守的细胞类型标记，显示表达水平和表达任何给定基因的簇中细胞的百分比。在这里，我们为13个簇中的每个簇绘制2-3个强标记基因。</p>
+<pre><code class="language-R">Idents(immune.combined) &lt;- factor(Idents(immune.combined), levels = c(&quot;Mono/Mk Doublets&quot;, &quot;pDC&quot;, 
+    &quot;Eryth&quot;, &quot;Mk&quot;, &quot;DC&quot;, &quot;CD14 Mono&quot;, &quot;CD16 Mono&quot;, &quot;B Activated&quot;, &quot;B&quot;, &quot;CD8 T&quot;, &quot;NK&quot;, &quot;T activated&quot;, 
+    &quot;CD4 Naive T&quot;, &quot;CD4 Memory T&quot;))
+markers.to.plot &lt;- c(&quot;CD3D&quot;, &quot;CREM&quot;, &quot;HSPH1&quot;, &quot;SELL&quot;, &quot;GIMAP5&quot;, &quot;CACYBP&quot;, &quot;GNLY&quot;, &quot;NKG7&quot;, &quot;CCL5&quot;, 
+    &quot;CD8A&quot;, &quot;MS4A1&quot;, &quot;CD79A&quot;, &quot;MIR155HG&quot;, &quot;NME1&quot;, &quot;FCGR3A&quot;, &quot;VMO1&quot;, &quot;CCL2&quot;, &quot;S100A9&quot;, &quot;HLA-DQA1&quot;, 
+    &quot;GPR183&quot;, &quot;PPBP&quot;, &quot;GNG11&quot;, &quot;HBA2&quot;, &quot;HBB&quot;, &quot;TSPAN13&quot;, &quot;IL3RA&quot;, &quot;IGJ&quot;)
+DotPlot(immune.combined, features = rev(markers.to.plot), cols = c(&quot;blue&quot;, &quot;red&quot;), dot.scale = 8, 
+    split.by = &quot;stim&quot;) + RotatedAxis()
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/12/11/OhXroNgvKuTDbm7.png" alt="" loading="lazy"></figure>
+<h1 id="跨条件鉴定差异表达基因">跨条件鉴定差异表达基因</h1>
+<p>现在我们已经排列了刺激细胞和对照细胞，我们可以开始进行比较分析，并观察刺激引起的差异。广泛观察这些变化的一种方法是绘制受刺激细胞和对照细胞的平均表达，并在散点图上寻找视觉异常值的基因。在这里，我们采用受刺激的和对照的原始T细胞和CD14单核细胞群体的平均表达，并生成散点图，突出显示对干扰素刺激表现出戏剧性反应的基因。</p>
+<pre><code class="language-R">library(ggplot2)
+library(cowplot)
+theme_set(theme_cowplot())
+t.cells &lt;- subset(immune.combined, idents = &quot;CD4 Naive T&quot;)
+Idents(t.cells) &lt;- &quot;stim&quot;
+avg.t.cells &lt;- log1p(AverageExpression(t.cells, verbose = FALSE)$RNA)
+avg.t.cells$gene &lt;- rownames(avg.t.cells)
+
+cd14.mono &lt;- subset(immune.combined, idents = &quot;CD14 Mono&quot;)
+Idents(cd14.mono) &lt;- &quot;stim&quot;
+avg.cd14.mono &lt;- log1p(AverageExpression(cd14.mono, verbose = FALSE)$RNA)
+avg.cd14.mono$gene &lt;- rownames(avg.cd14.mono)
+
+genes.to.label = c(&quot;ISG15&quot;, &quot;LY6E&quot;, &quot;IFI6&quot;, &quot;ISG20&quot;, &quot;MX1&quot;, &quot;IFIT2&quot;, &quot;IFIT1&quot;, &quot;CXCL10&quot;, &quot;CCL8&quot;)
+p1 &lt;- ggplot(avg.t.cells, aes(CTRL, STIM)) + geom_point() + ggtitle(&quot;CD4 Naive T Cells&quot;)
+p1 &lt;- LabelPoints(plot = p1, points = genes.to.label, repel = TRUE)
+p2 &lt;- ggplot(avg.cd14.mono, aes(CTRL, STIM)) + geom_point() + ggtitle(&quot;CD14 Monocytes&quot;)
+p2 &lt;- LabelPoints(plot = p2, points = genes.to.label, repel = TRUE)
+plot_grid(p1, p2)
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2019/12/11/bPnJlFC4tY1xcu9.png" alt="" loading="lazy"></figure>
+<p>如您所见，许多相同的基因在这两种细胞类型中均被上调，可能代表保守的干扰素应答途径。</p>
+<p>因为我们有信心在各种情况下都能识别出常见的细胞类型，所以我们可以询问相同类型的细胞在不同条件下会改变哪些基因。首先，我们在<code>meta.data</code>插槽中创建一列，以保存细胞类型和刺激信息，并将当前标识切换到该列。然后，我们使用它<code>FindMarkers</code>来找到受刺激的B细胞和对照B细胞之间不同的基因。请注意，此处显示的许多顶级基因与我们之前绘制的核心干扰素应答基因相同。此外，我们看到的诸如CXCL10的基因对单核细胞和B细胞干扰素的反应也具有特异性，在该列表中也显示出很高的意义。</p>
+<pre><code class="language-R">immune.combined$celltype.stim &lt;- paste(Idents(immune.combined), immune.combined$stim, sep = &quot;_&quot;)
+immune.combined$celltype &lt;- Idents(immune.combined)
+Idents(immune.combined) &lt;- &quot;celltype.stim&quot;
+b.interferon.response &lt;- FindMarkers(immune.combined, ident.1 = &quot;B_STIM&quot;, ident.2 = &quot;B_CTRL&quot;, verbose = FALSE)
+head(b.interferon.response, n = 15)
+##                 p_val avg_logFC pct.1 pct.2     p_val_adj
+## ISG15   9.008631e-168 3.2061225 0.998 0.235 1.265983e-163
+## IFIT3   1.566158e-161 3.1240285 0.961 0.049 2.200921e-157
+## ISG20   1.206176e-158 2.0549983 1.000 0.662 1.695038e-154
+## IFI6    1.544804e-158 2.9139826 0.959 0.077 2.170914e-154
+## IFIT1   1.531805e-144 2.8529052 0.899 0.031 2.152645e-140
+## MX1     3.490304e-129 2.2712525 0.902 0.113 4.904924e-125
+## LY6E    3.320706e-127 2.1767293 0.897 0.146 4.666588e-123
+## TNFSF10 2.108526e-114 2.5996223 0.773 0.021 2.963111e-110
+## IFIT2   7.373988e-113 2.5114519 0.781 0.035 1.036267e-108
+## B2M     1.570724e-101 0.4194467 1.000 1.000  2.207338e-97
+## PLSCR1  8.204551e-101 1.9635626 0.792 0.115  1.152986e-96
+## IRF7    1.517587e-100 1.8203577 0.837 0.181  2.132665e-96
+## CXCL10   7.783861e-92 3.6869595 0.660 0.012  1.093866e-87
+## UBE2L6   1.659777e-88 1.4951634 0.855 0.296  2.332484e-84
+## EPSTI1   1.324448e-82 1.7540298 0.717 0.103  1.861247e-78
+</code></pre>
+<p>可视化基因表达中这些变化的另一种有用方法是<code>split.by</code>选择<code>FeaturePlot</code>或<code>VlnPlot</code>功能。这将显示给定基因列表的<code>FeaturePlots</code>，并按分组变量（此处为刺激条件）进行划分。诸如CD3D和GNLY之类的基因是典型的细胞类型标记（对于T细胞和NK / CD8 T细胞），实际上不受干扰素刺激的影响，并且在对照组和受刺激组中显示出相似的基因表达模式。另一方面，IFI6和ISG15是核心干扰素应答基因，因此在所有细胞类型中均被上调。最后，CD14和CXCL10是显示细胞类型特异性干扰素应答的基因。CD14单核细胞受刺激后，CD14表达下降，这可能导致在有监督的分析框架中进行错误分类，从而强调了整合分析的价值。</p>
+<pre><code class="language-R">FeaturePlot(immune.combined, features = c(&quot;CD3D&quot;, &quot;GNLY&quot;, &quot;IFI6&quot;), split.by = &quot;stim&quot;, max.cutoff = 3, 
+    cols = c(&quot;grey&quot;, &quot;red&quot;))
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2019/12/11/9Co6NOnejimagsc.png" alt="" loading="lazy"></figure>
+<pre><code class="language-R">plots &lt;- VlnPlot(immune.combined, features = c(&quot;LYZ&quot;, &quot;ISG15&quot;, &quot;CXCL10&quot;), split.by = &quot;stim&quot;, group.by = &quot;celltype&quot;, 
+    pt.size = 0, combine = FALSE)
+CombinePlots(plots = plots, ncol = 1)
+</code></pre>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2019/12/11/DIyLP7VsZEXKUTf.png" alt="" loading="lazy"></figure>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E6%95%B4%E5%90%88%E7%9B%AE%E6%A0%87">整合目标</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AEseurat%E5%AF%B9%E8%B1%A1">设置Seurat对象</a></li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E6%95%B4%E5%90%88">执行整合</a></li>
+<li><a href="#%E8%BF%9B%E8%A1%8C%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90">进行综合分析</a></li>
+<li><a href="#%E8%AF%86%E5%88%AB%E4%BF%9D%E5%AE%88%E7%9A%84%E7%BB%86%E8%83%9E%E7%B1%BB%E5%9E%8B%E6%A0%87%E8%AE%B0">识别保守的细胞类型标记</a></li>
+<li><a href="#%E8%B7%A8%E6%9D%A1%E4%BB%B6%E9%89%B4%E5%AE%9A%E5%B7%AE%E5%BC%82%E8%A1%A8%E8%BE%BE%E5%9F%BA%E5%9B%A0">跨条件鉴定差异表达基因</a></li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

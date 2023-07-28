@@ -1,0 +1,399 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>再说转录组数据标准化（TPM，RPKM，FPKM） - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="再说转录组数据标准化（TPM，RPKM，FPKM） - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="基础概念讲解
+在RNA-Seq的分析中，我们常用RPKM、FPKM和TPM作为转录组数据定量的表示方法。
+它们都是对表达量进行标准化的方法，为何不直接用read数表示，而选标准化呢?
+
+因为落在一个基因区域内的read数目取决于基因长度和测..." />
+  <meta property="og:title" content="再说转录组数据标准化（TPM，RPKM，FPKM） - Guang&#39;s Home Page">
+  <meta property="og:description" content="基础概念讲解
+在RNA-Seq的分析中，我们常用RPKM、FPKM和TPM作为转录组数据定量的表示方法。
+它们都是对表达量进行标准化的方法，为何不直接用read数表示，而选标准化呢?
+
+因为落在一个基因区域内的read数目取决于基因长度和测..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/-RQyqR62t/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="再说转录组数据标准化（TPM，RPKM，FPKM） - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="基础概念讲解
+在RNA-Seq的分析中，我们常用RPKM、FPKM和TPM作为转录组数据定量的表示方法。
+它们都是对表达量进行标准化的方法，为何不直接用read数表示，而选标准化呢?
+
+因为落在一个基因区域内的read数目取决于基因长度和测...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/-RQyqR62t/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          再说转录组数据标准化（TPM，RPKM，FPKM）
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2021-05-08 · 8 min read</div>
+          
+            <a href="https://xiaohanys.me/Z8Cs_1OAm/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              RNAseq
+            </a>
+          
+            <a href="https://xiaohanys.me/yw9gglZGA-/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              TPM
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="基础概念讲解">基础概念讲解</h2>
+<p>在RNA-Seq的分析中，我们常用<strong>RPKM、FPKM和TPM</strong>作为转录组数据定量的表示方法。</p>
+<p>它们都是对表达量进行标准化的方法，为何不直接用read数表示，而选标准化呢?</p>
+<blockquote>
+<p>因为落在一个基因区域内的read数目取决于基因长度和测序深度。基因越长read数目越多，测序深度越高,则一个基因对应的read数目也相对越多。所以必须要标准化，而标准化的对象就是基因长度与测序深度。</p>
+</blockquote>
+<h3 id="rpkm">RPKM:</h3>
+<p>Reads Per Kilobase of exon model per Million mapped reads</p>
+<p>(每千个碱基的转录每百万映射读取的reads)，主要用来对单端测序（single-end RNA-seq）进行定量的方法。</p>
+<p>RPKM(推荐软件，Range) 的计算公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>P</mi><mi>K</mi><mi>M</mi><mo>=</mo><mfrac><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mtext> </mtext><mi>e</mi><mi>x</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi></mrow><mrow><mo>(</mo><mi>m</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mtext> </mtext><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mtext> </mtext><mo>(</mo><mi>M</mi><mi>i</mi><mi>l</mi><mi>l</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>s</mi><mo>)</mo><mtext> </mtext><mo>×</mo><mtext> </mtext><mi>e</mi><mi>x</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi><mo>(</mo><mi>K</mi><mi>b</mi><mo>)</mo><mo>)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">RPKM=\frac{total\ exon\ reads}{(mapped\ reads\ (Millions)\ \times\ exon\ length(Kb))}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.30744em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace"> </span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>total exon reads</strong>：某个样本mapping到特定基因的外显子上的所有的reads；</p>
+<p><strong>mapped reads ( Millions )</strong> :某个样本的所有reads总和；</p>
+<p><strong>exon length( KB )</strong>：某个基因的长度（外显子的长度的总和，以KB为单位）。</p>
+<p>你可以用这个公式计算基因，外显子，转录本的表达，这里以基因的表达为例进行说明。在一个样本中一个基因的RPKM等于落在这个基因上的总的read数(total exon reads)与这个样本的总read数(mapped reads (Millions))和基因长度(exon length( KB )) 的乘积的比值。</p>
+<h3 id="fpkm">FPKM:</h3>
+<p>Fragments Per Kilobase of exon model per Million mapped fragments</p>
+<p>(每千个碱基的转录每百万映射读取的fragments)，主要是针对pair-end测序表达量进行计算。</p>
+<p>FPKM (推荐软件，cufflinks) 和RPKM 的计算方法基本一致。</p>
+<p>FPKM和RPKM的区别就是一个是<em>fragment</em>，一个是<em>read</em>。</p>
+<p>对于单末端测序数据，由于Cufflinks计算的时候是将一个read当做一个fragment来算的，故而FPKM等同于RPKM。</p>
+<p>对于双末端测序而言，如果一对paired-read都比对上了，那么这一对paired-read称之为一个fragment，而如果一对paired-Read中只有一个比对上了，另外一个没有比对上，那么就将这个比对上的read称之为一个fragment.而计算RPKM时，如果一对paired-read都比对上了会当成两个read计算，而如果一对paired-read中只有一个比对上了，另外一个没有比对上，那么就计read数为1。 故而即使是理论上将各个参数都设置成一样的，也并不能说FPKM=2RPKM。对于单末端测序，虽然理论上FPKM等同于RPKM, 但是实际上即使是使用同一个mapping软件得到的mapping结果，然后再分别去计算同一个基因的RPKM (自己人工计算，或者用现成的一些软件都能算)和FPKM(用Cufflinks计算)，结果却仍然是不同，因为Cufflinks有自己的模型和自己的一些内在算法。</p>
+<h3 id="rpmcpm">RPM/CPM:</h3>
+<p>Reads/Counts of exon model per Million mapped reads (每百万映射读取的reads).</p>
+<p>RPM的计算公式：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>P</mi><mi>M</mi><mo>=</mo><mtext> </mtext><mfrac><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mtext> </mtext><mi>e</mi><mi>x</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi></mrow><mrow><mtext> </mtext><mi>m</mi><mi>a</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>d</mi><mtext> </mtext><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>s</mi><mtext> </mtext><mo>(</mo><mi>M</mi><mi>i</mi><mi>l</mi><mi>l</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>s</mi><mo>)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">RPM=\ \frac{total\ exon\ reads}{\ mapped\ reads\ (Millions)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span></span><span class="base"><span class="strut" style="height:2.30744em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mspace"> </span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace"> </span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>total exon reads</strong>：某个样本mapping到特定基因的外显子上的所有的reads；</p>
+<p><strong>mapped reads (Millions)</strong> :某个样本的所有reads总和；</p>
+<p>这就是个占比统计，忽视了转录本长度的影响</p>
+<h3 id="tpm">TPM：</h3>
+<p>Transcripts Per Kilobase of exonmodel per Million mapped reads (每千个碱基的转录每百万映射读取的Transcripts)，优化的RPKM计算方法，可以用于同一物种不同组织的比较。</p>
+<p>TPM (推荐软件，RSEM) 的计算公式：</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Expected &#039;}&#039;, got &#039;EOF&#039; at end of input: …..+\;Nm/Lm\;)}
+'>TPMi=\;\frac{(\;Ni/Li\;)\ast1000000 {\;SUM(\;Ni/Li+\dots\dots..+\;Nm/Lm\;)}
+</p>
+<p><strong>Ni</strong>：mapping到基因i上的read数；</p>
+<p><strong>Li</strong>：基因i的外显子长度的总和。</p>
+<p>在一个样本中一个基因的TPM：先对每个基因的read数用基因的长度进行校正，之后再用校正后的这个基因read数(Ni/Li)与校正后的这个样本的所有read数（sum(Ni/Li+……..+ Nm/Lm)）求商。由此可知，TPM概括了基因的长度、表达量和基因数目。TPM可以用于同一物种不同组织间的比较，因为sum值总是唯一的。</p>
+<h2 id="该选择哪个作为我的标准化方法">该选择哪个作为我的标准化方法？</h2>
+<h3 id="tpm一定是万金油">TPM一定是万金油？</h3>
+<p>从概念上我们可以知道，RPKM和FPKM可以优化样本内的基因比较，但是在样本之间比较时，会存在很大的偏见。这个显而易见，因为他们在<strong>不同样本之间的总和都不一致</strong>。</p>
+<p>因此，为了可以在多个样本之间比较基因表达量的差异，TPM应运而出，但是TPM真就是万能的吗？</p>
+<p>我们可以举一个简单的例子，假设有4个基因，长度都是3bp,readcounts也都是3个，那么，每个基因的TPM=1/4.</p>
+<p>假设另一个样本也有这4个基因，但是最后一个基因由于表达量升高而变成了15，那么，前三个基因的TPM=1/8，而最后一个差异基因的TPM=5/8.</p>
+<p>这里就引入了一个<strong>偏见</strong>，因为TPM值是相对表达量，本质上仍属于比例的一种，那么这个<strong>相对表达会在总值（分母）改变时发生变化</strong>，那么，我们再比较基因的时候，发现这四个基因都发生了表达量的改变，而实际上只有最后一个是差异基因。</p>
+<blockquote>
+<p>那为什么很多文献说TPM可以用来比较多个样本之间的差异呢？我认为他们是默认了样本之间不存在批次效应，即测序深度是一致的或者说相近的，这样保证了分母不会有巨大的变化，那么相对表达就是在样本之间比较差异的金标准。</p>
+</blockquote>
+<p>但是，如果样本之间存在测序深度的差异，那么使用TPM比较样本差异必然会引入偏见，这也是为什么<code>Deseq2</code>等差异分析软件不会去选择TPM作为输入了。</p>
+<h3 id="样本间的标准化方法">样本间的标准化方法</h3>
+<p>假设组间差异成分很大，或者存在很大的批次效应。我们不能用TPM去比较差异，而我们的差异分析软件就会假设我们的<strong>Raw Read Counts</strong>符合负二项分布的模式，假设大部分基因都不是差异基因，差异基因发生在少数基因身上，因此，只有readcount才能符合假设，我们才能用组间矫正的方法例如<code>edger</code>包的<code>TMM</code>方法。</p>
+<p>一个理想的方法便是对TPM执行组间矫正，但是TPM本身并不符合负二项分布的模式，因此会引入偏见。</p>
+<h2 id="tpm如何计算">TPM如何计算？</h2>
+<ul>
+<li>Resem</li>
+<li>Salmon</li>
+</ul>
+<p>FeatureCounts的定量结果如何计算TPM？</p>
+<p>答案也很简单，我们可以按照公式计算即可，例如这样：</p>
+<pre><code class="language-R">library(dplyr)
+
+df=tibble(gene=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),length=c(12,21,33,45),
+          readCount=c(120,13,26,390))
+
+df&lt;-df%&gt;%mutate(Ratio=readCount/length)%&gt;%
+     mutate(Sum=sum(Ratio),TPM=Ratio/Sum*1e6)
+</code></pre>
+<p>这样就可以简单的计算TPM了，但是这里的并非准确的TPM值，因为我们需要的TPM的length为有效长度而非转录本的长度，而</p>
+<p>\EffLength=\feature Length - \average fragment length +1</p>
+<p>当然这里的有效长度依然是估计，所以我们需要使用额外的软件去计算插入长度，从而求得片段长度。例如<code>picard</code></p>
+<p>最后，我们可以从比对后的BAM文件直接获取基因的定量TPM，通过TPMCalculator软件</p>
+<p>文献：<a href="https://pubmed.ncbi.nlm.nih.gov/30379987/">TPMCalculator: One-Step Software to Quantify mRNA Abundance of Genomic Features</a><br>
+脚本：<a href="https://github.com/ncbi/TPMCalculator">Github:TPMCalculator</a></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E8%AE%B2%E8%A7%A3">基础概念讲解</a>
+<ul>
+<li><a href="#rpkm">RPKM:</a></li>
+<li><a href="#fpkm">FPKM:</a></li>
+<li><a href="#rpmcpm">RPM/CPM:</a></li>
+<li><a href="#tpm">TPM：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%A5%E9%80%89%E6%8B%A9%E5%93%AA%E4%B8%AA%E4%BD%9C%E4%B8%BA%E6%88%91%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E6%96%B9%E6%B3%95">该选择哪个作为我的标准化方法？</a>
+<ul>
+<li><a href="#tpm%E4%B8%80%E5%AE%9A%E6%98%AF%E4%B8%87%E9%87%91%E6%B2%B9">TPM一定是万金油？</a></li>
+<li><a href="#%E6%A0%B7%E6%9C%AC%E9%97%B4%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E6%96%B9%E6%B3%95">样本间的标准化方法</a></li>
+</ul>
+</li>
+<li><a href="#tpm%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97">TPM如何计算？</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

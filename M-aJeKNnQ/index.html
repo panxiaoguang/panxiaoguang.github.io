@@ -1,0 +1,369 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>在搭载Apple Silicon (M1)芯片的电脑上安装原生支持的R和python - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="在搭载Apple Silicon (M1)芯片的电脑上安装原生支持的R和python - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="R 语言的安装
+最新测试版R-4.1.0已经原生支持M1芯片的Mac了，虽然R可以在Rosetta 2转译下工作良好，但我仍旧建议每个人都是用原生版，因为转译毕竟会有性能损耗。
+step1 (下载安装)
+下载R-devel: https:/..." />
+  <meta property="og:title" content="在搭载Apple Silicon (M1)芯片的电脑上安装原生支持的R和python - Guang&#39;s Home Page">
+  <meta property="og:description" content="R 语言的安装
+最新测试版R-4.1.0已经原生支持M1芯片的Mac了，虽然R可以在Rosetta 2转译下工作良好，但我仍旧建议每个人都是用原生版，因为转译毕竟会有性能损耗。
+step1 (下载安装)
+下载R-devel: https:/..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/M-aJeKNnQ/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="在搭载Apple Silicon (M1)芯片的电脑上安装原生支持的R和python - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="R 语言的安装
+最新测试版R-4.1.0已经原生支持M1芯片的Mac了，虽然R可以在Rosetta 2转译下工作良好，但我仍旧建议每个人都是用原生版，因为转译毕竟会有性能损耗。
+step1 (下载安装)
+下载R-devel: https:/...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/M-aJeKNnQ/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          在搭载Apple Silicon (M1)芯片的电脑上安装原生支持的R和python
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2021-05-08 · 4 min read</div>
+          
+            <a href="https://xiaohanys.me/cWnVJZ2Wg/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              M1
+            </a>
+          
+            <a href="https://xiaohanys.me/4QwwXji_1/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              python
+            </a>
+          
+            <a href="https://xiaohanys.me/0IAG_kNN9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              R
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="r-语言的安装">R 语言的安装</h2>
+<p>最新测试版R-4.1.0已经原生支持M1芯片的Mac了，虽然R可以在Rosetta 2转译下工作良好，但我仍旧建议每个人都是用原生版，因为转译毕竟会有性能损耗。</p>
+<h3 id="step1-下载安装">step1 (下载安装)</h3>
+<p><strong>下载R-devel</strong>: <a href="https://mac.r-project.org/big-sur/R-devel/R-devel.pkg">https://mac.r-project.org/big-sur/R-devel/R-devel.pkg</a></p>
+<p>下载完成后就像往常那样安装好后就可以在应用中找到R的图标了，通过点击该图标，你现在可以立马打开Rgui版本了。但是另一个选择是通过终端进入R，此时你会兴奋的在终端键入<code>R</code>,但你并不会打开R，因为通过该方式安装的R并没有添加入环境变量中，因此我们需要找到R的安装位置并添加环境变量</p>
+<pre><code class="language-bash">find /Library -name Rscript
+</code></pre>
+<p>然后将找到的bin目录添加环境变量即可，例如</p>
+<pre><code class="language-bash">echo 'export PATH=/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/bin/:$PATH' &gt;&gt; ~/.bashrc
+</code></pre>
+<h3 id="step2-安装rstudio">step2 (安装Rstudio)</h3>
+<p>目前Rstudio的gui还无法原生支持M1芯片，但是Rstudio只是一个外壳而已，我们只需要它能正常运行并支持刚才安装的R即可，因此，需要下载安装最新的<br>
+Rstudio-dev版本</p>
+<p>打开网站<a href="https://dailies.rstudio.com/">https://dailies.rstudio.com/</a>，从里面下载最新的Rstudio，安装即可支持。</p>
+<h3 id="step3-安装r包">step3 (安装R包)</h3>
+<p>你可以像往常一样安装R包，例如</p>
+<pre><code class="language-R">install.packages()
+</code></pre>
+<p>但是大部分情况下，你需要从源码编译安装，那么一些动态链接库和头文件就是必不可少的。</p>
+<p>该版本的R默认动态链接库和一些头文件的位置发生了变化，不在是以前的<code>/usr/local</code>下，而是更换为<code>/opt/R/arm64/</code>下,你可以通过<strong>homebrew</strong>安装需要的库并添加软链接至这个目录下。<strong>homebrew</strong>将在下一部分提及。</p>
+<h2 id="安装python39">安装python3.9</h2>
+<p>以arm架构的3.9.1版本为例，虽然系统有自带的arm版本的python3.8.2，但是不建议使用，系统自带的Python会缺失部分功能。</p>
+<p>但是因为<strong>conda</strong>对于M1的支持并不健全，所以我们只能通过<strong>homebrew</strong>来安装python，所以接下来，我们需要先安装支持M1的<strong>homebrew</strong>。</p>
+<h3 id="安装homebrew">安装homebrew</h3>
+<p><strong>Homebrew</strong>是macOS上常用的软件包管理工具之一,2月5日Homebrew刚刚发布了支持M1芯片的3.0.0正式版。可以打开终端，通过以下命令安装：</p>
+<pre><code class="language-bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</code></pre>
+<p>安装时可能无法访问该网站，可通过在家目录下的.bashrc文件（没有则创建）中加入<code>export ALL_PROXY=socks5://127.0.0.1:代理端口号</code>设置bash的代理</p>
+<p>M1芯片的Mac的<strong>Homebrew</strong>默认安装位置在<code>/opt/homebrew</code>，而非<code>/usr/local</code>，也就说明：</p>
+<p>原来的<code>/usr/local/bin</code>对应<code>/opt/homebrew/bin</code><br>
+原来的<code>/usr/local/sbin</code>对应<code>/opt/homebrew/sbin</code><br>
+原来的<code>/usr/local/lib</code>对应<code>/opt/homebrew/lib</code><br>
+原来的<code>/usr/local/include</code>对应<code>/opt/homebrew/include</code><br>
+原来的<code>/usr/local/etc</code>对应<code>/opt/homebrew/etc</code></p>
+<h3 id="通过brew安装python">通过brew安装python</h3>
+<p>通过</p>
+<pre><code class="language-bash">brew install python3
+</code></pre>
+<p>即可安装arm版本的3.9.1，其路径在<code>/opt/homebrew/bin/python3</code></p>
+<h3 id="安装包">安装包</h3>
+<p>可以通过homebrew来安装包，例如</p>
+<pre><code class="language-bash">brew install numpy
+</code></pre>
+<p>当然，可以先尝试<strong>pip3</strong>来安装，实在不行可以试着<strong>brew</strong>,如果都不行，只能等该包支持了<sup>_</sup>。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#r-%E8%AF%AD%E8%A8%80%E7%9A%84%E5%AE%89%E8%A3%85">R 语言的安装</a>
+<ul>
+<li><a href="#step1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">step1 (下载安装)</a></li>
+<li><a href="#step2-%E5%AE%89%E8%A3%85rstudio">step2 (安装Rstudio)</a></li>
+<li><a href="#step3-%E5%AE%89%E8%A3%85r%E5%8C%85">step3 (安装R包)</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85python39">安装python3.9</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85homebrew">安装homebrew</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87brew%E5%AE%89%E8%A3%85python">通过brew安装python</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%8C%85">安装包</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

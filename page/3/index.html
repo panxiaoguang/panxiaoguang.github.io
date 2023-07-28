@@ -1,0 +1,275 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="<i>Don't forget to be awesome!</i>" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        关于
+      </a>
+    
+      <a href="/my_vue_learning/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        Glims2Shell
+      </a>
+    
+    <a href="https://xiaohanys.me/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      
+
+      <div class="shadow-box bg-white  border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/cpdbheat/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          cellphoneDB的heatmap如何修改colorbar的范围
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-10-07</div>
+      <div class="mb-4 text-gray-500 ">
+        前言
+cellphoneDB是一个单细胞测序下游分析中，分析细胞受体-配体交互的很方便的数据库和软件，也有完备的可视化结果展示，但是在热图中，并没有给到设置热图legend的范围的参数，因此，它所生成的多个数据集的热图的颜色范围是不一致的，...
+      </div>
+      <a href="https://xiaohanys.me/cpdbheat/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/tpmcalculator/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          再说转录组数据标准化（TPM，RPKM，FPKM）
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-10-07</div>
+      <div class="mb-4 text-gray-500 ">
+        基础概念讲解
+在RNA-Seq的分析中，我们常用RPKM、FPKM和TPM作为转录组数据定量的表示方法。
+它们都是对表达量进行标准化的方法，为何不直接用read数表示，而选标准化呢?
+
+因为落在一个基因区域内的read数目取决于基因长度和测...
+      </div>
+      <a href="https://xiaohanys.me/tpmcalculator/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/cripspralign/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          CRISPR 突变检测及可视化分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-10-07</div>
+      <div class="mb-4 text-gray-500 ">
+        以下的突变检测都是基于NGS测序的结果，但是需要预先使用bwa等工具预先比对到参考序列或者基因组上，
+然后根据要研究的目标区域提取比对上的序列作进一步的分析，一个有用的方式就是使用samtools.
+samtools view -b -F ...
+      </div>
+      <a href="https://xiaohanys.me/cripspralign/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/csvtk-yong-fa/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          csvtk用法
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-05-11</div>
+      <div class="mb-4 text-gray-500 ">
+        Before use
+Attention
+
+The CSV parser requires all the lines have same number of fields/columns.
+Even lines with spaces w...
+      </div>
+      <a href="https://xiaohanys.me/csvtk-yong-fa/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/seqkit-yong-fa/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          seqkit用法
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-05-11</div>
+      <div class="mb-4 text-gray-500 ">
+        
+
+Table of Contents
+
+Technical details and guides for use
+seqkit
+
+Sequence and subsequence
+
+seq
+subseq
+sliding
+stats
+fai...
+      </div>
+      <a href="https://xiaohanys.me/seqkit-yong-fa/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/pandas-analysis/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          一文读懂Pandas数据分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-03-25</div>
+      <div class="mb-4 text-gray-500 ">
+        Python-pandas知识梳理
+
+Pandas是基于NumPy的一个开源 Python 库，它被广泛用于快速分析数据，以及数据清洗和准备等工作。它的名字来源是由“ Panel data”（面板数据，一个计量经济学名词）两个单词拼成的。简...
+      </div>
+      <a href="https://xiaohanys.me/pandas-analysis/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/GSVA2/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          单细胞功能集GSVA以及转录调控SCENIC分析流程
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-03-20</div>
+      <div class="mb-4 text-gray-500 ">
+        基因集变异分析（GSVA）
+方法：
+基因集变异分析在传统转录组分析时就已经使用了，针对单细胞数据，其实是一样的。首先通过GSVA函数将细胞-基因表达矩阵转换为细胞-基因集表达矩阵，然后针对该矩阵计算两组或者多组之间的差异，并通过热图展示该差...
+      </div>
+      <a href="https://xiaohanys.me/GSVA2/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/stopcondon/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          基因沉默效率计算方法
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-28</div>
+      <div class="mb-4 text-gray-500 ">
+        前言
+Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物
+算法
+
+初步过滤：
+
+将12ktrap中，...
+      </div>
+      <a href="https://xiaohanys.me/stopcondon/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://xiaohanys.me/page/2/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://xiaohanys.me/page/4/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+</body>
+
+</html>

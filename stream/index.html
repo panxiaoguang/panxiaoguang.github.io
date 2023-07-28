@@ -1,0 +1,585 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>使用STREAM对单细胞数据进行伪时间分析 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="使用STREAM对单细胞数据进行伪时间分析 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="软件介绍
+STREAM (Single-cell Trajectories Reconstruction, Exploration And Mapping) 软件是一个伪时间分析软件，通过一系列的特征选择，降纬（MLLE），轨迹推断（EPG..." />
+  <meta property="og:title" content="使用STREAM对单细胞数据进行伪时间分析 - Guang&#39;s Home Page">
+  <meta property="og:description" content="软件介绍
+STREAM (Single-cell Trajectories Reconstruction, Exploration And Mapping) 软件是一个伪时间分析软件，通过一系列的特征选择，降纬（MLLE），轨迹推断（EPG..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/stream/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="使用STREAM对单细胞数据进行伪时间分析 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="软件介绍
+STREAM (Single-cell Trajectories Reconstruction, Exploration And Mapping) 软件是一个伪时间分析软件，通过一系列的特征选择，降纬（MLLE），轨迹推断（EPG...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/stream/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          使用STREAM对单细胞数据进行伪时间分析
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2019-12-20 · 8 min read</div>
+          
+            <a href="https://xiaohanys.me/xDMfD7Je-E/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              STREAM
+            </a>
+          
+            <a href="https://xiaohanys.me/kJ1aCbm_y/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              生物信息
+            </a>
+          
+            <a href="https://xiaohanys.me/qqMSXHSE7/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              单细胞测序分析
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h3 id="软件介绍">软件介绍</h3>
+<p>STREAM (<strong>S</strong>ingle-cell <strong>T</strong>rajectories <strong>R</strong>econstruction, <strong>E</strong>xploration <strong>A</strong>nd <strong>M</strong>apping) 软件是一个伪时间分析软件，通过一系列的特征选择，降纬（MLLE），轨迹推断（EPG）等步骤，逐步构建细胞发育轨迹，从而帮助我们更好的理解发育进化过程。</p>
+<h3 id="下载地址">下载地址</h3>
+<!--more-->
+<p>github 地址：<a href="https://github.com/pinellolab/STREAM">https://github.com/pinellolab/STREAM</a></p>
+<p>安装本地版有两种方法，<code>docker</code>或者<code>bioconda</code>，我因为要安装在集群上，不具有管理员权限，所以，建议使用<code>bioconda</code></p>
+<p>conda 安装的方法就不说了，可以参考前文<a href="https://www.hongguangblog.cn/archives/3/">小白也看得懂的 ETE-toolkit 构建进化树流程</a></p>
+<p>在终端配置 conda 的安装通道：</p>
+<pre><code class="language-shell">conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+</code></pre>
+<p>创建一个<code>stream</code>的虚拟空间</p>
+<pre><code class="language-shell">conda create -n stream python=3.6 stream jupyter
+conda activate stream
+</code></pre>
+<h3 id="使用命令行进行一键化分析">使用命令行进行一键化分析</h3>
+<h4 id="输入文件的格式">输入文件的格式</h4>
+<p>该流程需要输入三种文件（都是采用 tab 分割的 tsv 文件），分别是<strong>细胞表达矩阵</strong>，<strong>细胞注释名称</strong>以及<strong>细胞的颜色定义</strong>，当然，后面两个非必须，但是，还是提供比较好。</p>
+<p>细胞表达矩阵示例：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>AAACCTGGTATCAGTC-1_1</th>
+<th>AACCGCGCATTCCTGC-1_1</th>
+<th>AACGTTGAGCCCAATT-1_1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNLY</td>
+<td>0.142776811271601</td>
+<td>0.181584363054937</td>
+<td>0.152404882566299</td>
+</tr>
+<tr>
+<td>PAEP</td>
+<td>0.28157594020077</td>
+<td>0.26124097727991</td>
+<td>0.33343093647266</td>
+</tr>
+<tr>
+<td>MT1G</td>
+<td>-0.0174682667681339</td>
+<td>1.30917646946733</td>
+<td>0.193603016988391</td>
+</tr>
+<tr>
+<td>HBB</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+<tr>
+<td>CD74</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody>
+</table>
+<p>表达矩阵可以是原始的 counts 值，也可以是经过标准化后的数据</p>
+<p>细胞列表示例：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MDSC</td>
+</tr>
+<tr>
+<td>MDSC</td>
+</tr>
+<tr>
+<td>Dendritic.cells.activated</td>
+</tr>
+<tr>
+<td>MDSC</td>
+</tr>
+<tr>
+<td>MDSC</td>
+</tr>
+</tbody>
+</table>
+<p>这里不需要输入标题栏，细胞名称和细胞 barcode 一一对应</p>
+<p>颜色示例：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DC2</td>
+<td>#66c2a5</td>
+</tr>
+<tr>
+<td>MDSC</td>
+<td>#fc8d62</td>
+</tr>
+<tr>
+<td>Dendritic.cells.activated</td>
+<td>#8da0cb</td>
+</tr>
+</tbody>
+</table>
+<p>你还可以选择一些有意识的基因出来做后续分析，这里不再展示。</p>
+<p>可能很多人要问，如何从 Seurat 对象中获取该信息呢？翻一下官方文档可以知道：</p>
+<pre><code class="language-R">library(Seurat)
+Seurat.obj&lt;-readRDS(&quot;seurat.rds&quot;)
+#获取表达矩阵前，应该将默认矩阵转换为整合多样本的矩阵
+DefaultAssay(Seurat.obj) &lt;- &quot;integrated&quot;
+expMat&lt;-GetAssayData(Seurat.obj,slot=&quot;data&quot;)#data就是标准化后的数据，你也可以用counts
+expMat&lt;-as.data.frame(expMat)
+expMat$name&lt;-rownames(expMat)
+expMat&lt;-expMat[,c(ncols(expMat),1:(ncols(expMat)-1))]
+write.table(expMat,&quot;data_Nestorowa.tsv&quot;,sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+#获取细胞信息就简单了
+cell&lt;-as.data.frame(as.character(Idents(Seurat.obj)))
+write.table(cell,&quot;cell_label.tsv&quot;,sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE,col.names=FALSE)
+#映射颜色
+cell_c&lt;-data.frame(cell=c(&quot;DC2&quot;,&quot;MDSC&quot;,&quot;Dendritic.cells.activated&quot;),col=c(&quot;#66c2a5&quot;,&quot;#fc8d62&quot;,&quot;#8da0cb&quot;))
+write.table(cell_c,&quot;cell_label_color.tsv&quot;,sep=&quot;\t&quot;,quote=FALSE,col.names=FALSE)
+</code></pre>
+<h4 id="命令行参数">命令行参数</h4>
+<pre><code class="language-shell">-m, --matrix
+input file name. Matrix is in .tsv or tsv.gz format in which each row represents a unique gene and each column is one cell. (default: None)
+-l, --cell_labels
+file name of cell labels (default: None)
+-c, --cell_labels_colors
+file name of cell label colors (default: None)
+-s, --select_features
+LOESS, PCA, all: Select variable genes using LOESS or top principal components using PCA or keep all the gene (default: LOESS)
+--TG
+detect transition genes automatically
+--DE
+detect DE genes automatically
+--LG
+etect leaf genes automatically
+-g, --gene_list
+genes to visualize, it can either be filename which contains all the genes in one column or a set of gene names separated by comma (default: None)
+-p, --use_precomputed
+use precomputed data files without re-computing structure learning part
+--log2
+perform log2 transformation
+--norm
+normalize data based on library size
+--atac
+indicate scATAC-seq data
+--n_processes
+Specify the number of processes to use. (default, all the available cores).
+--loess_frac
+The fraction of the data used in LOESS regression (default: 0.1)
+--pca_first_PC
+keep first PC
+--pca_n_PC
+The number of selected PCs (default: 15)
+--n_processes
+Specify the number of processes to use. The default uses all the cores available
+--lle_neighbours
+LLE neighbour percent (default: 0.1)
+--lle_components
+Number of components for LLE space (default: 3)
+--clustering
+Clustering method used for seeding the intial structure, choose from 'ap','kmeans','sc'.
+--damping
+Affinity Propagation: damping factor (default: 0.75)
+--n_clusters
+Number of clusters for spectral clustering or kmeans
+--EPG_n_nodes
+Number of nodes for elastic principal graph (default: 50)
+--EPG_lambda
+lambda parameter used to compute the elastic energy (default: 0.02)
+--EPG_mu
+mu parameter used to compute the elastic energy (default: 0.1)
+--EPG_trimmingradius
+maximal distance of point from a node to affect its embedment (default: Inf)
+--EPG_alpha
+positive numeric, alpha parameter of the penalized elastic energy (default: 0.02)
+--disable_EPG_optimize
+disable optimizing branching
+--EPG_collapse
+Collapsing small branches
+--EPG_collapse_mode
+the mode used to collapse branches. It can be 'PointNumber','PointNumber_Extrema', 'PointNumber_Leaves','EdgesNumber' or 'EdgesLength' (default:'PointNumber')
+--EPG_collapse_par
+the control parameter used for collapsing small branches
+--EPG_shift
+shift branching point
+--EPG_shift_mode
+the mode to use to shift the branching points 'NodePoints' or 'NodeDensity' (default: NodeDensity)
+--EPG_shift_DR
+positive numeric, the radius used when computing point density if EPG_shift_mode is 'NodeDensity' (default:0.05)
+--EPG_shift_maxshift
+positive integer, the maximum distance (number of edges) to consider when exploring the branching point neighborhood (default:5)
+--disable_EPG_ext
+disable extending leaves with additional nodes
+--EPG_ext_mode
+the mode used to extend the graph. It can be 'QuantDists', 'QuantCentroid' or 'WeigthedCentroid'. (default: QuantDists)
+--EPG_ext_par
+the control parameter used for contribution of the different data points when extending leaves with nodes (default: 0.5)
+--DE_zscore_cutoff
+Differentially Expressed Genes z-score cutoff (default: 2)
+--DE_logfc_cutoff
+Differentially Expressed Genes log fold change cutoff (default: 0.25)
+--TG_spearman_cutoff
+Transition Genes Spearman correlation cutoff (default: 0.4)
+--TG_logfc_cutoff
+Transition Genes log fold change cutoff (default: 0.25)
+--LG_zscore_cutoff
+Leaf Genes z-score cutoff (default: 1.5)
+--LG_pvalue_cutoff
+Leaf Genes p value cutoff (default: 1e-2)
+--umap
+Whether to use UMAP for visualization (default: No)
+-r
+root node for subwaymap_plot and stream_plot (default:None)
+--stream_log_view
+use log2 scale for y axis of stream_plot
+--for_web
+Output files for website
+-o, --output_folder
+Output folder (default: None)
+--new
+file name of data to be mapped (default: None)
+--new_l
+filename of new cell labels (default: None)
+--new_c
+filename of new cell label colors (default: None)
+</code></pre>
+<p>使用默认参数运行：</p>
+<pre><code class="language-shell">stream -m data_Nestorowa.tsv -l cell_label.tsv -c cell_label_color.tsv
+</code></pre>
+<p>建议添加的参数：</p>
+<pre><code class="language-shell">stream -m data_Nestorowa.tsv -l cell_label.tsv -c cell_label_color.tsv  --n_processes 4 --umap
+</code></pre>
+<p>这里因为使用的是标准化后的数据，所以跳过了标准化过程：否则添加<code>--norm</code></p>
+<p>进一步可视化基因：</p>
+<pre><code class="language-shell">stream -m data_Nestorowa.tsv -l cell_label.tsv -c cell_label_color.tsv -g gene_list.tsv -p
+</code></pre>
+<p><code>p</code>参数可以避免重复计算，节省时间，默认会把所有节点都作为起始节点（根节点）计算一遍，你可以自己定义根节点<code>-r</code></p>
+<p>探索 Marker 基因：</p>
+<pre><code class="language-shell">stream -m data_Nestorowa.tsv -l cell_label.tsv -c cell_label_color.tsv --TG --DG --LG -p
+</code></pre>
+<h3 id="结果">结果</h3>
+<p>个人对于构建轨迹也不是太理解，就目前的理解来看，比较有用的结果是</p>
+<ul>
+<li>flat_tree.pdf</li>
+<li>subway_map.pdf</li>
+<li>std_vs_means.pdf</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/06/OXh1NMBQD47jrEz.png" alt="std_vs_means.png" loading="lazy"></figure>
+<p>这个图是按照默认参数降纬跑的，这里需要注意的是，蓝线必须和点拟合的比较好才行，否则需要适当的调整参数</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/11/06/x8agFUkWufPI6hm.png" alt="flat_tree.png" loading="lazy"></figure>
+<p>这张图应该是说，该细胞群由 S0 作为时间起点，向 S1，S2，S3 和 S4 分别进化出四支，就看我们选择哪一个作为根节点了。</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/11/06/qP4ek1tiaJu29KC.png" alt="subway_map.png" loading="lazy"></figure>
+<p>基于先验知识，激活的基因座细胞有可能作为发育的起点，所以我们选择 S3 作为根节点，构建出如上的时间序列。</p>
+<hr>
+<p>以上，是采用一键化的方式计算，我们还可以使用交互的方式进行，但是因为我的集群没有可视化界面，操作起来就不方便，就没法演示了。具体方法可以参考<br>
+<a href="https://nbviewer.jupyter.org/github/pinellolab/STREAM/blob/master/tutorial/1.STREAM_scRNA-seq.ipynb?flush_cache=true">STREAM_scRNA-seq.ipynb</a></p>
+<p>可视化网页版链接：<a href="http://stream.pinellolab.org">http://stream.pinellolab.org</a></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D">软件介绍</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80">下载地址</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BF%9B%E8%A1%8C%E4%B8%80%E9%94%AE%E5%8C%96%E5%88%86%E6%9E%90">使用命令行进行一键化分析</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6%E7%9A%84%E6%A0%BC%E5%BC%8F">输入文件的格式</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">命令行参数</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%93%E6%9E%9C">结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

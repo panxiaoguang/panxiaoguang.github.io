@@ -1,0 +1,701 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>基因沉默效率计算方法 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="基因沉默效率计算方法 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="前言
+Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物
+算法
+
+初步过滤：
+
+将12ktrap中，..." />
+  <meta property="og:title" content="基因沉默效率计算方法 - Guang&#39;s Home Page">
+  <meta property="og:description" content="前言
+Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物
+算法
+
+初步过滤：
+
+将12ktrap中，..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/stopcondon/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="基因沉默效率计算方法 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="前言
+Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物
+算法
+
+初步过滤：
+
+将12ktrap中，...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/stopcondon/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          基因沉默效率计算方法
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-28 · 13 min read</div>
+          
+            <a href="https://xiaohanys.me/4QwwXji_1/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              python
+            </a>
+          
+            <a href="https://xiaohanys.me/PXA_WZ9r6/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              CRISPR
+            </a>
+          
+            <a href="https://xiaohanys.me/pmyCGNR__w/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              gRNA
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="前言">前言</h2>
+<p>Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物</p>
+<h2 id="算法">算法</h2>
+<center><img src="https://cdn.webchain.site/file/imgdisk-2/2020/02/28/stop-codonc64857e537d1f0ff.png" alt="算法模式图" border="0" width=600 /></center>
+<h3 id="初步过滤">初步过滤：</h3>
+<ol>
+<li>将12ktrap中，N1-N20内C&gt;T成功的trap提取出来(所有编辑后的reads，不做trap的去重)，定义为dataset#1</li>
+<li>将dataset#1分成2部分，一部分是gRNA在基因的正义链（+）上，定义为dataset#1（+），另一部分在反义链（-）上，定义为dataset#1（-）；</li>
+</ol>
+<h3 id="正义链的情况cagcgacaa-tagtgataa">正义链的情况<code>（CAG/CGA/CAA &gt; TAG/TGA/TAA）</code>：</h3>
+<ol start="3">
+<li>找出dataset#1（+）N1-N20中 C&gt;T成功的位置，并往后推2个碱基，判断其是否为CAG或CGA或CAA（编辑前） ，满足其一即抽提出来，完成后定义为dataset#2（+），同时标记出突变位点在gRNA中的位置，譬如N=5, N=6等；</li>
+<li>将dataset#2（+）中的gRNA（不包含我们人工添加的第一个碱基G）mapping回对应基因的CDS中，数出从ATG（翻译起始位置）的A到gRNA第一个碱基的碱基数M，随后算出 (M-1+N-1)/3, 判断结果是否为整数，如果是整数，判断该基因被stop成功，输出<code>”TRAP ID + gRNA sequence + strand (+/-) + C&gt;T position + C&gt;T efficiency”</code>;</li>
+<li>举例说明4）中算法：如N=6, M=11, 则说明突变位点的C距离ATG位置是10+5=15个碱基，即15/3=5个氨基酸，到突变位点（如CAG）恰好是3的整数倍，该基因被stop成功；</li>
+</ol>
+<h3 id="反义链的情况cca-tca-tga-ctatag-tta-taa">反义链的情况<code>(CCA &gt; TCA (TGA) / CTA(TAG) / TTA (TAA))</code>：</h3>
+<ol start="6">
+<li>找出dataset#1（-）N1-N20中 C&gt;T成功的位置，并判断其是否在CCA这样的motif中（编辑前），如果在，输出trap放到dataset#2（-）中，并标记出CCA motif中A所在gRNA中的位置N，譬如N=5, N=6等；</li>
+<li>将dataset#2（-）中的gRNA提取出来（此时gRNA的序列应该是和CDS正义链互补的），数出从ATG（翻译起始位置）的A到gRNA第一个碱基的碱基数M （注意此时gRNA为CCNN20，gRNA第一个碱基在最右端），随后算出(M-N)/3是否为整数，如果是整数，判断该基因被stop成功，输出<code>”TRAP ID + gRNA sequence + strand (+/-) + C&gt;T position + C&gt;T efficiency”</code>;</li>
+</ol>
+<h3 id="需求是">需求是：</h3>
+<ol>
+<li>获取每条TRAP序列所对应的stop效率，效率的计算方法是针对一条TRAP来说，至少有一个位点能够stop成功，那么这条对应的read为成功一次，一次类推，既不能重复计数，也不能少计数</li>
+<li>获取每个位点对应的stop效率，如上原理所述</li>
+<li>获取基因的stop率：<code>stop-gene/all-gene</code></li>
+</ol>
+<h2 id="我使用的代码">我使用的代码</h2>
+<p><strong>代码一：此代码用于输出所有通过的stop reads并计算每条TRAP的stop效率</strong></p>
+<pre><code class="language-python"># -*- coding=utf-8 -*-
+import re
+
+
+def complement(seq):
+    return seq.translate(str.maketrans('ACGT', 'TGCA'))
+# Obtain reverse complementary sequence
+
+
+def revcomp(seq):
+    return complement(seq)[::-1]
+# Input n site, all CDs sequences and trap37bp sequences, and check whether the site can stop
+# 1 for success, 0 for failure
+
+
+def stop_test_for_Z(n, cds_lst, trap):
+    new_cds_lst = [cds for cds in cds_lst if trap in cds]
+    score_lst = []
+    if len(new_cds_lst) &gt; 0:
+        for haha in new_cds_lst:
+            m = haha.find(trap) + 1 + 10
+            score = (m - 1 + n - 1)
+            score_lst.append(score)
+        if len([new_score for new_score in score_lst if score % 3 == 0]) &gt; 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+
+
+def stop_test_for_F(n, cds_lst, trap):
+    trap = revcomp(trap)
+    new_cds_lst = [cds for cds in cds_lst if trap in cds]
+    score_lst = []
+    if len(new_cds_lst) &gt; 0:
+        for haha in new_cds_lst:
+            m = haha.find(trap) + 1 + 10 + 23
+            score = (m - n)
+            score_lst.append(score)
+        if len([new_score for new_score in score_lst if score % 3 == 0]) &gt; 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+# Read all CDS files and return a dictionary. The key is gene and the value is CDS sequence
+
+
+def read_cds(fs):
+    fasta = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                seq_lst = []
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+            else:
+                seq_lst.append(line.strip(&quot;\n&quot;))
+                fasta[name] = &quot;&quot;.join(seq_lst)
+    new_fasta = {key: value for key,
+                 value in fasta.items() if &quot;unavailable&quot; not in value}
+    return new_fasta
+# Read all the trap sequences and return a dictionary. The key is trap label and the value is 37bp
+
+
+def read_seq(fs):
+    fasta = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                seq_lst = []
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+            else:
+                seq_lst.append(line.strip(&quot;\n&quot;))
+                fasta[name] = seq_lst
+    return fasta
+# Read all reference sequences. The key is label and the value is 37bptrap sequence
+
+
+def read_ref(fs):
+    ref = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+            else:
+                ref[name] = line.strip(&quot;\n&quot;)[118:155]
+    return ref
+# Read the corresponding relationship between gene and label and return to the dictionary
+
+
+def read_duiying(fs):
+    duiying = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            lable, gene = line.split(&quot;\t&quot;)
+            duiying[lable.strip(&quot;\n&quot;)] = gene.strip(&quot;\n&quot;)
+    return duiying
+
+
+def motif_Z(trap, site):
+    if trap[10:30][site: site + 3] in [&quot;CAG&quot;, &quot;CGA&quot;, &quot;CAA&quot;]:
+        return 1
+    else:
+        return 0
+
+
+def motif_F(trap, site):
+    if &quot;CCA&quot; in trap[10:30][site-2: site + 3]:
+        return 1
+    else:
+        return 0
+
+
+lable_map_gene = read_duiying(&quot;../duiying.txt&quot;)
+all_cds = read_cds(&quot;../mart_export.txt&quot;)
+all_ref = read_ref(&quot;ref.fa&quot;)
+all_trapseq = read_seq(&quot;new508.filter.fa&quot;)
+eff_lst = []
+for name, traps in all_ref.items():
+    gene = lable_map_gene[name]
+    cds_lst = [vals for keys, vals in all_cds.items() if gene in keys]
+    pass_lst = []
+    if name in list(all_trapseq.keys()):
+        alltrap = len(all_trapseq[name])
+        seq_lst = all_trapseq[name]
+        for m in re.finditer(&quot;C&quot;, traps[10:30]):
+            if motif_Z(traps, m.start()):
+                if stop_test_for_Z((m.start() + 1), cds_lst, traps):
+                    while seq_lst:
+                        gg=seq_lst.pop(0)
+                        if gg[10:30][m.start()] == &quot;T&quot;:
+                            pass_lst.append(gg)
+        if len(pass_lst) &gt; 0:
+            with open(&quot;pass_lst_z.fa&quot;, 'a') as wocao:
+                wocao.write(&quot;&gt;{}\n&quot;.format(name))
+                for nima in pass_lst:
+                    wocao.write(&quot;{}\n&quot;.format(nima))
+            if alltrap &gt; 0:
+                eff_lst.append([name, len(pass_lst) / alltrap])
+            else:
+                print(name)
+
+for name, traps in all_ref.items():
+    gene = lable_map_gene[name]
+    cds_lst = [vals for keys, vals in all_cds.items() if gene in keys]
+    pass_lst = []
+    if name in list(all_trapseq.keys()):
+        alltrap = len(all_trapseq[name])
+        seq_lst2 = all_trapseq[name]
+        for m in re.finditer(&quot;C&quot;, traps[10:30]):
+            if motif_F(traps, m.start()):
+                if stop_test_for_F(((traps[10:30][m.start()-2: m.start() + 3]).find(&quot;CCA&quot;)+1+2), cds_lst, traps):
+                    while seq_lst2:
+                        gg=seq_lst2.pop(0)
+                        if gg[10:30][m.start()] == &quot;T&quot;:
+                            pass_lst.append(gg)
+        if len(pass_lst) &gt; 0:
+            with open(&quot;pass_lst_f.fa&quot;, 'a') as wocao:
+                wocao.write(&quot;&gt;{}\n&quot;.format(name))
+                for nima in pass_lst:
+                    wocao.write(&quot;{}\n&quot;.format(nima))
+            if alltrap &gt; 0:
+                eff_lst.append([name, len(pass_lst) / alltrap])
+            else:
+                print(name)
+
+with open(&quot;trap_stop_eff.txt&quot;, 'a') as l:
+    l.write(&quot;trap-lable\ttrap-effective\n&quot;)
+    for lable, effctive in eff_lst:
+        l.write(&quot;{}\t{}\n&quot;.format(lable, effctive))
+</code></pre>
+<p>代码二：该代码用于计算需求2</p>
+<pre><code class="language-python"># -*- coding=utf-8 -*-
+import re
+
+
+def complement(seq):
+    return seq.translate(str.maketrans('ACGT', 'TGCA'))
+# 获取反向互补序列
+
+
+def revcomp(seq):
+    return complement(seq)[::-1]
+# 输入n位点，对应的所有CDS序列以及trap37bp序列，检查该位点能否stop
+# 成功返回1，失败返回0
+
+
+def stop_test_for_Z(n, cds_lst, trap):
+    new_cds_lst = [cds for cds in cds_lst if trap in cds]
+    score_lst = []
+    if len(new_cds_lst) &gt; 0:
+        for haha in new_cds_lst:
+            m = haha.find(trap) + 1 + 10
+            score = (m - 1 + n - 1)
+            score_lst.append(score)
+        if len([new_score for new_score in score_lst if score % 3 == 0]) &gt; 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+
+
+def stop_test_for_F(n, cds_lst, trap):
+    trap = revcomp(trap)
+    new_cds_lst = [cds for cds in cds_lst if trap in cds]
+    score_lst = []
+    if len(new_cds_lst) &gt; 0:
+        for haha in new_cds_lst:
+            m = haha.find(trap) + 1 + 10 + 23
+            score = (m - n)
+            score_lst.append(score)
+        if len([new_score for new_score in score_lst if score % 3 == 0]) &gt; 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
+# 读取所有的cds文件返回一个字典，键为gene，值为cds序列
+
+
+def read_cds(fs):
+    fasta = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                seq_lst = []
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+            else:
+                seq_lst.append(line.strip(&quot;\n&quot;))
+                fasta[name] = &quot;&quot;.join(seq_lst)
+    new_fasta = {key: value for key,
+                 value in fasta.items() if &quot;unavailable&quot; not in value}
+    return new_fasta
+# 读取所有的trap序列返回一个字典，键为trap-lable，值为37bp列表
+
+
+def read_seq(fs):
+    fasta = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                seq_lst = []
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+            else:
+                seq_lst.append(line.strip(&quot;\n&quot;))
+                fasta[name] = seq_lst
+    return fasta
+# 读取所有的参考序列，键为lable,值为37bptrap序列
+
+
+def read_ref(fs):
+    ref = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            if line.startswith(&quot;&gt;&quot;):
+                name = line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;, &quot;&quot;)
+            else:
+                ref[name] = line.strip(&quot;\n&quot;)[118:155]
+    return ref
+# 读取基因和lable的对应关系，返回字典
+
+
+def read_duiying(fs):
+    duiying = {}
+    with open(fs, 'r') as f:
+        for line in f:
+            lable, gene = line.split(&quot;\t&quot;)
+            duiying[lable.strip(&quot;\n&quot;)] = gene.strip(&quot;\n&quot;)
+    return duiying
+
+
+def motif_Z(trap, site):
+    if trap[10:30][site: site + 3] in [&quot;CAG&quot;, &quot;CGA&quot;, &quot;CAA&quot;]:
+        return 1
+    else:
+        return 0
+
+
+def motif_F(trap, site):
+    if &quot;CCA&quot; in trap[10:30][site-2: site + 3]:
+        return 1
+    else:
+        return 0
+
+
+lable_map_gene = read_duiying(&quot;../duiying.txt&quot;)
+all_cds = read_cds(&quot;../mart_export.txt&quot;)
+all_ref = read_ref(&quot;ref.fa&quot;)
+all_trapseq = read_seq(&quot;new508.filter.fa&quot;)
+with open(&quot;pass_lst_f.txt&quot;, 'a') as wocao:
+    wocao.write(
+        &quot;TRAP ID\tGene\tgRNA sequence\tstrand\tC&gt;T position\tC&gt;T efficiency\n&quot;)
+with open(&quot;pass_lst_z.txt&quot;, 'a') as wocao:
+    wocao.write(
+        &quot;TRAP ID\tGene\tgRNA sequence\tstrand\tC&gt;T position\tC&gt;T efficiency\n&quot;)
+for name, traps in all_ref.items():
+    gene = lable_map_gene[name]
+    cds_lst = [vals for keys, vals in all_cds.items() if gene in keys]
+    pass_lst = []
+    for m in re.finditer(&quot;C&quot;, traps[10:30]):
+        if motif_Z(traps, m.start()):
+            if stop_test_for_Z((m.start() + 1), cds_lst, traps) and name in list(all_trapseq.keys()):
+                i = 0
+                for gg in all_trapseq[name]:
+                    if gg[10:30][m.start()] == &quot;T&quot;:
+                        i = i + 1
+                eff = i/len(all_trapseq[name])
+                pass_lst.append(
+                    [name, traps[10:33], &quot;+&quot;, (m.start() + 1), eff])
+    if len(pass_lst) &gt; 0:
+        with open(&quot;pass_lst_z.txt&quot;, 'a') as wocao:
+            for nima in pass_lst:
+                [trap_id, trap_seq, strand, ctposition, efftion] = nima
+                wocao.write(&quot;{}\t{}\t{}\t{}\t{}\t{}\n&quot;.format(
+                    trap_id, gene, trap_seq, strand, ctposition, efftion))
+
+for name, traps in all_ref.items():
+    gene = lable_map_gene[name]
+    cds_lst = [vals for keys, vals in all_cds.items() if gene in keys]
+    pass_lst = []
+    for m in re.finditer(&quot;C&quot;, traps[10:30]):
+        if motif_F(traps, m.start()):
+            if stop_test_for_F(((traps[10:30][m.start()-2: m.start() + 3]).find(&quot;CCA&quot;)+1+2), cds_lst, traps) and name in list(all_trapseq.keys()):
+                j = 0
+                for gg in all_trapseq[name]:
+                    if gg[10:30][m.start()] == &quot;T&quot;:
+                        j = j + 1
+                eff = j/len(all_trapseq[name])
+                pass_lst.append(
+                    [name, traps[10:33], &quot;-&quot;, (m.start() + 1), eff])
+    if len(pass_lst) &gt; 0:
+        with open(&quot;pass_lst_f.txt&quot;, 'a') as wocao:
+            for nima in pass_lst:
+                [trap_id, trap_seq, strand, ctposition, efftion] = nima
+                wocao.write(&quot;{}\t{}\t{}\t{}\t{}\t{}\n&quot;.format(
+                    trap_id, gene, trap_seq, strand, ctposition, efftion))
+
+</code></pre>
+<blockquote>
+<p>该博客仅记录工作流程，以作为备忘录，请勿过分借鉴，也不要转载，感谢！</p>
+</blockquote>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E7%AE%97%E6%B3%95">算法</a>
+<ul>
+<li><a href="#%E5%88%9D%E6%AD%A5%E8%BF%87%E6%BB%A4">初步过滤：</a></li>
+<li><a href="#%E6%AD%A3%E4%B9%89%E9%93%BE%E7%9A%84%E6%83%85%E5%86%B5cagcgacaa-tagtgataa">正义链的情况<code>（CAG/CGA/CAA &gt; TAG/TGA/TAA）</code>：</a></li>
+<li><a href="#%E5%8F%8D%E4%B9%89%E9%93%BE%E7%9A%84%E6%83%85%E5%86%B5cca-tca-tga-ctatag-tta-taa">反义链的情况<code>(CCA &gt; TCA (TGA) / CTA(TAG) / TTA (TAA))</code>：</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E6%98%AF">需求是：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%88%91%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81">我使用的代码</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

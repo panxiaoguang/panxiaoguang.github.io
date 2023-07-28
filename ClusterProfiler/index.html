@@ -1,0 +1,529 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>ClusterProfiler:真的不只是富集分析 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ClusterProfiler:真的不只是富集分析 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="网上很多教程都在讲Y叔的clusterprofile富集分析的教程，但是查阅了官方文档后才知道，这个包真的不仅仅只有这个功能，其他功能也很强大。
+做ID转换
+ID转换应该是基因下游分析的敲门砖了，因为一般注释用的是ENSMEBL ID，但是..." />
+  <meta property="og:title" content="ClusterProfiler:真的不只是富集分析 - Guang&#39;s Home Page">
+  <meta property="og:description" content="网上很多教程都在讲Y叔的clusterprofile富集分析的教程，但是查阅了官方文档后才知道，这个包真的不仅仅只有这个功能，其他功能也很强大。
+做ID转换
+ID转换应该是基因下游分析的敲门砖了，因为一般注释用的是ENSMEBL ID，但是..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/ClusterProfiler/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="ClusterProfiler:真的不只是富集分析 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="网上很多教程都在讲Y叔的clusterprofile富集分析的教程，但是查阅了官方文档后才知道，这个包真的不仅仅只有这个功能，其他功能也很强大。
+做ID转换
+ID转换应该是基因下游分析的敲门砖了，因为一般注释用的是ENSMEBL ID，但是...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/ClusterProfiler/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          ClusterProfiler:真的不只是富集分析
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2019-12-20 · 12 min read</div>
+          
+            <a href="https://xiaohanys.me/a-6U7gta9m/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              clusterprofiler
+            </a>
+          
+            <a href="https://xiaohanys.me/0IAG_kNN9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              R
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>网上很多教程都在讲Y叔的clusterprofile富集分析的教程，但是查阅了官方文档后才知道，这个包真的不仅仅只有这个功能，其他功能也很强大。</p>
+<h3 id="做id转换">做ID转换</h3>
+<p>ID转换应该是基因下游分析的敲门砖了，因为一般注释用的是ENSMEBL ID，但是这个ID是人类无法识别的一串数字，下游分析功能都需要转换成基因名称或者基因ID，有这个<code>bitr</code>功能就方便了很多。</p>
+<!--more-->
+<pre><code class="language-R">x &lt;- c(&quot;GPX3&quot;,  &quot;GLRX&quot;,   &quot;LBP&quot;,   &quot;CRYAB&quot;, &quot;DEFB1&quot;, &quot;HCLS1&quot;,   &quot;SOD2&quot;,   &quot;HSPA2&quot;,
+       &quot;ORM1&quot;,  &quot;IGFBP1&quot;, &quot;PTHLH&quot;, &quot;GPC3&quot;,  &quot;IGFBP3&quot;,&quot;TOB1&quot;,    &quot;MITF&quot;,   &quot;NDRG1&quot;,
+       &quot;NR1H4&quot;, &quot;FGFR3&quot;,  &quot;PVR&quot;,   &quot;IL6&quot;,   &quot;PTPRM&quot;, &quot;ERBB2&quot;,   &quot;NID2&quot;,   &quot;LAMB1&quot;,
+       &quot;COMP&quot;,  &quot;PLS3&quot;,   &quot;MCAM&quot;,  &quot;SPP1&quot;,  &quot;LAMC1&quot;, &quot;COL4A2&quot;,  &quot;COL4A1&quot;, &quot;MYOC&quot;,
+       &quot;ANXA4&quot;, &quot;TFPI2&quot;,  &quot;CST6&quot;,  &quot;SLPI&quot;,  &quot;TIMP2&quot;, &quot;CPM&quot;,     &quot;GGT1&quot;,   &quot;NNMT&quot;,
+       &quot;MAL&quot;,   &quot;EEF1A2&quot;, &quot;HGD&quot;,   &quot;TCN2&quot;,  &quot;CDA&quot;,   &quot;PCCA&quot;,    &quot;CRYM&quot;,   &quot;PDXK&quot;,
+       &quot;STC1&quot;,  &quot;WARS&quot;,  &quot;HMOX1&quot;, &quot;FXYD2&quot;, &quot;RBP4&quot;,   &quot;SLC6A12&quot;, &quot;KDELR3&quot;, &quot;ITM2B&quot;)
+eg = bitr(x, fromType=&quot;SYMBOL&quot;, toType=&quot;ENTREZID&quot;, OrgDb=&quot;org.Hs.eg.db&quot;)
+head(eg)
+</code></pre>
+<pre><code class="language-R">##   SYMBOL ENTREZID
+## 1   GPX3     2878
+## 2   GLRX     2745
+## 3    LBP     3929
+## 4  CRYAB     1410
+## 5  DEFB1     1672
+## 6  HCLS1     3059
+</code></pre>
+<p>想知道你可以进行哪些ID 转换？</p>
+<pre><code class="language-R">library(org.Hs.eg.db)
+keytypes(org.Hs.eg.db)
+</code></pre>
+<pre><code class="language-R">##  [1] &quot;ACCNUM&quot;       &quot;ALIAS&quot;        &quot;ENSEMBL&quot;     
+##  [4] &quot;ENSEMBLPROT&quot;  &quot;ENSEMBLTRANS&quot; &quot;ENTREZID&quot;    
+##  [7] &quot;ENZYME&quot;       &quot;EVIDENCE&quot;     &quot;EVIDENCEALL&quot; 
+## [10] &quot;GENENAME&quot;     &quot;GO&quot;           &quot;GOALL&quot;       
+## [13] &quot;IPI&quot;          &quot;MAP&quot;          &quot;OMIM&quot;        
+## [16] &quot;ONTOLOGY&quot;     &quot;ONTOLOGYALL&quot;  &quot;PATH&quot;        
+## [19] &quot;PFAM&quot;         &quot;PMID&quot;         &quot;PROSITE&quot;     
+## [22] &quot;REFSEQ&quot;       &quot;SYMBOL&quot;       &quot;UCSCKG&quot;      
+## [25] &quot;UNIGENE&quot;      &quot;UNIPROT&quot;
+</code></pre>
+<blockquote>
+<p>Note：虽然GO分析支持很多ID，例如symbol完全可以直接运行，但还是建议都转换为ENTREZID，毕竟，我们很少直接得到symbol啊。</p>
+</blockquote>
+<h3 id="gsea分析">GSEA分析</h3>
+<p>还在使用官方的GSEA java包进行富集分析吗，你需要准备<code>gct</code>文件（表达矩阵），要转换为<code>symbol</code>或者<code>entrezid</code>,还要准备<code>cls</code>文件（样本特征），还要下载好<code>gmt</code>文件，最后出来的分析结果，各种图片都是不好看的，准确说不够灵活，用R包呢？</p>
+<p><strong>GSEA_GO</strong></p>
+<pre><code class="language-R">ego3 &lt;- gseGO(geneList     = geneList,
+              OrgDb        = org.Hs.eg.db,
+              ont          = &quot;CC&quot;,
+              nPerm        = 1000,
+              minGSSize    = 100,
+              maxGSSize    = 500,
+              pvalueCutoff = 0.05,
+              verbose      = FALSE)
+</code></pre>
+<blockquote>
+<p>geneList 是什么？</p>
+</blockquote>
+<p>类似于做富集（过表达）分析，geneList是一列基因id，而GSEA分析一般需要基因表达量来衡量富集分数，但是从原理上来讲，还是根据表达量计算Fordchange,然后给他排序，看这个排序在基因集中的富集程度。这样就不会因为传统分析中先筛选差异基因而过滤掉的低差异基因信息（详情参考GSEA的原理），所以，这个基因列表是指一列<strong>排序后的以基因名称为名字的log2FC值向量</strong>。</p>
+<p>假设你有一个两列的文件，第一列为名字，第二列为logFC,你可以这样：</p>
+<pre><code class="language-R">d &lt;- read.csv(your_csv_file)
+##第一列为基因ID
+##第二列为差异值
+
+## 获取log2FC
+geneList &lt;- d[,2]
+
+## 命名
+names(geneList) &lt;- as.character(d[,1])
+
+## 降序
+geneList &lt;- sort(geneList, decreasing = TRUE)
+
+head(geneList)
+</code></pre>
+<p>剩余都是一些限制参数，请执行<code>?clusterProfiler::gseGO</code></p>
+<pre><code class="language-R">##     4312     8318    10874    55143    55388      991 
+## 4.572613 4.514594 4.418218 4.144075 3.876258 3.677857
+</code></pre>
+<p><strong>GSEA-KEGG</strong></p>
+<pre><code class="language-R">kk2 &lt;- gseKEGG(geneList     = geneList,
+               organism     = 'hsa',
+               nPerm        = 1000,
+               minGSSize    = 120,
+               pvalueCutoff = 0.05,
+               verbose      = FALSE)
+head(kk2)
+</code></pre>
+<pre><code class="language-R">##                ID                 Description setSize
+## hsa04510 hsa04510              Focal adhesion     188
+## hsa04151 hsa04151  PI3K-Akt signaling pathway     322
+## hsa03013 hsa03013               RNA transport     131
+## hsa05152 hsa05152                Tuberculosis     162
+## hsa04062 hsa04062 Chemokine signaling pathway     165
+## hsa04218 hsa04218         Cellular senescence     143
+##          enrichmentScore       NES      pvalue   p.adjust
+## hsa04510      -0.4188582 -1.706291 0.001430615 0.02322097
+## hsa04151      -0.3482755 -1.497042 0.002614379 0.02322097
+## hsa03013       0.4116488  1.735751 0.003095975 0.02322097
+## hsa05152       0.3745153  1.630500 0.003154574 0.02322097
+## hsa04062       0.3754101  1.633635 0.003184713 0.02322097
+## hsa04218       0.4153718  1.772207 0.003194888 0.02322097
+##             qvalues rank                   leading_edge
+## hsa04510 0.01576976 2183 tags=27%, list=17%, signal=23%
+## hsa04151 0.01576976 1997 tags=23%, list=16%, signal=20%
+## hsa03013 0.01576976 3383 tags=40%, list=27%, signal=29%
+## hsa05152 0.01576976 2823 tags=34%, list=23%, signal=27%
+## hsa04062 0.01576976 1298 tags=21%, list=10%, signal=19%
+## hsa04218 0.01576976 1155  tags=17%, list=9%, signal=16%
+##                                                                                                                                                                                                                                                                                                                                                                                     core_enrichment
+## hsa04510                                                                                                                        5595/5228/7424/1499/4636/83660/7059/5295/1288/23396/3910/3371/3082/1291/394/3791/7450/596/3685/1280/3675/595/2318/3912/1793/1278/1277/1293/10398/55742/2317/7058/25759/56034/3693/3480/5159/857/1292/3908/3909/63923/3913/1287/3679/7060/3479/10451/80310/1311/1101
+## hsa04151 627/2252/7059/92579/5563/5295/6794/1288/7010/3910/3371/3082/1291/4602/3791/1027/90993/3441/3643/1129/2322/1975/7450/596/3685/1942/2149/1280/4804/3675/595/2261/7248/2246/4803/3912/1902/1278/1277/2846/2057/1293/2247/55970/5618/7058/10161/56034/3693/4254/3480/4908/5159/1292/3908/2690/3909/8817/9223/4915/3551/2791/63923/3913/9863/3667/1287/3679/7060/3479/80310/1311/5105/2066/1101
+## hsa03013                                                                                             10460/1978/55110/54913/9688/8894/11260/10799/9631/4116/5042/8761/6396/23165/8662/10248/55706/79833/9775/29107/23636/5905/9513/5901/10775/10557/4927/79902/1981/26986/11171/10762/8480/8891/11097/26019/10940/4686/9972/81929/10556/3646/9470/387082/1977/57122/8563/7514/79023/3837/9818/56000
+## hsa05152                                                                                                      820/51806/6772/64581/3126/3112/8767/3654/1054/1051/3458/1520/11151/1594/50617/54205/91860/8877/3329/637/3689/7096/2207/3929/4360/5603/929/533/3452/6850/7124/1509/3569/7097/1378/8772/64170/3119/843/2213/8625/3920/2215/3587/5594/3593/9103/3592/6300/9114/10333/3109/3108/1432/3552
+## hsa04062                                                                                                                                                                                                                  3627/10563/6373/4283/6362/6355/2921/6364/3576/6352/10663/1230/6772/6347/6351/3055/1237/1236/4067/6354/114/3702/6361/1794/1234/6367/6375/6374/2919/409/4793/2792/6360/5880
+## hsa04218             
+</code></pre>
+<p>结果里面包含了所有GSEA计算的结果数值</p>
+<blockquote>
+<p>setSize:基因集的大小<br>
+enrichmentScore:富集打分<br>
+NES：标准化后的富集打分<br>
+pvalue,p.ajust.qvalues:各种显著性检验<br>
+rank:log2FC的排序位置</p>
+</blockquote>
+<p><strong>根据官方提供的gmt文件或者自己做gmt文件进行分析</strong></p>
+<p>假设你从官网下载了<a href="http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/7.0/h.all.v7.0.entrez.gmt">Hallmark基因集</a></p>
+<pre><code class="language-R">wp2gene &lt;- read.gmt(&quot;h.all.v7.0.entrez.gmt&quot;)
+em2 &lt;- GSEA(geneList, TERM2GENE = wp2gene)
+</code></pre>
+<p>这样就可以直接得到富集分析的结果，非常方便</p>
+<p>另外，也可以通过<strong>msigdbr</strong>包直接获取基因集信息，但是感觉灵活性不高。</p>
+<h3 id="对gsea的结果可视化">对GSEA的结果可视化</h3>
+<pre><code class="language-R">anno &lt;- edo2[1, c(&quot;NES&quot;, &quot;pvalue&quot;, &quot;p.adjust&quot;)]
+lab &lt;- paste0(names(anno), &quot;=&quot;,  round(anno, 3), collapse=&quot;\n&quot;)
+gseaplot2(edo2, geneSetID = 1, title = edo2$Description[1])+annotate(&quot;text&quot;, 0.7, edo2[i, &quot;enrichmentScore&quot;] * .9, label = lab, hjust=0, vjust=0) 
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/13/ykW17tsYglmceiR.png" alt="GSEA-1.png" loading="lazy"></figure>
+<pre><code class="language-R">pp &lt;- lapply(1:3, function(i) {
+    anno &lt;- edo2[i, c(&quot;NES&quot;, &quot;pvalue&quot;, &quot;p.adjust&quot;)]
+    lab &lt;- paste0(names(anno), &quot;=&quot;,  round(anno, 3), collapse=&quot;\n&quot;)
+
+    gsearank(edo2, i, edo2[i, 2]) + xlab(NULL) +ylab(NULL) +
+        annotate(&quot;text&quot;, 0, edo2[i, &quot;enrichmentScore&quot;] * .9, label = lab, hjust=0, vjust=0)
+})
+plot_grid(plotlist=pp, ncol=1)
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/11/13/IFQONrX8Jkvjdwz.png" alt="GSEA-2.png" loading="lazy"></figure>
+<h3 id="使结果可读性提升">使结果可读性提升</h3>
+<p>针对分析结果，GO富集可以设置参数<code>readable = TRUE</code>，但是对KEGG无法使用，因此，可以使用<code>setReadable</code></p>
+<pre><code class="language-R">library(org.Hs.eg.db)
+library(clusterProfiler)
+
+data(geneList, package=&quot;DOSE&quot;)
+de &lt;- names(geneList)[1:100]
+x &lt;- enrichKEGG(de)
+## The geneID column is ENTREZID
+head(x, 3)
+</code></pre>
+<pre><code class="language-R">##                ID         Description GeneRatio  BgRatio
+## hsa04110 hsa04110          Cell cycle      8/48 124/7932
+## hsa04218 hsa04218 Cellular senescence      7/48 160/7932
+## hsa04114 hsa04114      Oocyte meiosis      6/48 128/7932
+##                pvalue     p.adjust       qvalue
+## hsa04110 6.356283e-07 7.182599e-05 6.490099e-05
+## hsa04218 4.377944e-05 2.473538e-03 2.235055e-03
+## hsa04114 1.105828e-04 4.165285e-03 3.763695e-03
+##                                        geneID Count
+## hsa04110 8318/991/9133/890/983/4085/7272/1111     8
+## hsa04218    2305/4605/9133/890/983/51806/1111     7
+## hsa04114         991/9133/983/4085/51806/6790     6
+</code></pre>
+<pre><code class="language-R">y &lt;- setReadable(x, OrgDb = org.Hs.eg.db, keyType=&quot;ENTREZID&quot;)
+## The geneID column is translated to symbol
+head(y, 3)
+</code></pre>
+<pre><code class="language-R">##                ID         Description GeneRatio  BgRatio
+## hsa04110 hsa04110          Cell cycle      8/48 124/7932
+## hsa04218 hsa04218 Cellular senescence      7/48 160/7932
+## hsa04114 hsa04114      Oocyte meiosis      6/48 128/7932
+##                pvalue     p.adjust       qvalue
+## hsa04110 6.356283e-07 7.182599e-05 6.490099e-05
+## hsa04218 4.377944e-05 2.473538e-03 2.235055e-03
+## hsa04114 1.105828e-04 4.165285e-03 3.763695e-03
+##                                                 geneID
+## hsa04110 CDC45/CDC20/CCNB2/CCNA2/CDK1/MAD2L1/TTK/CHEK1
+## hsa04218     FOXM1/MYBL2/CCNB2/CCNA2/CDK1/CALML5/CHEK1
+## hsa04114          CDC20/CCNB2/CDK1/MAD2L1/CALML5/AURKA
+##          Count
+## hsa04110     8
+## hsa04218     7
+## hsa04114     6
+</code></pre>
+<h3 id="你甚至可以用它来对单细胞聚类结果进行注释">你甚至可以用它来对单细胞聚类结果进行注释</h3>
+<p>如果我们有一个大的细胞marker库，然后我们有显著差异的基因marker,那寻找细胞类型就和过表达分析是一种情况了，都是采用超几何分布计算概率，所以：</p>
+<pre><code class="language-R">cell_markers &lt;- vroom::vroom('http://bio-bigdata.hrbmu.edu.cn/CellMarker/download/Human_cell_markers.txt') %&gt;%
+   tidyr::unite(&quot;cellMarker&quot;, tissueType, cancerType, cellName, sep=&quot;, &quot;) %&gt;% 
+   dplyr::select(cellMarker, geneID) %&gt;%
+   dplyr::mutate(geneID = strsplit(geneID, ', '))
+cell_markers
+</code></pre>
+<p>你甚至可以从cellmarker官网直接下载所有的细胞marker</p>
+<pre><code class="language-R">## # A tibble: 2,868 x 2
+##    cellMarker                                       geneID  
+##    &lt;chr&gt;                                            &lt;list&gt;  
+##  1 Kidney, Normal, Proximal tubular cell            &lt;chr [1…
+##  2 Liver, Normal, Ito cell (hepatic stellate cell)  &lt;chr [1…
+##  3 Endometrium, Normal, Trophoblast cell            &lt;chr [1…
+##  4 Germ, Normal, Primordial germ cell               &lt;chr [1…
+##  5 Corneal epithelium, Normal, Epithelial cell      &lt;chr [1…
+##  6 Placenta, Normal, Cytotrophoblast                &lt;chr [1…
+##  7 Periosteum, Normal, Periosteum-derived progenit… &lt;chr [4…
+##  8 Amniotic membrane, Normal, Amnion epithelial ce… &lt;chr [2…
+##  9 Primitive streak, Normal, Primitive streak cell  &lt;chr [2…
+## 10 Adipose tissue, Normal, Stromal vascular fracti… &lt;chr [1…
+## # … with 2,858 more rows
+</code></pre>
+<pre><code class="language-R">y &lt;- enricher(gene, TERM2GENE=cell_markers, minGSSize=1)
+DT::datatable(as.data.frame(y))
+</code></pre>
+<p>这样就找到了细胞类型，你可以过滤占比最高，且p值显著的结果。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%81%9Aid%E8%BD%AC%E6%8D%A2">做ID转换</a></li>
+<li><a href="#gsea%E5%88%86%E6%9E%90">GSEA分析</a></li>
+<li><a href="#%E5%AF%B9gsea%E7%9A%84%E7%BB%93%E6%9E%9C%E5%8F%AF%E8%A7%86%E5%8C%96">对GSEA的结果可视化</a></li>
+<li><a href="#%E4%BD%BF%E7%BB%93%E6%9E%9C%E5%8F%AF%E8%AF%BB%E6%80%A7%E6%8F%90%E5%8D%87">使结果可读性提升</a></li>
+<li><a href="#%E4%BD%A0%E7%94%9A%E8%87%B3%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%AE%83%E6%9D%A5%E5%AF%B9%E5%8D%95%E7%BB%86%E8%83%9E%E8%81%9A%E7%B1%BB%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E6%B3%A8%E9%87%8A">你甚至可以用它来对单细胞聚类结果进行注释</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

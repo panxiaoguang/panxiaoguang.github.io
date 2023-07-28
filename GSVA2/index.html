@@ -1,0 +1,856 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>单细胞功能集GSVA以及转录调控SCENIC分析流程 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="单细胞功能集GSVA以及转录调控SCENIC分析流程 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="基因集变异分析（GSVA）
+方法：
+基因集变异分析在传统转录组分析时就已经使用了，针对单细胞数据，其实是一样的。首先通过GSVA函数将细胞-基因表达矩阵转换为细胞-基因集表达矩阵，然后针对该矩阵计算两组或者多组之间的差异，并通过热图展示该差..." />
+  <meta property="og:title" content="单细胞功能集GSVA以及转录调控SCENIC分析流程 - Guang&#39;s Home Page">
+  <meta property="og:description" content="基因集变异分析（GSVA）
+方法：
+基因集变异分析在传统转录组分析时就已经使用了，针对单细胞数据，其实是一样的。首先通过GSVA函数将细胞-基因表达矩阵转换为细胞-基因集表达矩阵，然后针对该矩阵计算两组或者多组之间的差异，并通过热图展示该差..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/GSVA2/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="单细胞功能集GSVA以及转录调控SCENIC分析流程 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="基因集变异分析（GSVA）
+方法：
+基因集变异分析在传统转录组分析时就已经使用了，针对单细胞数据，其实是一样的。首先通过GSVA函数将细胞-基因表达矩阵转换为细胞-基因集表达矩阵，然后针对该矩阵计算两组或者多组之间的差异，并通过热图展示该差...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/GSVA2/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          单细胞功能集GSVA以及转录调控SCENIC分析流程
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-03-20 · 25 min read</div>
+          
+            <a href="https://xiaohanys.me/lbYnV4jkU/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              gsva
+            </a>
+          
+            <a href="https://xiaohanys.me/f1omyp2sF/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              scenic
+            </a>
+          
+            <a href="https://xiaohanys.me/T2tG2uajCT/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              SingCell
+            </a>
+          
+            <a href="https://xiaohanys.me/0IAG_kNN9/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              R
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="基因集变异分析gsva">基因集变异分析（GSVA）</h2>
+<h3 id="方法">方法：</h3>
+<p>基因集变异分析在传统转录组分析时就已经使用了，针对单细胞数据，其实是一样的。首先通过<code>GSVA</code>函数将<strong>细胞-基因</strong>表达矩阵转换为<strong>细胞-基因集</strong>表达矩阵，然后针对该矩阵计算两组或者多组之间的差异，并通过<strong>热图</strong>展示该差异。</p>
+<p>单细胞的分组可能有多个层面，例如不同细胞活着亚类分组，对照组和实验组，不同时间段的样本等等。因此最好先按照不同的分组将表达量矩阵和细胞分组信息提取出来，以便后续分析</p>
+<h3 id="需要的r包">需要的R包:</h3>
+<ul>
+<li>GSEAbase</li>
+<li>GSVA</li>
+<li>limma</li>
+<li>Seurat</li>
+<li>Biobase</li>
+<li>genefilter</li>
+<li>dplyr</li>
+<li>pystr <em>(git)</em></li>
+<li>purrr</li>
+<li>tidyr</li>
+<li>tibble</li>
+</ul>
+<h3 id="提取不同分组的表达矩阵">提取不同分组的表达矩阵：</h3>
+<p>相同细胞分类下不同时间样本的表达矩阵和细胞分组</p>
+<pre><code class="language-R">library(Seurat)
+library(dplyr)
+##我这里有7个cluster，5个时间阶段
+for (i in 1:7){
+    name&lt;-paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;.afterclu.rds&quot;)
+    endo&lt;-readRDS(name)
+    time&lt;-endo@meta.data$case
+    time[which(grepl(&quot;^pf_&quot;,time))]&lt;-&quot;PF&quot;
+    time[which(grepl(&quot;^po3_&quot;,time))]&lt;-&quot;PO3&quot;
+    time[which(grepl(&quot;^po7_&quot;,time))]&lt;-&quot;PO7&quot;
+    time[which(grepl(&quot;^po11_&quot;,time))]&lt;-&quot;PO11&quot;
+    time[which(grepl(&quot;^rif_&quot;,time))]&lt;-&quot;RIF&quot;
+    endo@meta.data$time&lt;-time
+    endo[['Cell.type']]&lt;-endo[['seurat_clusters']]
+    endo2&lt;-subset(endo,subset=time%in%c(&quot;PF&quot;,&quot;PO3&quot;,&quot;PO7&quot;,&quot;PO11&quot;))
+    for (cls in unique(endo2$Cell.type)){
+        exam&lt;-subset(endo2,idents=cls)
+        DefaultAssay(exam)&lt;-&quot;integrated&quot;
+        exprMat&lt;-GetAssayData(exam,slot=&quot;data&quot;)
+        exprMat&lt;-as.matrix(exprMat)
+        cellInfo&lt;-exam@meta.data%&gt;%select(Cell.type,time)
+        write.table(exprMat,paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;_&quot;,cls,&quot;.exprMat_.txt&quot;),sep=&quot;\t&quot;,quote=FALSE)
+        write.table(cellInfo,paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;_&quot;,cls,&quot;.cellInfo_.txt&quot;),sep=&quot;\t&quot;,quote=FALSE)
+}}
+</code></pre>
+<p>相同时间不同细胞的矩阵和信息</p>
+<pre><code class="language-R">library(Seurat)
+library(dplyr)
+for (i in 1:7){
+    name&lt;-paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;.afterclu.rds&quot;)
+    endo&lt;-readRDS(name)
+    time&lt;-endo@meta.data$case
+    time[which(grepl(&quot;^pf_&quot;,time))]&lt;-&quot;PF&quot;
+    time[which(grepl(&quot;^po3_&quot;,time))]&lt;-&quot;PO3&quot;
+    time[which(grepl(&quot;^po7_&quot;,time))]&lt;-&quot;PO7&quot;
+    time[which(grepl(&quot;^po11_&quot;,time))]&lt;-&quot;PO11&quot;
+    time[which(grepl(&quot;^rif_&quot;,time))]&lt;-&quot;RIF&quot;
+    endo@meta.data$time&lt;-time
+    endo[['Cell.type']]&lt;-endo[['seurat_clusters']]
+    for (ti in c(&quot;PF&quot;,&quot;PO3&quot;,&quot;PO7&quot;,&quot;PO11&quot;)){
+        exam&lt;-subset(endo,subset=time==ti)
+        DefaultAssay(exam)&lt;-&quot;integrated&quot;
+        exprMat&lt;-GetAssayData(exam,slot=&quot;data&quot;)
+        exprMat&lt;-as.matrix(exprMat)
+        cellInfo&lt;-exam@meta.data%&gt;%select(Cell.type,time)
+        write.table(exprMat,paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;.exprMat_&quot;,ti,&quot;.txt&quot;),sep=&quot;\t&quot;,quote=FALSE)
+        write.table(cellInfo,paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;.cellInfo_&quot;,ti,&quot;.txt&quot;),sep=&quot;\t&quot;,quote=FALSE)
+}
+}
+</code></pre>
+<h3 id="去gsea官网下载基因集合gmt文件">去GSEA官网下载基因集合gmt文件</h3>
+<p><a href="https://www.gsea-msigdb.org/gsea/downloads.jsp">GSEA Download</a></p>
+<p>这里有多个基因集，具体的介绍参考：<br>
+<a href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp">https://www.gsea-msigdb.org/gsea/msigdb/index.jsp</a></p>
+<h2 id="整合流程完成gsea分析和差异分析">整合流程完成GSEA分析和差异分析</h2>
+<p>一些注意事项：</p>
+<blockquote>
+<p>接着，做GSVA分析，获取GSVA矩阵，做GSVA分析可以参考传统bulk-RNA分析的方法</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><a href="https://www.cnblogs.com/raisok/p/11039239.html">博客园</a></li>
+<li><a href="http://www.bio-info-trainee.com/3257.html">使用GSVA方法计算某基因集在各个样本的表现</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>这里还需要注意几个问题：</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>处理普通RNA数据需要预先过滤，但是单细胞数据取自Seurat对象，已经预先过滤好了</li>
+<li>如果输入是原始counts值，需要设置参数<code>kcdf=&quot;Possion&quot;</code>，但如果是TPM值，默认就好，因为我们输入是标准化后的数据，所以用默认参数</li>
+<li>默认参数<code>mx.diff=TURE</code>，结果是一个类似于负二项分布，因为后面要做差异分析，所以需要使用该参数，如果设置<code>mx.diff=FALSE</code>，则为高斯分布</li>
+</ul>
+</blockquote>
+<p>先计算<strong>相同时间不同细胞</strong>的基因集差异</p>
+<pre><code class="language-R">library(GSEABase)
+library(Biobase)
+library(genefilter)
+library(limma)
+library(RColorBrewer)
+library(GSVA)
+library(dplyr)
+library(pystr)
+##基因集这里看你用哪个了
+geneSets &lt;- getGmt(&quot;/dellfsqd2/ST_LBI/USER/panxiaoguang/SingleCell/liangxue_data/cluster_1/GSVA/DataBase/c7.all.v7.0.symbols.gmt&quot;)
+#geneSets &lt;- getGmt(&quot;/dellfsqd2/ST_LBI/USER/panxiaoguang/SingleCell/liangxue_data/cluster_1/GSVA/DataBase/c3.tft.v7.0.symbols.gmt&quot;)
+###因为分析的是亚类，这里是针对细胞大类，意思是这
+###里针对的是细胞大类1的所有亚类进行的分析
+clus&lt;-1
+###定义不同时间点
+time&lt;-c(&quot;PF&quot;,&quot;PO3&quot;,&quot;PO7&quot;,&quot;PO11&quot;)
+###输入一个列表或向量，进行重新编组
+re_grp&lt;-function(x,s){
+    purrr::map_chr(x,function(haha){if (haha==s){&quot;A&quot;}else{&quot;B&quot;}})
+    }
+##计算差异并返回差异数据框，x=分组信息，cellInfo=细胞分类信息（必须是数据框，
+##行名为细胞，列名为Cell.type，里面是分组信息），res_es=GSVA表达矩阵，
+##num=想要留下top-n个基因集
+cal_Diff&lt;-function(x,cellInfo,res_es,num){
+    need&lt;-cellInfo%&gt;%transmute(new_group=re_grp(Cell.type,x))%&gt;%.$new_group
+    grouP&lt;-as.factor(need)
+    desigN&lt;-model.matrix(~grouP+0)
+    rownames(desigN)&lt;-rownames(cellInfo)
+    comparE&lt;-makeContrasts(grouPA-grouPB,levels=desigN)
+    fiT &lt;- lmFit(res_es, desigN)
+    fiT2 &lt;- contrasts.fit(fiT, comparE)
+    fiT3 &lt;- eBayes(fiT2)
+    Diff&lt;-topTable(fiT3,p.value=0.05,coef=1,num=num)
+    if (nrow(Diff)&gt;0){
+        Diff$cluster&lt;-x
+        Diff&lt;-Diff%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tbl_df()%&gt;%select(Name,logFC,t,P.Value,adj.P.Val,cluster)
+    }else{
+        Diff&lt;-tibble::tibble(Name=NA,logFC=NA,t=NA,P.Value=NA,adj.P.Val=NA,cluster=NA)
+    }
+}
+###计算不同分组的平均表达量，mat=表达量矩阵，info=cellInfo
+Average_express&lt;-function(mat,info){
+    new_res&lt;-mat%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tidyr::gather(cell,value,-Name)
+    new_cellinfo&lt;-info
+    new_cellinfo&lt;-tibble::rownames_to_column(new_cellinfo,var=&quot;cell&quot;)
+    all&lt;-left_join(new_res,new_cellinfo,by=&quot;cell&quot;)
+    fuck&lt;-all%&gt;%group_by(Name,Cell.type)%&gt;%summarise(Mean=mean(value))%&gt;%tidyr::spread(Cell.type,Mean)
+    fuck
+}
+for(i in time){
+    expMat&lt;- read.table(pystr_format(&quot;cluster_{1}.exprMat_{2}.txt&quot;,clus,i),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+    cellInfo&lt;-read.table(pystr_format(&quot;cluster_{1}.cellInfo_{2}.txt&quot;,clus,i),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+    mydata&lt;-as.matrix(expMat)
+    all_cell&lt;-unique(cellInfo$Cell.type)
+    res_es &lt;- gsva(mydata, geneSets, min.sz=10, max.sz=500, verbose=FALSE, parallel.sz=8)
+    res_es&lt;-as.data.frame(res_es)
+    write.table(res_es,pystr_format(&quot;./cell_diff/cluster_{1}_{2}_c7.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE)
+    fin&lt;-do.call('rbind',lapply(all_cell,cal_Diff,cellInfo=cellInfo,res_es=res_es,num=10))
+    fin&lt;-fin%&gt;%filter(!is.na(cluster))
+    write.table(fin,pystr_format(&quot;./cell_diff/cluster_{1}_{2}_c7_diff_geneset.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+    heihei2&lt;-Average_express(res_es,cellInfo)
+    heihei_need&lt;-filter(heihei2,Name%in%unique(fin$Name))
+    if (nrow(heihei_need)&gt;0){
+      houhou2&lt;-tibble::column_to_rownames(heihei_need,var=&quot;Name&quot;)
+      pheatmap::pheatmap(houhou2,file=pystr_format(&quot;./cell_diff/cluster_{1}_{2}_c7_diff_heat.pdf&quot;,clus,i),fontsize=8)
+    }else{
+      next
+    }
+}
+</code></pre>
+<p>再计算相同细胞不同时间的差异基因集</p>
+<pre><code class="language-R">library(GSEABase)
+library(Biobase)
+library(genefilter)
+library(limma)
+library(RColorBrewer)
+library(GSVA)
+library(dplyr)
+library(pystr)
+geneSets &lt;- getGmt(&quot;/dellfsqd2/ST_LBI/USER/panxiaoguang/SingleCell/liangxue_data/cluster_1/GSVA/DataBase/c7.all.v7.0.symbols.gmt&quot;)
+#geneSets &lt;- getGmt(&quot;/dellfsqd2/ST_LBI/USER/panxiaoguang/SingleCell/liangxue_data/cluster_1/GSVA/DataBase/c3.tft.v7.0.symbols.gmt&quot;)
+##clus是细胞亚类分型，这个不能多写
+clus&lt;-c(0,1,2,3)
+##细胞大类的名字
+big_cls&lt;-1
+re_grp&lt;-function(x,s){
+    purrr::map_chr(x,function(haha){if (haha==s){&quot;A&quot;}else{&quot;B&quot;}})
+    }
+cal_Diff&lt;-function(x,cellInfo,res_es,num){
+    need&lt;-cellInfo%&gt;%transmute(new_group=re_grp(Cell.type,x))%&gt;%.$new_group
+    grouP&lt;-as.factor(need)
+    desigN&lt;-model.matrix(~grouP+0)
+    rownames(desigN)&lt;-rownames(cellInfo)
+    comparE&lt;-makeContrasts(grouPA-grouPB,levels=desigN)
+    fiT &lt;- lmFit(res_es, desigN)
+    fiT2 &lt;- contrasts.fit(fiT, comparE)
+    fiT3 &lt;- eBayes(fiT2)
+    Diff&lt;-topTable(fiT3,p.value=0.05,coef=1,num=num)
+    if (nrow(Diff)&gt;0){
+        Diff$cluster&lt;-x
+        Diff&lt;-Diff%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tbl_df()%&gt;%select(Name,logFC,t,P.Value,adj.P.Val,cluster)
+    }else{
+        Diff&lt;-tibble::tibble(Name=NA,logFC=NA,t=NA,P.Value=NA,adj.P.Val=NA,cluster=NA)
+    }
+}
+Average_express&lt;-function(mat,info){
+    new_res&lt;-mat%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tidyr::gather(cell,value,-Name)
+    new_cellinfo&lt;-info 
+    new_cellinfo&lt;-tibble::rownames_to_column(new_cellinfo,var=&quot;cell&quot;)
+    all&lt;-left_join(new_res,new_cellinfo,by=&quot;cell&quot;)
+    fuck&lt;-all%&gt;%group_by(Name,Cell.type)%&gt;%summarise(Mean=mean(value))%&gt;%tidyr::spread(Cell.type,Mean)
+    fuck
+}
+for(i in clus){
+    expMat&lt;- read.table(pystr_format(&quot;cluster_{1}_{2}.exprMat_.txt&quot;,big_cls,i),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+    cellInfo&lt;-read.table(pystr_format(&quot;cluster_{1}_{2}.cellInfo_.txt&quot;,big_cls,i),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+    colnames(cellInfo)&lt;-c(&quot;haha&quot;,&quot;Cell.type&quot;)
+    all_time&lt;-unique(cellInfo$Cell.type)
+    mydata&lt;-as.matrix(expMat)
+    res_es &lt;- gsva(mydata, geneSets, min.sz=10, max.sz=500, verbose=FALSE, parallel.sz=8)
+    res_es&lt;-as.data.frame(res_es)
+    write.table(res_es,pystr_format(&quot;./time_diff/cluster_{1}_{2}_c7.txt&quot;,big_cls,i),sep=&quot;\t&quot;,quote=FALSE)
+    fin&lt;-do.call('rbind',lapply(all_time,cal_Diff,cellInfo=cellInfo,res_es=res_es,num=10))
+    fin&lt;-fin%&gt;%filter(!is.na(cluster))
+    write.table(fin,pystr_format(&quot;./time_diff/cluster_{1}_{2}_c7_diff_geneset.txt&quot;,big_cls,i),sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+    heihei2&lt;-Average_express(res_es,cellInfo)
+    heihei_need&lt;-filter(heihei2,Name%in%unique(fin$Name))
+    if (nrow(heihei_need)&gt;0){
+      houhou2&lt;-tibble::column_to_rownames(heihei_need,var=&quot;Name&quot;)
+      pheatmap::pheatmap(houhou2,file=pystr_format(&quot;./time_diff/cluster_{1}_{2}_c7_diff_heat.pdf&quot;,big_cls,i),fontsize=8)
+    }else{
+      next
+    }
+}
+</code></pre>
+<p>经过以上两轮的分析，你将每个层面得到三个结果</p>
+<ul>
+<li>GSVA富集分数矩阵，正态分布</li>
+<li>每次比对的差异Top10基因集</li>
+<li>一个多组差异热图</li>
+</ul>
+<h2 id="转录调控分析scenic">转录调控分析（SCENIC）</h2>
+<p>按照SCENIC的官方教程，跑完整个流程（这里耗时很长，所以不能直接跑，要提交作业或者screen,避免中间间断<br>
+SCENIC 基因互作数据库需要提前下载，人类的一共两个，每个1.2G<br>
+<a href="https://resources-mirror.aertslab.org/cistarget/databases/homo_sapiens/hg19/refseq_r45/mc9nr/gene_based/hg19-500bp-upstream-7species.mc9nr.feather">hg19-500bp-upstream-7species.mc9nr.feather</a><br>
+<a href="https://resources-mirror.aertslab.org/cistarget/databases/homo_sapiens/hg19/refseq_r45/mc9nr/gene_based/hg19-tss-centered-10kb-7species.mc9nr.feather">hg19-tss-centered-10kb-7species.mc9nr.feather</a></p>
+<p>由于R-Genie计算网络需要随机森林，所以耗时非常长，一个6K细胞的矩阵大概需要数天，所以，我们分三步计算</p>
+<ul>
+<li>提取表达量矩阵和细胞分组信息</li>
+<li>计算SCENIC网络</li>
+<li>计算差异并输出最后结果</li>
+</ul>
+<h3 id="需要的r包-2">需要的R包</h3>
+<ul>
+<li>SCENIC</li>
+<li>AUCell</li>
+</ul>
+<h3 id="提取表达矩阵">提取表达矩阵</h3>
+<p>SCENIC 把整个矩阵一起打分，避免多次计算网络，消耗时间</p>
+<pre><code class="language-R">library(Seurat)
+library(dplyr)
+for (i in 1:7){
+    name&lt;-paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;.afterclu.rds&quot;)
+    endo&lt;-readRDS(name)
+    time&lt;-endo@meta.data$case
+    time[which(grepl(&quot;^pf_&quot;,time))]&lt;-&quot;PF&quot;
+    time[which(grepl(&quot;^po3_&quot;,time))]&lt;-&quot;PO3&quot;
+    time[which(grepl(&quot;^po7_&quot;,time))]&lt;-&quot;PO7&quot;
+    time[which(grepl(&quot;^po11_&quot;,time))]&lt;-&quot;PO11&quot;
+    time[which(grepl(&quot;^rif_&quot;,time))]&lt;-&quot;RIF&quot;
+    endo@meta.data$time&lt;-time
+    endo[['Cell.type']]&lt;-endo[['seurat_clusters']]
+    exam&lt;-subset(endo,subset=time%in%c(&quot;PF&quot;,&quot;PO3&quot;,&quot;PO7&quot;,&quot;PO11&quot;))
+    DefaultAssay(exam)&lt;-&quot;integrated&quot;
+    cellInfo&lt;-exam@meta.data%&gt;%select(Cell.type,time)
+    exprMat&lt;-GetAssayData(exam,slot=&quot;data&quot;)
+    exprMat&lt;-as.matrix(exprMat)
+    write.table(exprMat,paste0(&quot;cluster_&quot;,i,&quot;.exprMat_noRIF.txt&quot;),sep=&quot;\t&quot;,quote=FALSE)
+    write.table(cellInfo,paste0(&quot;./cluster_&quot;,i,&quot;/cluster_&quot;,i,&quot;.cellInfo_noRIF.txt&quot;),sep=&quot;\t&quot;,quote=FALSE)
+}
+</code></pre>
+<h3 id="计算tf网络">计算TF网络</h3>
+<pre><code class="language-R">library(SCENIC)
+library(AUCell)
+library(pystr)
+##填写不同的clus,对不同细胞进行分析
+clus&lt;-1
+exprMat&lt;-read.table(pystr_format(&quot;cluster_{1}.exprMat_noPO7.txt&quot;,clus),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+exprMat&lt;-as.matrix(exprMat)
+cellInfo&lt;-read.table(pystr_format(&quot;cluster_{1}.cellInfo_noPO7.txt&quot;,clus),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+cellInfo&lt;-dplyr::select(cellInfo,Cell.type)
+colnames(cellInfo)&lt;-&quot;CellType&quot;
+dir.create(&quot;int&quot;)
+saveRDS(cellInfo, file=&quot;int/cellInfo.Rds&quot;)
+org=&quot;hgnc&quot;
+##这个是你自己下载数据库存放的位置
+dbDir=&quot;/dellfsqd2/ST_LBI/USER/panxiaoguang/SingleCell/SCENIC/cisTarget_databases&quot;
+myDatasetTitle=&quot;cluster_1_SCENIC_analysis&quot;
+data(defaultDbNames)
+dbs &lt;- defaultDbNames[[org]]
+scenicOptions &lt;- initializeScenic(org=org, dbDir=dbDir, dbs=dbs, datasetTitle=myDatasetTitle, nCores=4)
+scenicOptions@inputDatasetInfo$cellInfo &lt;- &quot;int/cellInfo.Rds&quot;
+saveRDS(scenicOptions, file=&quot;int/scenicOptions.Rds&quot;)
+exprMat_filtered &lt;- exprMat
+runCorrelation(exprMat_filtered, scenicOptions)
+runGenie3(exprMat_filtered, scenicOptions)
+scenicOptions@settings$verbose &lt;- TRUE
+scenicOptions@settings$nCores &lt;- 4
+scenicOptions@settings$seed &lt;- 123
+runSCENIC_1_coexNetwork2modules(scenicOptions)
+runSCENIC_2_createRegulons(scenicOptions)
+runSCENIC_3_scoreCells(scenicOptions, exprMat)
+</code></pre>
+<h3 id="批量计算针对每个细胞类型的不同分组的差异tf">批量计算针对每个细胞类型的不同分组的差异TF</h3>
+<pre><code class="language-R">library(dplyr)
+library(SCENIC)
+library(AUCell)
+library(pystr)
+library(limma)
+re_grp&lt;-function(x,s){
+    purrr::map_chr(x,function(haha){if (haha==s){&quot;A&quot;}else{&quot;B&quot;}})
+    }
+cal_Diff&lt;-function(x,cellInfo,res_es,num){
+    need&lt;-cellInfo%&gt;%transmute(new_group=re_grp(Cell.type,x))%&gt;%.$new_group
+    grouP&lt;-as.factor(need)
+    desigN&lt;-model.matrix(~grouP+0)
+    rownames(desigN)&lt;-rownames(cellInfo)
+    comparE&lt;-makeContrasts(grouPA-grouPB,levels=desigN)
+    fiT &lt;- lmFit(res_es, desigN)
+    fiT2 &lt;- contrasts.fit(fiT, comparE)
+    fiT3 &lt;- eBayes(fiT2)
+    Diff&lt;-topTable(fiT3,p.value=0.05,coef=1,num=num)
+    if (nrow(Diff)&gt;0){
+        Diff$cluster&lt;-x
+        Diff&lt;-Diff%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tbl_df()%&gt;%select(Name,logFC,t,P.Value,adj.P.Val,cluster)
+    }else{
+        Diff&lt;-tibble::tibble(Name=NA,logFC=NA,t=NA,P.Value=NA,adj.P.Val=NA,cluster=NA)
+    }
+}
+Average_express&lt;-function(mat,info){
+    new_res&lt;-mat%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tidyr::gather(cell,value,-Name)
+    new_cellinfo&lt;-info
+    new_cellinfo&lt;-tibble::rownames_to_column(new_cellinfo,var=&quot;cell&quot;)
+    all&lt;-left_join(new_res,new_cellinfo,by=&quot;cell&quot;)
+    fuck&lt;-all%&gt;%group_by(Name,Cell.type)%&gt;%summarise(Mean=mean(value))%&gt;%tidyr::spread(Cell.type,Mean)
+    fuck
+}
+###不同的clus针对不同的细胞类
+clus&lt;-1
+scenicOptions &lt;- readRDS(&quot;int/scenicOptions.Rds&quot;)
+regulons &lt;- loadInt(scenicOptions, &quot;regulons&quot;)
+regulons2 &lt;- loadInt(scenicOptions, &quot;aucell_regulons&quot;)
+regulonAUC &lt;- loadInt(scenicOptions, &quot;aucell_regulonAUC&quot;)
+regulonAUC &lt;- regulonAUC[onlyNonDuplicatedExtended(rownames(regulonAUC)),]
+cellInfo&lt;-read.table(pystr_format(&quot;cluster_{1}.cellInfo_noPO7.txt&quot;,clus),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+for (i in c(&quot;PF&quot;,&quot;PO3&quot;,&quot;PO7&quot;,&quot;PO11&quot;)){
+    cellInfo2&lt;-cellInfo[which(cellInfo$time==i),]
+    exp&lt;-as.data.frame(getAUC(regulonAUC))[,rownames(cellInfo2)]
+    exp2&lt;-t(scale(t(exp), center = T, scale=T))
+    fin&lt;-do.call('rbind',lapply(unique(cellInfo2$Cell.type),cal_Diff,cellInfo=cellInfo2,res_es=exp2,num=10))
+    fin&lt;-fin%&gt;%filter(!is.na(cluster))
+    write.table(fin,pystr_format(&quot;cluster_{1}_{2}_TF_diff_geneset.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+    haha&lt;-Average_express(exp,cellInfo2)%&gt;%tibble::column_to_rownames(var=&quot;Name&quot;)%&gt;%as.data.frame()
+    haha&lt;-haha[unique(fin$Name),]
+    if (nrow(haha)&gt;0){
+        haha_scale&lt;-t(scale(t(haha), center = T, scale=T))
+        pheatmap::pheatmap(haha_scale,file=pystr_format(&quot;cluster_{1}_{2}_TF_heatmap.pdf&quot;,clus,i))
+    }else{
+        next
+    }
+    all_tf&lt;-t(purrr::map_dfr(regulons2[unique(fin$Name)],function(x) {stringr::str_c(x,collapse=&quot;,&quot;)}))
+    write.table(all_tf,pystr_format(&quot;cluster_{1}_{2}_TF_duiying.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,col.names=FALSE)
+}
+for (i in unique(cellInfo$Cell.type)){
+    cellInfo2&lt;-cellInfo[which(cellInfo$Cell.type==i),]
+    colnames(cellInfo2)&lt;-c(&quot;haha&quot;,&quot;Cell.type&quot;)
+    exp&lt;-as.data.frame(getAUC(regulonAUC))[,rownames(cellInfo2)]
+    exp2&lt;-t(scale(t(exp), center = T, scale=T))
+    fin&lt;-do.call('rbind',lapply(unique(cellInfo2$Cell.type),cal_Diff,cellInfo=cellInfo2,res_es=exp2,num=10))
+    fin&lt;-fin%&gt;%filter(!is.na(cluster))
+    write.table(fin,pystr_format(&quot;cluster_{1}_{2}_TF_diff_geneset.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+    haha&lt;-Average_express(exp,cellInfo2)%&gt;%tibble::column_to_rownames(var=&quot;Name&quot;)%&gt;%as.data.frame()
+    haha&lt;-haha[unique(fin$Name),]
+    if (nrow(haha)&gt;0){
+        haha_scale&lt;-t(scale(t(haha), center = T, scale=T))
+        pheatmap::pheatmap(haha_scale,file=pystr_format(&quot;cluster_{1}_{2}_TF_heatmap.pdf&quot;,clus,i))
+    }else{
+        next
+    }
+    all_tf&lt;-t(purrr::map_dfr(regulons2[unique(fin$Name)],function(x) {stringr::str_c(x,collapse=&quot;,&quot;)}))
+    write.table(all_tf,pystr_format(&quot;cluster_{1}_{2}_TF_duiying.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,col.names=FALSE)
+}
+</code></pre>
+<p>经过以上分析后，同样会得到三个文件：</p>
+<ul>
+<li>一个不同组间差异的top10转录因子基因集合</li>
+<li>一个不同分组的差异热图</li>
+<li>一个TF对应的所有基因表格</li>
+</ul>
+<h3 id="批量计算针对每个细胞类型的不同分组的差异tf-2">批量计算针对每个细胞类型的不同分组的差异TF</h3>
+<pre><code class="language-R">library(dplyr)
+library(SCENIC)
+library(AUCell)
+library(pystr)
+library(limma)
+re_grp&lt;-function(x,s){
+    purrr::map_chr(x,function(haha){if (haha==s){&quot;A&quot;}else{&quot;B&quot;}})
+    }
+cal_Diff&lt;-function(x,cellInfo,res_es,num){
+    need&lt;-cellInfo%&gt;%transmute(new_group=re_grp(Cell.type,x))%&gt;%.$new_group
+    grouP&lt;-as.factor(need)
+    desigN&lt;-model.matrix(~grouP+0)
+    rownames(desigN)&lt;-rownames(cellInfo)
+    comparE&lt;-makeContrasts(grouPA-grouPB,levels=desigN)
+    fiT &lt;- lmFit(res_es, desigN)
+    fiT2 &lt;- contrasts.fit(fiT, comparE)
+    fiT3 &lt;- eBayes(fiT2)
+    Diff&lt;-topTable(fiT3,p.value=0.05,coef=1,num=num)
+    if (nrow(Diff)&gt;0){
+        Diff$cluster&lt;-x
+        Diff&lt;-Diff%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tbl_df()%&gt;%select(Name,logFC,t,P.Value,adj.P.Val,cluster)
+    }else{
+        Diff&lt;-tibble::tibble(Name=NA,logFC=NA,t=NA,P.Value=NA,adj.P.Val=NA,cluster=NA)
+    }
+}
+Average_express&lt;-function(mat,info){
+    new_res&lt;-mat%&gt;%tibble::rownames_to_column(var=&quot;Name&quot;)%&gt;%tidyr::gather(cell,value,-Name)
+    new_cellinfo&lt;-info
+    new_cellinfo&lt;-tibble::rownames_to_column(new_cellinfo,var=&quot;cell&quot;)
+    all&lt;-left_join(new_res,new_cellinfo,by=&quot;cell&quot;)
+    fuck&lt;-all%&gt;%group_by(Name,Cell.type)%&gt;%summarise(Mean=mean(value))%&gt;%tidyr::spread(Cell.type,Mean)
+    fuck
+}
+###不同的clus针对不同的细胞类
+clus&lt;-1
+scenicOptions &lt;- readRDS(&quot;int/scenicOptions.Rds&quot;)
+regulons &lt;- loadInt(scenicOptions, &quot;regulons&quot;)
+regulons2 &lt;- loadInt(scenicOptions, &quot;aucell_regulons&quot;)
+regulonAUC &lt;- loadInt(scenicOptions, &quot;aucell_regulonAUC&quot;)
+regulonAUC &lt;- regulonAUC[onlyNonDuplicatedExtended(rownames(regulonAUC)),]
+cellInfo&lt;-read.table(pystr_format(&quot;cluster_{1}.cellInfo_noPO7.txt&quot;,clus),sep=&quot;\t&quot;,header=TRUE,row.names=1,check.names=FALSE,stringsAsFactors=FALSE)
+for (i in c(&quot;PF&quot;,&quot;PO3&quot;,&quot;PO7&quot;,&quot;PO11&quot;)){
+    cellInfo2&lt;-cellInfo[which(cellInfo$time==i),]
+    exp&lt;-as.data.frame(getAUC(regulonAUC))[,rownames(cellInfo2)]
+    exp2&lt;-t(scale(t(exp), center = T, scale=T))
+    fin&lt;-do.call('rbind',lapply(unique(cellInfo2$Cell.type),cal_Diff,cellInfo=cellInfo2,res_es=exp2,num=10))
+    fin&lt;-fin%&gt;%filter(!is.na(cluster))
+    write.table(fin,pystr_format(&quot;cluster_{1}_{2}_TF_diff_geneset.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+    haha&lt;-Average_express(exp,cellInfo2)%&gt;%tibble::column_to_rownames(var=&quot;Name&quot;)%&gt;%as.data.frame()
+    haha&lt;-haha[unique(fin$Name),]
+    if (nrow(haha)&gt;0){
+        haha_scale&lt;-t(scale(t(haha), center = T, scale=T))
+        pheatmap::pheatmap(haha_scale,file=pystr_format(&quot;cluster_{1}_{2}_TF_heatmap.pdf&quot;,clus,i))
+    }else{
+        next
+    }
+    all_tf&lt;-t(purrr::map_dfr(regulons2[unique(fin$Name)],function(x) {stringr::str_c(x,collapse=&quot;,&quot;)}))
+    write.table(all_tf,pystr_format(&quot;cluster_{1}_{2}_TF_duiying.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,col.names=FALSE)
+}
+for (i in unique(cellInfo$Cell.type)){
+    cellInfo2&lt;-cellInfo[which(cellInfo$Cell.type==i),]
+    colnames(cellInfo2)&lt;-c(&quot;haha&quot;,&quot;Cell.type&quot;)
+    exp&lt;-as.data.frame(getAUC(regulonAUC))[,rownames(cellInfo2)]
+    exp2&lt;-t(scale(t(exp), center = T, scale=T))
+    fin&lt;-do.call('rbind',lapply(unique(cellInfo2$Cell.type),cal_Diff,cellInfo=cellInfo2,res_es=exp2,num=10))
+    fin&lt;-fin%&gt;%filter(!is.na(cluster))
+    write.table(fin,pystr_format(&quot;cluster_{1}_{2}_TF_diff_geneset.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,row.names=FALSE)
+    haha&lt;-Average_express(exp,cellInfo2)%&gt;%tibble::column_to_rownames(var=&quot;Name&quot;)%&gt;%as.data.frame()
+    haha&lt;-haha[unique(fin$Name),]
+    if (nrow(haha)&gt;0){
+        haha_scale&lt;-t(scale(t(haha), center = T, scale=T))
+        pheatmap::pheatmap(haha_scale,file=pystr_format(&quot;cluster_{1}_{2}_TF_heatmap.pdf&quot;,clus,i))
+    }else{
+        next
+    }
+    all_tf&lt;-t(purrr::map_dfr(regulons2[unique(fin$Name)],function(x) {stringr::str_c(x,collapse=&quot;,&quot;)}))
+    write.table(all_tf,pystr_format(&quot;cluster_{1}_{2}_TF_duiying.txt&quot;,clus,i),sep=&quot;\t&quot;,quote=FALSE,col.names=FALSE)
+}
+</code></pre>
+<p>经过以上分析后，同样会得到三个文件：</p>
+<ul>
+<li>一个不同组间差异的top10转录因子基因集合</li>
+<li>一个不同分组的差异热图</li>
+<li>一个TF对应的所有基因表格</li>
+</ul>
+<h3 id="批量对差异的tf集合做go注释">批量对差异的TF集合做GO注释</h3>
+<pre><code class="language-R">library(readr)
+library(dplyr)
+library(clusterProfiler)
+library(pystr)
+library(org.Hs.eg.db)
+TF_annotation &lt;- function(x) {
+  data &lt;- read_delim(x, delim = &quot;\t&quot;, col_names = FALSE)
+  data &lt;- dplyr::rename(data, TF = X1, Genes = X2)
+  test &lt;-
+    data %&gt;% tibble::column_to_rownames(var = &quot;TF&quot;) %&gt;% as.data.frame() %&gt;% apply(., 1, function(x)
+      strsplit(x, &quot;,&quot;))
+  test &lt;- lapply(test, function(x)
+    x$Genes)
+  new_test &lt;-
+    lapply(test, function(x) {
+      bitr(x,
+           fromType = &quot;SYMBOL&quot;,
+           toType = &quot;ENTREZID&quot;,
+           OrgDb = org.Hs.eg.db)$ENTREZID
+    })
+  wocao &lt;-
+    compareCluster(
+      geneClusters = new_test,
+      fun = &quot;enrichGO&quot;,
+      OrgDb = org.Hs.eg.db,
+      ont = &quot;BP&quot;,
+      pAdjustMethod = &quot;BH&quot;,
+      pvalueCutoff = 0.01,
+      qvalueCutoff  = 0.05
+    )
+  name &lt;- stringr::str_replace(x, &quot;.txt&quot;, &quot;&quot;)
+  write.table(
+    wocao@compareClusterResult,
+    pystr_format(&quot;{1}.annotation.txt&quot;, name),
+    row.names = FALSE,
+    quote = FALSE,
+    sep = &quot;\t&quot;
+  )
+}
+fs&lt;-Sys.glob(&quot;*_duiying.txt&quot;)
+lapply(fs,TF_annotation)
+</code></pre>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E5%9B%A0%E9%9B%86%E5%8F%98%E5%BC%82%E5%88%86%E6%9E%90gsva">基因集变异分析（GSVA）</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95">方法：</a></li>
+<li><a href="#%E9%9C%80%E8%A6%81%E7%9A%84r%E5%8C%85">需要的R包:</a></li>
+<li><a href="#%E6%8F%90%E5%8F%96%E4%B8%8D%E5%90%8C%E5%88%86%E7%BB%84%E7%9A%84%E8%A1%A8%E8%BE%BE%E7%9F%A9%E9%98%B5">提取不同分组的表达矩阵：</a></li>
+<li><a href="#%E5%8E%BBgsea%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD%E5%9F%BA%E5%9B%A0%E9%9B%86%E5%90%88gmt%E6%96%87%E4%BB%B6">去GSEA官网下载基因集合gmt文件</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B4%E5%90%88%E6%B5%81%E7%A8%8B%E5%AE%8C%E6%88%90gsea%E5%88%86%E6%9E%90%E5%92%8C%E5%B7%AE%E5%BC%82%E5%88%86%E6%9E%90">整合流程完成GSEA分析和差异分析</a></li>
+<li><a href="#%E8%BD%AC%E5%BD%95%E8%B0%83%E6%8E%A7%E5%88%86%E6%9E%90scenic">转录调控分析（SCENIC）</a>
+<ul>
+<li><a href="#%E9%9C%80%E8%A6%81%E7%9A%84r%E5%8C%85-2">需要的R包</a></li>
+<li><a href="#%E6%8F%90%E5%8F%96%E8%A1%A8%E8%BE%BE%E7%9F%A9%E9%98%B5">提取表达矩阵</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97tf%E7%BD%91%E7%BB%9C">计算TF网络</a></li>
+<li><a href="#%E6%89%B9%E9%87%8F%E8%AE%A1%E7%AE%97%E9%92%88%E5%AF%B9%E6%AF%8F%E4%B8%AA%E7%BB%86%E8%83%9E%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%B8%8D%E5%90%8C%E5%88%86%E7%BB%84%E7%9A%84%E5%B7%AE%E5%BC%82tf">批量计算针对每个细胞类型的不同分组的差异TF</a></li>
+<li><a href="#%E6%89%B9%E9%87%8F%E8%AE%A1%E7%AE%97%E9%92%88%E5%AF%B9%E6%AF%8F%E4%B8%AA%E7%BB%86%E8%83%9E%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%B8%8D%E5%90%8C%E5%88%86%E7%BB%84%E7%9A%84%E5%B7%AE%E5%BC%82tf-2">批量计算针对每个细胞类型的不同分组的差异TF</a></li>
+<li><a href="#%E6%89%B9%E9%87%8F%E5%AF%B9%E5%B7%AE%E5%BC%82%E7%9A%84tf%E9%9B%86%E5%90%88%E5%81%9Ago%E6%B3%A8%E9%87%8A">批量对差异的TF集合做GO注释</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

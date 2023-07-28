@@ -1,0 +1,568 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>CRISPR 突变检测及可视化分析 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="CRISPR 突变检测及可视化分析 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="以下的突变检测都是基于NGS测序的结果，但是需要预先使用bwa等工具预先比对到参考序列或者基因组上，
+然后根据要研究的目标区域提取比对上的序列作进一步的分析，一个有用的方式就是使用samtools.
+samtools view -b -F ..." />
+  <meta property="og:title" content="CRISPR 突变检测及可视化分析 - Guang&#39;s Home Page">
+  <meta property="og:description" content="以下的突变检测都是基于NGS测序的结果，但是需要预先使用bwa等工具预先比对到参考序列或者基因组上，
+然后根据要研究的目标区域提取比对上的序列作进一步的分析，一个有用的方式就是使用samtools.
+samtools view -b -F ..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/cripspralign/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="CRISPR 突变检测及可视化分析 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="以下的突变检测都是基于NGS测序的结果，但是需要预先使用bwa等工具预先比对到参考序列或者基因组上，
+然后根据要研究的目标区域提取比对上的序列作进一步的分析，一个有用的方式就是使用samtools.
+samtools view -b -F ...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/cripspralign/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          CRISPR 突变检测及可视化分析
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-10-07 · 7 min read</div>
+          
+            <a href="https://xiaohanys.me/KOZGKOsvp/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              序列比对
+            </a>
+          
+            <a href="https://xiaohanys.me/PXA_WZ9r6/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              CRISPR
+            </a>
+          
+            <a href="https://xiaohanys.me/pmyCGNR__w/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              gRNA
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>以下的突变检测都是基于NGS测序的结果，但是需要预先使用<code>bwa</code>等工具预先比对到参考序列或者基因组上，<br>
+然后根据要研究的<strong>目标区域</strong>提取比对上的序列作进一步的分析，一个有用的方式就是使用<code>samtools</code>.</p>
+<pre><code class="language-bash">samtools view -b -F chrN:NNNNN-NNNNN &gt; contig_1.bam
+</code></pre>
+<p>因为提取出来的都是短序列，因此，我们可以在下游使用全局比对(Needleman-Wunsch)来获取比对详情。<br>
+经过简单的处理，我将在bam文件中提取比对到参考序列上的短序列并存入Fasta格式<br>
+query:</p>
+<pre><code class="language-bash">&gt;10613
+CATTGAGATGGTGTGGGAAGGGGCCC
+CATTGAGATAGTGTGGCCCGTTTGAAGGGGCCC
+CATTGAGATAGAAGGGGCCC
+CATTGAGATAGAAGGGGCCC
+CATTGAGATAGTGTGG
+CATTGAGATAGGCCC
+CATTGAGATAGTGTGGGCCC
+CATTGAGATAGTGTGGGAAGGGGCCC
+CATTGAGATAGTGTGGGAAGGGGCCC
+CATTGAGATAGTGTGGGCCC
+CATTGAGATAGTGTGGGAAGGGGCCC
+CATTGAGATAGTGTGGGAAGGGGCCC
+CATTGAGATAGTGTGGGCCC
+CATTGAGATAGTGCCC
+CATTGGGCCC
+CATTGAGATAGGGCCC
+CATTGAGATATGTGGGGAAGGGGCCC
+'''''
+</code></pre>
+<p>ref:</p>
+<pre><code class="language-bash">CATTGAGATAGTGTGGGGAAGGGGCCC
+</code></pre>
+<h3 id="突变检测">突变检测</h3>
+<blockquote>
+<p>目标：统计出<em>indel</em>,<em>snp</em>等常见突变的位置，突变量(nbp突变)以及突变频率</p>
+</blockquote>
+<p>需要借助python多序列比对模块，这里我们采用github上的一个</p>
+<p><a href="https://github.com/brentp/align">align</a></p>
+<pre><code class="language-python">##导入所有需要的模块
+from align.calign import aligner as caligner
+from align.matrix import DNAFULL, BLOSUM62
+from collections import Counter
+import re
+from pyfaidx import Fasta
+import pandas as pd
+import numpy as np
+
+##定义读入fasta序列的函数
+def read_res(fs):
+    fasta={} 
+    with open(fs,'r') as f: 
+        for line in f: 
+            if line.startswith(&quot;&gt;&quot;): 
+                seq_lst=[] 
+                name=line.strip(&quot;\n&quot;).replace(&quot;&gt;&quot;,&quot;&quot;)
+            else:
+                seq_lst.append(line.strip(&quot;\n&quot;)) 
+                fasta[name]=seq_lst
+    return fasta
+
+###采用正则表达式来提取突变
+def clean_insertion(ref,query):
+    ins_lst=[]
+    delet=[]
+    for site in re.finditer(r&quot;-+&quot;,ref):
+        (start,end)=site.span()
+        length=end-start
+        ins_lst.append(&quot;{}I{}&quot;.format(start+1,length))
+        delet.append(list(range(start,end)))
+    delet_2=[y for x in delet for y in x]
+    query=&quot;&quot;.join([query[i] for i in range(len(query)) if i not in delet_2])
+    ref=ref.replace(&quot;-&quot;,&quot;&quot;)
+    ins_lst2=&quot;;&quot;.join(ins_lst)
+    return (ref,query,ins_lst2)
+
+def detective_del(ref,query):
+    deletion=[]
+    for st in re.finditer(r&quot;-+&quot;,query):
+        (start,end)=st.span()
+        length=end-start
+        deletion.append(&quot;{}D{}&quot;.format(start+1,length))
+    deletion2=&quot;;&quot;.join(deletion)
+    return (ref,query,deletion2)
+def detective_snp(ref,query):
+    snp_lst=[&quot;{}M1&quot;.format(st+1) for st in range(len(ref)) if (query[st]!=ref[st])&amp;(query[st]!=&quot;-&quot;)&amp;(ref[st]!=&quot;-&quot;)]
+    snp=&quot;;&quot;.join(snp_lst)
+    return (ref,query,snp)
+def crispr_det(querys,ref):
+    query_lst=Counter(querys)
+    alreads=sum(list(query_lst.values()))
+    fin=[]
+    for key,val in query_lst.items():
+        bijiao=caligner(ref,key,method=&quot;global&quot;,matrix=DNAFULL)
+        (ref,query,insertions)=clean_insertion(bijiao[0].seq1.decode(),bijiao[0].seq2.decode())
+        (ref,query,deletions)=detective_del(ref,query)
+        (ref,query,mutations)=detective_snp(ref,query)
+        tmp={&quot;reference&quot;:ref,&quot;query&quot;:query,&quot;ins&quot;:insertions,&quot;del&quot;:deletions,&quot;mut&quot;:mutations,&quot;percentage&quot;:&quot;{:.2f}&quot;.format(val/alreads*100)}
+        fin.append(tmp)
+    return fin
+
+##读入query&amp;ref
+test=read_res(&quot;query.fa&quot;)
+reference = Fasta(&quot;reference.fasta&quot;)
+
+querys=test['10613']
+ref=reference[&quot;10613&quot;][113:140].seq ## 请查阅 pyfaidx 模块介绍
+
+df=pd.DataFrame(crispr_det(querys,ref))
+df['percentage']=df['percentage'].astype(np.float64)
+df=df.sort_values('percentage',axis=0,ascending=False)
+df.head(10)
+</code></pre>
+<p>运行完后可以查看最终获得的结果：</p>
+<table>
+  <thead>
+    <tr style="text-align: cemter;">
+      <th></th>
+      <th>reference</th>
+      <th>query</th>
+      <th>ins</th>
+      <th>del</th>
+      <th>mut</th>
+      <th>percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAGTGTGGG-AAGGGGCCC</td>
+      <td></td>
+      <td>18D1</td>
+      <td></td>
+      <td>16.53</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAGTGTGGG-------CCC</td>
+      <td></td>
+      <td>18D7</td>
+      <td></td>
+      <td>10.93</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATA-TGTGGGGAAGGGGCCC</td>
+      <td></td>
+      <td>11D1</td>
+      <td></td>
+      <td>10.10</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAGTGTGGGG------CCC</td>
+      <td></td>
+      <td>19D6</td>
+      <td></td>
+      <td>7.60</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAG-------AAGGGGCCC</td>
+      <td></td>
+      <td>12D7</td>
+      <td></td>
+      <td>5.34</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAGTGTGG--------CCC</td>
+      <td></td>
+      <td>17D8</td>
+      <td></td>
+      <td>4.42</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAGTGTGG-----------</td>
+      <td></td>
+      <td>17D11</td>
+      <td></td>
+      <td>3.67</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGATAG-G-G---------CCC</td>
+      <td></td>
+      <td>12D1;14D1;16D9</td>
+      <td></td>
+      <td>3.09</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>CATTGAGA-AG-G-GG--------CCC</td>
+      <td></td>
+      <td>9D1;12D1;14D1;17D8</td>
+      <td></td>
+      <td>2.92</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>CATTGAGATAGTGTGGGGAAGGGGCCC</td>
+      <td>C---GA-A--G-G-GG--------CCC</td>
+      <td></td>
+      <td>2D3;7D1;9D2;12D1;14D1;17D8</td>
+      <td></td>
+      <td>2.67</td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="对以上结果的可视化展示">对以上结果的可视化展示</h3>
+<p>因为R语言画图是很方便的，所以这里采用R语言热图展示突变情况</p>
+<pre><code class="language-R">##数据处理
+data&lt;-read_delim(&quot;ontarget6.mutation.tsv&quot;,delim = &quot;\t&quot;)
+ref&lt;-stringr::str_split_fixed(data$reference[1],&quot;&quot;,n=27)
+ref&lt;-as.character(ref)
+need&lt;-data%&gt;%filter(percentage&gt;=1)%&gt;%tidyr::replace_na(replace = list(ins=&quot;-&quot;,del=&quot;-&quot;,mut=&quot;-&quot;))
+plotData&lt;-stringr::str_split_fixed(need$query,&quot;&quot;,n=27)
+gRNA&lt;-c(rep(&quot;1&quot;,23),rep(&quot;2&quot;,4))
+##画
+Heatmap(plotData,
+        cluster_rows = FALSE,
+        cluster_columns = FALSE,
+        column_split = c(rep(&quot;1&quot;,17),rep(&quot;2&quot;,10)),
+        column_title = NULL,
+        col = c(&quot;A&quot;=&quot;#d1e8cd&quot;,&quot;G&quot;=&quot;#ffffda&quot;,&quot;C&quot;=&quot;#fae6d1&quot;,&quot;T&quot;=&quot;#e4daec&quot;,&quot;-&quot;=&quot;#e8e9ea&quot;),
+        cell_fun = function(j,i,x,y,wt,ht,fill){
+          if(plotData[i,j]!=ref[j]){
+            grid.text(sprintf(&quot;%s&quot;, plotData[i, j]), x, y, gp = gpar(fontsize = 10,fontface=&quot;bold&quot;))
+          }else{
+            grid.text(sprintf(&quot;%s&quot;, plotData[i, j]), x, y, gp = gpar(fontsize = 10))
+          }
+        },
+        top_annotation = HeatmapAnnotation(ref=anno_simple(ref,pch=ref,col = c(&quot;A&quot;=&quot;#d1e8cd&quot;,&quot;G&quot;=&quot;#ffffda&quot;,&quot;C&quot;=&quot;#fae6d1&quot;,&quot;T&quot;=&quot;#e4daec&quot;)),
+                                           sgRNA=anno_simple(gRNA,col = c(&quot;1&quot;=&quot;grey&quot;,&quot;2&quot;=&quot;white&quot;)),
+                                           annotation_name_gp = gpar(fontsize=10,fontface=&quot;bold&quot;)),
+        right_annotation = rowAnnotation(percentage=anno_text(sprintf(&quot;%s%%&quot;,need$percentage),gp=gpar(fontsize=10,fontface=&quot;bold&quot;)),
+                                         insertion=anno_text(need$ins,gp=gpar(fontsize=10,fontface=&quot;bold&quot;)),
+                                         deletion=anno_text(need$del,gp=gpar(fontsize=10,fontface=&quot;bold&quot;)),
+                                         substitutions=anno_text(need$mut,gp=gpar(fontsize=10,fontface=&quot;bold&quot;)),
+                                         gap=unit(2,'char')),
+        show_heatmap_legend = FALSE
+)
+
+</code></pre>
+<h3 id="结果">结果</h3>
+<figure data-type="image" tabindex="1"><img src="https://s1.ax1x.com/2020/07/07/UFIm5j.md.png" alt="results" loading="lazy"></figure>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E7%AA%81%E5%8F%98%E6%A3%80%E6%B5%8B">突变检测</a></li>
+<li><a href="#%E5%AF%B9%E4%BB%A5%E4%B8%8A%E7%BB%93%E6%9E%9C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA">对以上结果的可视化展示</a></li>
+<li><a href="#%E7%BB%93%E6%9E%9C">结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

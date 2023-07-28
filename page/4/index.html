@@ -1,0 +1,285 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="<i>Don't forget to be awesome!</i>" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        关于
+      </a>
+    
+      <a href="/my_vue_learning/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+        Glims2Shell
+      </a>
+    
+    <a href="https://xiaohanys.me/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded  hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      
+
+      <div class="shadow-box bg-white  border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/singledot/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          单细胞数据如何混合亚类和大类做点图分析Marker基因
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-25</div>
+      <div class="mb-4 text-gray-500 ">
+        单细胞数据数据量很大，加重了分析的负担，但只要掌握好的方法和工具，就可以无往而不利。今年要说的这个如题，是因为在区分亚类的时候，提取了大类型并调整分辨率重新聚类计算的亚类。针对这种情况，该如何实现呢？
+
+
+问题分析
+其实该问题可以简化为把每...
+      </div>
+      <a href="https://xiaohanys.me/singledot/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/python_data/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          Python 数据处理速查
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-24</div>
+      <div class="mb-4 text-gray-500 ">
+        
+
+
+
+...
+      </div>
+      <a href="https://xiaohanys.me/python_data/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/batchCorrelation/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          如何批量计算相关性
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-17</div>
+      <div class="mb-4 text-gray-500 ">
+        <h2 id="1只计算相关性不考虑显著性检验">1.只计算相关性，不考虑显著性检验：</h2>
+<pre><code class="language-R">library(corrr)
+library(dplyr)
+data(mtcars)
+mtcars%&gt;%correlate()%&gt;%rearrange()%&gt;%stretch()
+</code></pre>
+
+      </div>
+      <a href="https://xiaohanys.me/batchCorrelation/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/ScRNASeq/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          单细胞测序分析流程
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-17</div>
+      <div class="mb-4 text-gray-500 ">
+        <ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8095678"><label class="task-list-item-label" for="task-item-8095678"> 本教程已更新，更新时间：</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3331950"><label class="task-list-item-label" for="task-item-3331950"> 2019/12/27</label></li>
+</ul>
+<h2 id="摘要">摘要</h2>
+<p>一文介绍单细胞测序生物信息分析完整流程，这可能是最新也是最全的流程</p>
+<h2 id="基础流程cellranger">基础流程（cellranger）</h2>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/27/wMSmukTrLyaBeql.png" alt="" loading="lazy"></figure>
+<h3 id="cellranger-数据拆分">cellranger 数据拆分</h3>
+<p><code>cellranger mkfastq</code>可用于将单细胞测序获得的 BCL 文件拆分为可以识别的 fastq 测序数据</p>
+
+      </div>
+      <a href="https://xiaohanys.me/ScRNASeq/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/LncRNA/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          一文读懂lncRNA分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-17</div>
+      <div class="mb-4 text-gray-500 ">
+        <h3 id="1对测序下机数据进行质量检测qc">1:对测序下机数据进行质量检测（QC）</h3>
+<p>使用软件：<strong>fastqc</strong></p>
+<p>命令行参数：</p>
+<pre><code class="language-bash">-o --outdir:输出路径
+--extract：结果文件解压缩
+--noextract：结果文件压缩
+-f --format:输入文件格式.支持bam,sam,fastq文件格式
+-t --threads:线程数
+-c --contaminants：制定污染序列。文件格式 name[tab]sequence
+-a --adapters：指定接头序列。文件格式name[tab]sequence
+-k --kmers：指定kmers长度（2-10bp,默认7bp）
+-q --quiet： 安静模式
+</code></pre>
+
+      </div>
+      <a href="https://xiaohanys.me/LncRNA/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/stimVscase/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2019-12-20</div>
+      <div class="mb-4 text-gray-500 ">
+        <p>本教程介绍了<a href="https://www.nature.com/articles/nbt.4042">Kang等人（2017)</a>的两组PBMC的对齐方式。在该实验中，将PBMC分为刺激组和对照组，并用干扰素β治疗刺激组。对干扰素的反应引起细胞类型特异性基因表达的变化，这使得对所有数据进行联合分析变得困难，并且细胞按刺激条件和细胞类型聚类。在这里，我们证明了我们的整合策略，如<a href="https://www.biorxiv.org/content/early/2018/11/02/460147">Stuart和Butler等人（2018年）</a>所述，用于执行整合分析以促进常见细胞类型的鉴定并进行比较分析。尽管此示例演示了两个数据集（条件）的集成，但这些方法已扩展到多个数据集。这个<a href="https://satijalab.org/seurat/pancreas_integration_label_transfer.html">工作流程</a>提供了整合四个胰岛数据集的示例。</p>
+
+      </div>
+      <a href="https://xiaohanys.me/stimVscase/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/Seurat3/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          Seurat3.1的灵活操作指南
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2019-12-20</div>
+      <div class="mb-4 text-gray-500 ">
+        <p>官网3.1版本已经无法找到该指南的链接，其实还是有的，网址：<br>
+<a href="https://satijalab.org/seurat/v3.1/interaction_vignette.html">https://satijalab.org/seurat/v3.1/interaction_vignette.html</a></p>
+<h1 id="载入数据">载入数据</h1>
+<p>下面演示了一些与Seurat对象进行交互的有用功能。出于演示目的，我们将使用在第一个指导教程中创建的2700 PBMC对象。您可以在此处下载预先计算的对象。为了模拟有两个重复的情况，将一半命名为“rep1&quot;,另一半命名为&quot;rep2&quot;</p>
+
+      </div>
+      <a href="https://xiaohanys.me/Seurat3/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200  flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://xiaohanys.me/Monocle3/" class="text-gray-700  border-b-2 border-dotted border-gray-200  hover:border-gray-600 transition-all duration-100">
+          使用Monocle3对多样本单细胞数据进行伪时间分析
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2019-12-20</div>
+      <div class="mb-4 text-gray-500 ">
+        <h3 id="简介">简介</h3>
+<p>在发育过程中，细胞对刺激作出反应，并在整个生命过程中，从一种功能“状态”过渡到另一种功能“状态”。不同状态的细胞表达不同的基因，产生蛋白质和代谢物的动态重复序列，从而完成它们的工作。当细胞在状态之间移动时，它们经历一个转录重组的过程，一些基因被沉默，另一些基因被激活。这些瞬时状态通常很难描述，因为在更稳定的端点状态之间纯化细胞可能是困难的或不可能的。单细胞RNA-Seq可以使您在不需要纯化的情况下看到这些状态。然而，要做到这一点，我们必须确定每个cell在可能的状态范围内的位置。</p>
+
+      </div>
+      <a href="https://xiaohanys.me/Monocle3/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://xiaohanys.me/page/3/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://xiaohanys.me/page/5/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+</body>
+
+</html>

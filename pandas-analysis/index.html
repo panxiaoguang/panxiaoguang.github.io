@@ -1,0 +1,3343 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>一文读懂Pandas数据分析 - Guang&#39;s Home Page</title>
+<link rel="shortcut icon" href="https://xiaohanys.me/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://xiaohanys.me/media/css/tailwind.css">
+<link rel="stylesheet" href="https://xiaohanys.me/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="一文读懂Pandas数据分析 - Guang&#39;s Home Page - Atom Feed" href="https://xiaohanys.me/atom.xml">
+
+    
+
+  <meta name="description" content="Python-pandas知识梳理
+
+Pandas是基于NumPy的一个开源 Python 库，它被广泛用于快速分析数据，以及数据清洗和准备等工作。它的名字来源是由“ Panel data”（面板数据，一个计量经济学名词）两个单词拼成的。简..." />
+  <meta property="og:title" content="一文读懂Pandas数据分析 - Guang&#39;s Home Page">
+  <meta property="og:description" content="Python-pandas知识梳理
+
+Pandas是基于NumPy的一个开源 Python 库，它被广泛用于快速分析数据，以及数据清洗和准备等工作。它的名字来源是由“ Panel data”（面板数据，一个计量经济学名词）两个单词拼成的。简..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://xiaohanys.me/pandas-analysis/" />
+  <meta property="og:image" content="https://xiaohanys.me/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="一文读懂Pandas数据分析 - Guang&#39;s Home Page">
+  <meta name="twitter:description" content="Python-pandas知识梳理
+
+Pandas是基于NumPy的一个开源 Python 库，它被广泛用于快速分析数据，以及数据清洗和准备等工作。它的名字来源是由“ Panel data”（面板数据，一个计量经济学名词）两个单词拼成的。简...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://xiaohanys.me/pandas-analysis/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://xiaohanys.me/media/css/prism-atom-dark.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://xiaohanys.me" class="fixed top-0 left-0 mt-4 bg-black text-white  inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Guang&#39;s Home Page
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white  rounded-lg pt-32 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          一文读懂Pandas数据分析
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-03-25 · 40 min read</div>
+          
+            <a href="https://xiaohanys.me/4QwwXji_1/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              python
+            </a>
+          
+            <a href="https://xiaohanys.me/E__eVU80Cj/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              pandas
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h1 id="python-pandas知识梳理">Python-pandas知识梳理</h1>
+<blockquote>
+<p><strong>Pandas</strong>是基于<strong>NumPy</strong>的一个开源 Python 库，它被广泛用于快速分析数据，以及数据清洗和准备等工作。它的名字来源是由“ Panel data”（面板数据，一个计量经济学名词）两个单词拼成的。简单地说，你可以把 Pandas 看作是 Python 版的 Excel。</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="http://p98.pstatp.com/large/pgc-image/1537167648126ada3c7bf45" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<blockquote>
+<p>我喜欢 Pandas 的原因之一，是因为它很酷，它能很好地处理来自一大堆各种不同来源的数据，比如 Excel 表格、CSV 文件、SQL 数据库，甚至还能处理存储在网页上的数据。</p>
+</blockquote>
+<blockquote>
+<p>话不多说，让我们开始吧！</p>
+</blockquote>
+<h2 id="安装-pandas">安装 Pandas</h2>
+<p>如果你已经安装了 Anaconda，你可以很方便地在终端或者命令提示符里输入命令安装 <strong>Pandas</strong>：</p>
+<pre><code class="language-bash">conda install pandas
+</code></pre>
+<p>如果你还没安装 <strong>Anaconda</strong>，你也可以用 Python 自带的包管理工具 pip 来安装：</p>
+<pre><code class="language-bash">pip3 install pandas
+</code></pre>
+<h2 id="pandas-数据结构">Pandas 数据结构</h2>
+<p>Series 是一种一维数组，和 NumPy 里的数组很相似。事实上，Series 基本上就是基于 NumPy 的数组对象来的。和 NumPy 的数组不同，Series 能为数据自定义标签，也就是索引（index），然后通过索引来访问数组中的数据。</p>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+</code></pre>
+<p><strong>创建一个 Series 的基本语法如下：</strong></p>
+<pre><code class="language-python">my_series = pd.Series(data,index)
+</code></pre>
+<p>上面的 data 参数可以是任意数据对象，比如字典、列表甚至是 NumPy 数组，而 index 参数则是对 data 的索引值，类似字典的 key。</p>
+<p>下面这个例子里，将创建一个 Series 对象，并用字符串对数字列表进行索引：</p>
+<pre><code class="language-python">countries=['USA','Nigeria','France','Ghana']
+my_data=[100,200,300,400]
+pd.Series(countries,my_data)
+</code></pre>
+<pre><code>100        USA
+200    Nigeria
+300     France
+400      Ghana
+dtype: object
+</code></pre>
+<p>注意：请记住， index 参数是可省略的，你可以选择不输入这个参数。如果不带 index 参数，Pandas 会自动用默认 index 进行索引，类似数组，索引值是 [0, ..., len(data) - 1] ，如下所示：</p>
+<p><strong>从 NumPy 数组对象创建 Series：</strong></p>
+<pre><code class="language-python">np_arr=np.array(my_data)
+</code></pre>
+<pre><code class="language-python">pd.Series(np_arr)
+</code></pre>
+<pre><code>0    100
+1    200
+2    300
+3    400
+dtype: int64
+</code></pre>
+<p><strong>从 Python 字典对象创建 Series：</strong></p>
+<pre><code class="language-python">my_dict={'a':50,'b':60,'c':70,'d':80}
+</code></pre>
+<pre><code class="language-python">pd.Series(my_dict)
+</code></pre>
+<pre><code>a    50
+b    60
+c    70
+d    80
+dtype: int64
+</code></pre>
+<p>如上图的中所示，如果你从一个 Python 字典对象创建 Series，Pandas 会自动把字典的键值设置成 Series 的 index，并将对应的 values 放在和索引对应的 data 里。</p>
+<p>和 NumPy 数组不同，Pandas 的 Series 能存放各种不同类型的对象。</p>
+<h2 id="从-series-里获取数据">从 Series 里获取数据</h2>
+<p>访问 Series 里的数据的方式，和 Python 字典基本一样：</p>
+<pre><code class="language-python">series1=pd.Series([1,2,3,4],['London','HongKong','Lagos','Mumbai'])
+series1['London']
+</code></pre>
+<pre><code>1
+</code></pre>
+<p><strong>对 Series 进行算术运算操作</strong></p>
+<p>对 Series 的算术运算都是基于 index 进行的。我们可以用加减乘除（+ - * /）这样的运算符对两个 Series 进行运算，Pandas 将会根据索引 index，对响应的数据进行计算，结果将会以浮点数的形式存储，以避免丢失精度。</p>
+<pre><code class="language-python">series1=pd.Series([1,2,3,4],['London','HongKong','Lagos','Mumbai'])
+series2=pd.Series([1,3,6,4],['London','Accra','Lagon','Delhi'])
+</code></pre>
+<pre><code class="language-python">series1-series2
+</code></pre>
+<pre><code>Accra       NaN
+Delhi       NaN
+HongKong    NaN
+Lagon       NaN
+Lagos       NaN
+London      0.0
+Mumbai      NaN
+dtype: float64
+</code></pre>
+<pre><code class="language-python">series1+series2
+</code></pre>
+<pre><code>Accra       NaN
+Delhi       NaN
+HongKong    NaN
+Lagon       NaN
+Lagos       NaN
+London      2.0
+Mumbai      NaN
+dtype: float64
+</code></pre>
+<pre><code class="language-python">series1*series2
+</code></pre>
+<pre><code>Accra       NaN
+Delhi       NaN
+HongKong    NaN
+Lagon       NaN
+Lagos       NaN
+London      1.0
+Mumbai      NaN
+dtype: float64
+</code></pre>
+<p>如上，如果 Pandas 在两个 Series 里找不到相同的 index，对应的位置就返回一个空值 NaN。</p>
+<h2 id="dataframes">DataFrames</h2>
+<p>Pandas 的 DataFrame（数据表）是一种 2 维数据结构，数据以表格的形式存储，分成若干行和列。通过 DataFrame，你能很方便地处理数据。常见的操作比如选取、替换行或列的数据，还能重组数据表、修改索引、多重筛选等。</p>
+<p>构建一个 DataFrame 对象的基本语法如下：</p>
+<p>举个例子，我们可以创建一个 5 行 4 列的 DataFrame，并填上随机数据：</p>
+<p>看，上面表中的每一列基本上就是一个 Series ，它们都用了同一个 index。因此，我们基本上可以把 DataFrame 理解成一组采用同样索引的 Series 的集合。</p>
+<p>下面这个例子里，我们将用许多 Series 来构建一个DataFrame：</p>
+<pre><code class="language-python">df={'Name':pd.Series(['John','Aaron','Todd'],index=['a','b','c']),
+    'age':pd.Series(['39','34','32','33'],index=['a','b','c','d']),
+    'Nationality':pd.Series(['US',&quot;China&quot;,&quot;US&quot;],index=['a','b','c'])
+   }
+pd.DataFrame(df)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>32</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>NaN</td>
+      <td>33</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>以及<strong>用一个字典来创建 DataFrame</strong>：</p>
+<pre><code class="language-python">data={'name':['George','ann','ting','charles','phil'],
+      'age':[40,24,31,21,23],
+      'year':[2012,2012,2013,2014,2014]
+     }
+my_df=pd.DataFrame(data,index=['Lagos','Dubai','Mumbai','Accra','Yuma'])
+my_df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Lagos</th>
+      <td>George</td>
+      <td>40</td>
+      <td>2012</td>
+    </tr>
+    <tr>
+      <th>Dubai</th>
+      <td>ann</td>
+      <td>24</td>
+      <td>2012</td>
+    </tr>
+    <tr>
+      <th>Mumbai</th>
+      <td>ting</td>
+      <td>31</td>
+      <td>2013</td>
+    </tr>
+    <tr>
+      <th>Accra</th>
+      <td>charles</td>
+      <td>21</td>
+      <td>2014</td>
+    </tr>
+    <tr>
+      <th>Yuma</th>
+      <td>phil</td>
+      <td>23</td>
+      <td>2014</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="从dataframe中获取数据">从DataFrame中获取数据</h3>
+<pre><code class="language-python">my_df['name']
+</code></pre>
+<pre><code>Lagos      George
+Dubai         ann
+Mumbai       ting
+Accra     charles
+Yuma         phil
+Name: name, dtype: object
+</code></pre>
+<p>因为我们只获取一列，所以返回的就是一个 Series。可以用 type() 函数确认返回值的类型：</p>
+<pre><code class="language-python">type(my_df['name'])
+</code></pre>
+<pre><code>pandas.core.series.Series
+</code></pre>
+<p>如果获取多个列，那返回的就是一个 DataFrame 类型：</p>
+<pre><code class="language-python">my_df[['name','year']]
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Lagos</th>
+      <td>George</td>
+      <td>2012</td>
+    </tr>
+    <tr>
+      <th>Dubai</th>
+      <td>ann</td>
+      <td>2012</td>
+    </tr>
+    <tr>
+      <th>Mumbai</th>
+      <td>ting</td>
+      <td>2013</td>
+    </tr>
+    <tr>
+      <th>Accra</th>
+      <td>charles</td>
+      <td>2014</td>
+    </tr>
+    <tr>
+      <th>Yuma</th>
+      <td>phil</td>
+      <td>2014</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>创建一个列的时候，你需要先定义这个列的数据和索引。举个栗子，比如这个 DataFrame：</p>
+<pre><code class="language-python">df={'Name':pd.Series(['John','Aaron','Todd'],index=['a','b','c']),
+    'age':pd.Series(['39','34','32','33'],index=['a','b','c','d']),
+    'Nationality':pd.Series(['US',&quot;China&quot;,&quot;US&quot;],index=['a','b','c'])
+   }
+pd.DataFrame(df)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+<th>age</th>
+<th>Nationality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>John</td>
+<td>39</td>
+<td>US</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Aaron</td>
+<td>34</td>
+<td>China</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Todd</td>
+<td>32</td>
+<td>US</td>
+</tr>
+<tr>
+<td>d</td>
+<td>NaN</td>
+<td>33</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<p>增加数据列有两种办法：可以从头开始定义一个 pd.Series，再把它放到表中，也可以利用现有的列来产生需要的新列。比如下面两种操作：</p>
+<p>定义一个 Series ，并放入 'Year' 列中：</p>
+<pre><code class="language-python">df['year']=pd.Series(['2016','2017','2018','2015'],['a','b','c','d'])
+pd.DataFrame(df)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>32</td>
+      <td>US</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>NaN</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="从现有的列创建新列">从现有的列创建新列：</h3>
+<pre><code class="language-python">df['Birth_year']=df['year']+df['age']
+df=pd.DataFrame(df)
+df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+      <th>year</th>
+      <th>Birth_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+      <td>2016</td>
+      <td>201639</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+      <td>2017</td>
+      <td>201734</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>32</td>
+      <td>US</td>
+      <td>2018</td>
+      <td>201832</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>NaN</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>2015</td>
+      <td>201533</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="从-dataframe-里删除行列">从 DataFrame 里删除行/列</h3>
+<p>想要删除某一行或一列，可以用 .drop() 函数。在使用这个函数的时候，你需要先指定具体的删除方向，axis=0 对应的是行 row，而 axis=1 对应的是列 column 。</p>
+<p><strong>删除 'Birth_year' 列</strong>：</p>
+<pre><code class="language-python">df.drop('Birth_year',axis=1)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>32</td>
+      <td>US</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>NaN</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>2015</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong>删除 'd' 行：</strong></p>
+<pre><code class="language-python">df.drop('d',axis=0)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+      <th>year</th>
+      <th>Birth_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+      <td>2016</td>
+      <td>201639</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+      <td>2017</td>
+      <td>201734</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>32</td>
+      <td>US</td>
+      <td>2018</td>
+      <td>201832</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="指定位置增加行列">指定位置增加行列</h3>
+<pre><code class="language-python">df
+   A  B  C   D
+0  1  3  3   4
+1  5  6  7   8
+2  1  1  1   1
+3  2  3  2   3
+4  7  8  9  10
+df.insert(0,'E',[11,12,13,14,15])     #插入一列
+df
+    E  A  B  C   D
+0  11  1  3  3   4
+1  12  5  6  7   8
+2  13  1  1  1   1
+3  14  2  3  2   3
+4  15  7  8  9  10
+df
+    E  A  B  C   D
+0  11  1  3  3   4
+1  12  5  6  7   8
+2  13  1  1  1   1
+3  14  2  3  2   3
+4  15  7  8  9  10
+ 
+df.insert(1,'调换',df.pop('A'))  #改变某一列的位置。如：先删除A列，然后在原表data中第1列插入被删掉的列。
+ 
+df
+    E  调换  B  C   D
+0  11   1  3  3   4
+1  12   5  6  7   8
+2  13   1  1  1   1
+3  14   2  3  2   3
+4  15   7  8  9  10
+#df字典方式添加一行，append，忽略索引
+   a  b  c  d
+0  1  3  3  4
+1  5  6  7  8
+
+row={'a':9,'b':10,'c':11,'d':12}
+df.append(row,ignore_index=True)
+   a   b   c   d
+0  1   3   3   4
+1  5   6   7   8
+2  9  10  11  12
+#用loc指定位置添加一行
+df.loc[2]=[9,10,11,12]
+df
+   a   b   c   d
+0  1   3   3   4
+1  5   6   7   8
+2  9  10  11  12
+</code></pre>
+<p>请务必记住，除非用户明确指定，否则在调用 .drop() 的时候，Pandas 并不会真的永久性地删除这行/列。这主要是为了防止用户误操作丢失数据。</p>
+<p>你可以通过调用 df 来确认数据的完整性。如果你确定要永久性删除某一行/列，你需要加上 <code>inplace=True</code> 参数，比如：</p>
+<pre><code class="language-python">df.drop('d',axis=0,inplace=True)
+</code></pre>
+<pre><code class="language-python">df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+      <th>year</th>
+      <th>Birth_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+      <td>2016</td>
+      <td>201639</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+      <td>2017</td>
+      <td>201734</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>32</td>
+      <td>US</td>
+      <td>2018</td>
+      <td>201832</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="获取-dataframe-中的一行或多行数据">获取 DataFrame 中的一行或多行数据</h3>
+<p>要获取某一行，你需要用 .loc[] 来按索引（标签名）引用这一行，或者用 .iloc[]，按这行在表中的位置（行数）来引用。</p>
+<pre><code class="language-python">df.loc['a']
+</code></pre>
+<pre><code>Name             John
+age                39
+Nationality        US
+year             2016
+Birth_year     201639
+Name: a, dtype: object
+</code></pre>
+<p>同时你可以用 .loc[] 来指定具体的行列范围，并生成一个子数据表，就像在<strong>NumPy</strong>里做的一样。比如，提取 'c' 行中 'Name’ 列的内容，<br>
+可以如下操作：</p>
+<pre><code class="language-python">df.iloc[0]
+</code></pre>
+<pre><code>Name             John
+age                39
+Nationality        US
+year             2016
+Birth_year     201639
+Name: a, dtype: object
+</code></pre>
+<pre><code class="language-python">df.iloc[[0,1]]
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>age</th>
+      <th>Nationality</th>
+      <th>year</th>
+      <th>Birth_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>John</td>
+      <td>39</td>
+      <td>US</td>
+      <td>2016</td>
+      <td>201639</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>34</td>
+      <td>China</td>
+      <td>2017</td>
+      <td>201734</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre><code class="language-python">df.loc['b','Name']
+</code></pre>
+<pre><code>'Aaron'
+</code></pre>
+<pre><code class="language-python">df.loc[['b','c'],['Name','Year']]
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>b</th>
+      <td>Aaron</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>Todd</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="条件筛选">条件筛选</h3>
+<p>用中括号 [] 的方式，除了直接指定选中某些列外，还能接收一个条件语句，然后筛选出符合条件的行/列。比如，我们希望在下面这个表格中筛选出 'W'&gt;0 的行：</p>
+<pre><code class="language-python">df=pd.DataFrame(np.random.randn(5,4),['A','B','C','D','E'],['W','X','Y','Z'])
+df[df['W']&gt;0]
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.507655</td>
+      <td>0.945965</td>
+      <td>-0.072447</td>
+      <td>1.112854</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>2.618248</td>
+      <td>-1.634475</td>
+      <td>0.945621</td>
+      <td>0.211625</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>1.274228</td>
+      <td>-0.348917</td>
+      <td>0.768581</td>
+      <td>0.746289</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>0.802278</td>
+      <td>1.236282</td>
+      <td>-1.399972</td>
+      <td>-0.023978</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.240023</td>
+      <td>0.479150</td>
+      <td>-0.569359</td>
+      <td>0.082668</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>如果要进一步筛选，只看 'X' 列中 'W'&gt;0 的数据：</p>
+<p>上面那行相当于下面这样的几个操作连在一起：</p>
+<figure data-type="image" tabindex="2"><img src="http://p1.pstatp.com/large/pgc-image/15371676481189a41cc34b2" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>你可以用逻辑运算符 &amp;（与）和 |（或）来链接多个条件语句，以便一次应用多个筛选条件到当前的 DataFrame 上。举个栗子，你可以用下面的方法筛选出同时满足 'W'&gt;0 和'X'&gt;1 的行：</p>
+<pre><code class="language-python">df[(df['W']&gt;0) &amp; (df['X']&gt;1)]
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>D</th>
+      <td>0.802278</td>
+      <td>1.236282</td>
+      <td>-1.399972</td>
+      <td>-0.023978</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="重置-dataframe-的索引">重置 DataFrame 的索引</h3>
+<p>如果你觉得当前 DataFrame 的索引有问题，你可以用 .reset_index() 简单地把整个表的索引都重置掉。这个方法将把目标 DataFrame 的索引保存在一个叫 index 的列中，而把表格的索引变成默认的从零开始的数字，也就是 [0, ..., len(data) - 1] 。比如下面这样：</p>
+<pre><code class="language-python">df.reset_index()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>W</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>0.507655</td>
+      <td>0.945965</td>
+      <td>-0.072447</td>
+      <td>1.112854</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B</td>
+      <td>2.618248</td>
+      <td>-1.634475</td>
+      <td>0.945621</td>
+      <td>0.211625</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C</td>
+      <td>1.274228</td>
+      <td>-0.348917</td>
+      <td>0.768581</td>
+      <td>0.746289</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>D</td>
+      <td>0.802278</td>
+      <td>1.236282</td>
+      <td>-1.399972</td>
+      <td>-0.023978</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>E</td>
+      <td>0.240023</td>
+      <td>0.479150</td>
+      <td>-0.569359</td>
+      <td>0.082668</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>和删除操作差不多，<code>.reset_index()</code> 并不会永久改变你表格的索引，除非你调用的时候明确传入了 <code>inplace</code> 参数，比如：<code>.reset_index(inplace=True)</code></p>
+<h3 id="设置-dataframe-的索引值">设置 DataFrame 的索引值</h3>
+<p>类似地，我们还可以用 .set_index() 方法，将 DataFrame 里的某一列作为索引来用。比如，我们在这个表里新建一个名为 &quot;ID&quot; 的列：</p>
+<pre><code class="language-python">df['ID']=['df1','df2','df3','df4','df5']
+df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.507655</td>
+      <td>0.945965</td>
+      <td>-0.072447</td>
+      <td>1.112854</td>
+      <td>df1</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>2.618248</td>
+      <td>-1.634475</td>
+      <td>0.945621</td>
+      <td>0.211625</td>
+      <td>df2</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>1.274228</td>
+      <td>-0.348917</td>
+      <td>0.768581</td>
+      <td>0.746289</td>
+      <td>df3</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>0.802278</td>
+      <td>1.236282</td>
+      <td>-1.399972</td>
+      <td>-0.023978</td>
+      <td>df4</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.240023</td>
+      <td>0.479150</td>
+      <td>-0.569359</td>
+      <td>0.082668</td>
+      <td>df5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>然后把它设置成索引：</p>
+<pre><code class="language-python">df.set_index('ID')
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>W</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>df1</th>
+      <td>0.507655</td>
+      <td>0.945965</td>
+      <td>-0.072447</td>
+      <td>1.112854</td>
+    </tr>
+    <tr>
+      <th>df2</th>
+      <td>2.618248</td>
+      <td>-1.634475</td>
+      <td>0.945621</td>
+      <td>0.211625</td>
+    </tr>
+    <tr>
+      <th>df3</th>
+      <td>1.274228</td>
+      <td>-0.348917</td>
+      <td>0.768581</td>
+      <td>0.746289</td>
+    </tr>
+    <tr>
+      <th>df4</th>
+      <td>0.802278</td>
+      <td>1.236282</td>
+      <td>-1.399972</td>
+      <td>-0.023978</td>
+    </tr>
+    <tr>
+      <th>df5</th>
+      <td>0.240023</td>
+      <td>0.479150</td>
+      <td>-0.569359</td>
+      <td>0.082668</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>注意，不像 <code>.reset_index()</code> 会保留一个备份，然后才用默认的索引值代替原索引，<code>.set_index()</code> 将会完全覆盖原来的索引值。</p>
+<h3 id="多级索引multiindex以及命名索引的不同等级">多级索引（MultiIndex）以及命名索引的不同等级</h3>
+<p>多级索引其实就是一个由元组（Tuple）组成的数组，每一个元组都是独一无二的。你可以从一个包含许多数组的列表中创建多级索引（调用 MultiIndex.from_arrays ），也可以用一个包含许多元组的数组（调用 MultiIndex.from_tuples ）或者是用一对可迭代对象的集合（比如两个列表，互相两两配对）来构建（调用MultiIndex.from_product ）。</p>
+<p>下面这个例子，我们从元组中创建多级索引：</p>
+<pre><code class="language-python">outside=['0 Levle','0 Levle','0 Levle','A Levle','A Levle','A Levle']
+inside=[21,22,23,21,22,23]
+my_index=list(zip(outside,inside))
+</code></pre>
+<p>最后这个 list(zip()) 的嵌套函数，把上面两个列表合并成了一个每个元素都是元组的列表。这时 my_index 的内容是这样的：[('O Level', 21), ('O Level', 22), ('O Level', 23), ('A Level', 21), ('A Level', 22), ('A Level', 23)]</p>
+<p>接下来，我们调用 .MultiIndex.from_tuples(my_index) 生成一个多级索引对象，然后将这个多级索引对象转成一个 DataFrame：</p>
+<pre><code class="language-python">my_index=pd.MultiIndex.from_tuples(my_index)
+my_index
+</code></pre>
+<pre><code>MultiIndex(levels=[['0 Levle', 'A Levle'], [21, 22, 23]],
+           codes=[[0, 0, 0, 1, 1, 1], [0, 1, 2, 0, 1, 2]])
+</code></pre>
+<pre><code class="language-python">df=pd.DataFrame(np.random.randn(6,2),index=my_index,columns=['A','B'])
+df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">0 Levle</th>
+      <th>21</th>
+      <td>-0.239474</td>
+      <td>0.840062</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>-0.375724</td>
+      <td>-1.630837</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.608979</td>
+      <td>-0.489202</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">A Levle</th>
+      <th>21</th>
+      <td>-1.196954</td>
+      <td>-0.068834</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.564024</td>
+      <td>0.007361</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1.220147</td>
+      <td>-0.472613</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>要获取多级索引中的数据，还是用到 .loc[] 。比如，先获取 'O Level' 下的数据：</p>
+<pre><code class="language-python">df.loc['0 Levle']
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21</th>
+      <td>-0.239474</td>
+      <td>0.840062</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>-0.375724</td>
+      <td>-1.630837</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.608979</td>
+      <td>-0.489202</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>然后再用一次 .loc[]，获取下一层 21 里的数据：</p>
+<pre><code class="language-python">df.loc['0 Levle'].loc[21]
+</code></pre>
+<pre><code>A   -0.239474
+B    0.840062
+Name: 21, dtype: float64
+</code></pre>
+<p>如上所示，df 这个 DataFrame 的头两个索引列没有名字，看起来不太易懂。我们可以用 .index.names 给它们加上名字：</p>
+<pre><code class="language-python">df.index.names=['Levels','Num']
+df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>Levels</th>
+      <th>Num</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">0 Levle</th>
+      <th>21</th>
+      <td>-0.239474</td>
+      <td>0.840062</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>-0.375724</td>
+      <td>-1.630837</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.608979</td>
+      <td>-0.489202</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">A Levle</th>
+      <th>21</th>
+      <td>-1.196954</td>
+      <td>-0.068834</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.564024</td>
+      <td>0.007361</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1.220147</td>
+      <td>-0.472613</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="交叉选择行和列中的数据">交叉选择行和列中的数据</h3>
+<p>我们可以用 .xs() 方法轻松获取到多级索引中某些特定级别的数据。比如，我们需要找到所有 Levels 中，Num = 22 的行：</p>
+<pre><code class="language-python">df.xs(22,level=&quot;Num&quot;)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+    <tr>
+      <th>Levels</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0 Levle</th>
+      <td>-0.375724</td>
+      <td>-1.630837</td>
+    </tr>
+    <tr>
+      <th>A Levle</th>
+      <td>0.564024</td>
+      <td>0.007361</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="清洗数据">清洗数据</h2>
+<h3 id="删除或填充空值">删除或填充空值</h3>
+<p>在许多情况下，如果你用 Pandas 来读取大量数据，往往会发现原始数据中会存在不完整的地方。在 DataFrame 中缺少数据的位置， Pandas 会自动填入一个空值，比如 NaN或 Null 。因此，我们可以选择用 .dropna() 来丢弃这些自动填充的值，或是用.fillna() 来自动给这些空值填充数据。</p>
+<p>比如这个例子：</p>
+<pre><code class="language-python">dt={'A':[1,np.nan,3],'B':[2,np.nan,np.nan],'c':[4,5,6]}
+dt=pd.DataFrame(dt)
+dt
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>当你使用 .dropna() 方法时，就是告诉 Pandas 删除掉存在一个或多个空值的行（或者列）。删除列用的是 .dropna(axis=0) ，删除行用的是 .dropna(axis=1) 。</p>
+<p>请注意，如果你没有指定 axis 参数，默认是删除行。</p>
+<h3 id="删除行">删除行</h3>
+<pre><code class="language-python">dt.dropna()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="删除列">删除列：</h3>
+<pre><code class="language-python">dt.dropna(axis=1)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>类似的，如果你使用 .fillna() 方法，Pandas 将对这个 DataFrame 里所有的空值位置填上你指定的默认值。比如，将表中所有 NaN 替换成 20 ：</p>
+<pre><code class="language-python">dt.fillna('20')
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>20</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>20</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>当然，这有的时候打击范围太大了。于是我们可以选择只对某些特定的行或者列进行填充。比如只对 'A' 列进行操作，在空值处填入该列的平均值：</p>
+<p><code>dt.fillna(dt['A'].mean())</code></p>
+<p>如上所示，'A' 列的平均值是 2.0，所以第二行的空值被填上了 2.0。</p>
+<p>同理，.dropna() 和 .fillna() 并不会永久性改变你的数据，除非你传入了inplace=True 参数。</p>
+<h2 id="分组统计">分组统计</h2>
+<p>Pandas 的分组统计功能可以按某一列的内容对数据行进行分组，并对其应用统计函数，比如求和，平均数，中位数，标准差等等…</p>
+<p>举例来说，用 <code>.groupby()</code> 方法，我们可以对下面这数据表按 'Company' 列进行分组，并用 .mean() 求每组的平均值：</p>
+<p>首先，初始化一个DataFrame， 然后，调用 .groupby() 方法，并继续用 .mean() 求平均值：</p>
+<pre><code class="language-python">d={'company':['google','google','oracle','oracle','twitter','twitter'],
+   'person':['sam','charlie','amy','vanessa','carl','sarah'],
+   'sales':[200,120,340,124,243,350]
+  }
+df=pd.DataFrame(d)
+df
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>company</th>
+      <th>person</th>
+      <th>sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>google</td>
+      <td>sam</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>google</td>
+      <td>charlie</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>oracle</td>
+      <td>amy</td>
+      <td>340</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>oracle</td>
+      <td>vanessa</td>
+      <td>124</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>twitter</td>
+      <td>carl</td>
+      <td>243</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>twitter</td>
+      <td>sarah</td>
+      <td>350</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre><code class="language-python">df.groupby('company').mean()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sales</th>
+    </tr>
+    <tr>
+      <th>company</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>google</th>
+      <td>160.0</td>
+    </tr>
+    <tr>
+      <th>oracle</th>
+      <td>232.0</td>
+    </tr>
+    <tr>
+      <th>twitter</th>
+      <td>296.5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>上面的结果中，Sales 列就变成每个公司的分组平均数了。</p>
+<h3 id="计数">计数</h3>
+<p>用 .count() 方法，能对 DataFrame 中的某个元素出现的次数进行计数。</p>
+<p>用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！</p>
+<pre><code class="language-python">df.groupby('company').count()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>person</th>
+      <th>sales</th>
+    </tr>
+    <tr>
+      <th>company</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>google</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>oracle</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>twitter</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="数据描述">数据描述</h3>
+<p>Pandas 的 .describe() 方法将对 DataFrame 里的数据进行分析，并一次性生成多个描述性的统计指标，方便用户对数据有一个直观上的认识。</p>
+<p>生成的指标，从左到右分别是：计数、平均数、标准差、最小值、25% 50% 75% 位置的值、最大值。</p>
+<pre><code class="language-python">df.groupby('company').describe()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead tr th {
+    text-align: left;
+}
+
+.dataframe thead tr:last-of-type th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="8" halign="left">sales</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>company</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>google</th>
+      <td>2.0</td>
+      <td>160.0</td>
+      <td>56.568542</td>
+      <td>120.0</td>
+      <td>140.00</td>
+      <td>160.0</td>
+      <td>180.00</td>
+      <td>200.0</td>
+    </tr>
+    <tr>
+      <th>oracle</th>
+      <td>2.0</td>
+      <td>232.0</td>
+      <td>152.735065</td>
+      <td>124.0</td>
+      <td>178.00</td>
+      <td>232.0</td>
+      <td>286.00</td>
+      <td>340.0</td>
+    </tr>
+    <tr>
+      <th>twitter</th>
+      <td>2.0</td>
+      <td>296.5</td>
+      <td>75.660426</td>
+      <td>243.0</td>
+      <td>269.75</td>
+      <td>296.5</td>
+      <td>323.25</td>
+      <td>350.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>如果你不喜欢这个排版，你可以用 <code>.transpose()</code> 方法获得一个竖排的格式：</p>
+<pre><code class="language-python">df.groupby('company').describe().transpose()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>company</th>
+      <th>google</th>
+      <th>oracle</th>
+      <th>twitter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="8" valign="top">sales</th>
+      <th>count</th>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>160.000000</td>
+      <td>232.000000</td>
+      <td>296.500000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>56.568542</td>
+      <td>152.735065</td>
+      <td>75.660426</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>120.000000</td>
+      <td>124.000000</td>
+      <td>243.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>140.000000</td>
+      <td>178.000000</td>
+      <td>269.750000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>160.000000</td>
+      <td>232.000000</td>
+      <td>296.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>180.000000</td>
+      <td>286.000000</td>
+      <td>323.250000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>200.000000</td>
+      <td>340.000000</td>
+      <td>350.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>如果你只想看 Google 的数据，还能这样：</p>
+<pre><code class="language-python">df.groupby('company').describe().transpose()['google']
+</code></pre>
+<pre><code>sales  count      2.000000
+       mean     160.000000
+       std       56.568542
+       min      120.000000
+       25%      140.000000
+       50%      160.000000
+       75%      180.000000
+       max      200.000000
+Name: google, dtype: float64
+</code></pre>
+<h2 id="堆叠concat">堆叠（Concat）</h2>
+<p>堆叠基本上就是简单地把多个 DataFrame 堆在一起，拼成一个更大的 DataFrame。当你进行堆叠的时候，请务必注意你数据表的索引和列的延伸方向，堆叠的方向要和它一致。</p>
+<p>比如，有这样3个 DataFrame：df1，df2，df3</p>
+<p>我们用 pd.concat() 将它堆叠成一个大的表：</p>
+<pre><code class="language-python">df1=pd.DataFrame({'A':['A0','A1','A2','A3'],
+                  &quot;B&quot;:['B0','B1','B2','B3'],
+                  &quot;C&quot;:['C0','C1','C2','C3'],
+                  &quot;D&quot;:['D0','D1','D2','D3']})
+df2=pd.DataFrame({'A':['A4','A5','A6','A7'],
+                  &quot;B&quot;:['B4','B5','B6','B7'],
+                  &quot;C&quot;:['C4','C5','C6','C7'],
+                  &quot;D&quot;:['D4','D5','D6','D7']},index=[4,5,6,7])
+df3=pd.DataFrame({'A':['A8','A9','A10','A11'],
+                  &quot;B&quot;:['B8','B9','B10','B11'],
+                  &quot;C&quot;:['C8','C9','C10','C11'],
+                  &quot;D&quot;:['D8','D9','D10','D11']},index=[8,9,10,11])
+</code></pre>
+<pre><code class="language-python">pd.concat([df1,df2,df3])
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+      <td>D1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A3</td>
+      <td>B3</td>
+      <td>C3</td>
+      <td>D3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A4</td>
+      <td>B4</td>
+      <td>C4</td>
+      <td>D4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>A5</td>
+      <td>B5</td>
+      <td>C5</td>
+      <td>D5</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>A6</td>
+      <td>B6</td>
+      <td>C6</td>
+      <td>D6</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>A7</td>
+      <td>B7</td>
+      <td>C7</td>
+      <td>D7</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>A8</td>
+      <td>B8</td>
+      <td>C8</td>
+      <td>D8</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>A9</td>
+      <td>B9</td>
+      <td>C9</td>
+      <td>D9</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>A10</td>
+      <td>B10</td>
+      <td>C10</td>
+      <td>D10</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>A11</td>
+      <td>B11</td>
+      <td>C11</td>
+      <td>D11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>因为我们没有指定堆叠的方向，Pandas 默认按行的方向堆叠，把每个表的索引按顺序叠加。</p>
+<p>如果你想要按列的方向堆叠，那你需要传入 axis=1 参数：</p>
+<pre><code class="language-python">pd.concat([df1,df2,df3],axis=1)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+      <td>D1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A3</td>
+      <td>B3</td>
+      <td>C3</td>
+      <td>D3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A4</td>
+      <td>B4</td>
+      <td>C4</td>
+      <td>D4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A5</td>
+      <td>B5</td>
+      <td>C5</td>
+      <td>D5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A6</td>
+      <td>B6</td>
+      <td>C6</td>
+      <td>D6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A7</td>
+      <td>B7</td>
+      <td>C7</td>
+      <td>D7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A8</td>
+      <td>B8</td>
+      <td>C8</td>
+      <td>D8</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A9</td>
+      <td>B9</td>
+      <td>C9</td>
+      <td>D9</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A10</td>
+      <td>B10</td>
+      <td>C10</td>
+      <td>D10</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A11</td>
+      <td>B11</td>
+      <td>C11</td>
+      <td>D11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>注意，这里出现了一大堆空值。因为我们用来堆叠的3个 DataFrame 里，有许多索引是没有对应数据的。因此，当你使用 pd.concat() 的时候，一定要注意堆叠方向的坐标轴（行或列）含有所需的所有数据。</p>
+<h2 id="归并merge">归并（Merge）</h2>
+<p>使用 <code>pd.merge()</code> 函数，能将多个 DataFrame 归并在一起，它的合并方式类似合并 SQL 数据表的方式。</p>
+<p>归并操作的基本语法是 pd.merge(left, right, how='inner', on='Key') 。其中 left 参数代表放在左侧的 DataFrame，而 right 参数代表放在右边的 DataFrame；how='inner' 指的是当左右两个 DataFrame 中存在不重合的 Key 时，取结果的方式：inner 代表交集；Outer 代表并集。最后，on='Key' 代表需要合并的键值所在的列，最后整个表格会以该列为准进行归并。</p>
+<p>对于两个都含有 key 列的 DataFrame，我们可以这样归并：</p>
+<pre><code class="language-python">left=pd.DataFrame({'key':['k0','k1','k2','k3'],
+                   'A':['A0','A1','A2','A3'],
+                   'B':['B0','B1','B2','B3']
+                  })
+right=pd.DataFrame({'key':['k0','k1','k2','k3'],
+                    'C':['C0','C1','C2','C3'],
+                    'D':['D0','D1','D2','D3']
+                   })
+pd.merge(left,right,how=&quot;inner&quot;,on='key')
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>k0</td>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>k1</td>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+      <td>D1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>k2</td>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>k3</td>
+      <td>A3</td>
+      <td>B3</td>
+      <td>C3</td>
+      <td>D3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>同时，我们可以传入多个 on 参数，这样就能按多个键值进行归并：</p>
+<pre><code class="language-python">left=pd.DataFrame({'key':['k0','k1','k2','k3'],
+                   'key2':['k0','k1','k0','k1'],
+                   'A':['A0','A1','A2','A3'],
+                   'B':['B0','B1','B2','B3']
+                  })
+right=pd.DataFrame({'key':['k0','k1','k2','k3'],
+                    'key2':['k0','k0','k0','k0'],
+                    'C':['C0','C1','C2','C3'],
+                    'D':['D0','D1','D2','D3']
+                   })
+pd.merge(left,right,on=['key','key2'])
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>key2</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>k0</td>
+      <td>k0</td>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>k2</td>
+      <td>k0</td>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="连接join">连接（Join）</h2>
+<p>如果你要把两个表连在一起，然而它们之间没有太多共同的列，那么你可以试试 .join() 方法。和 .merge() 不同，连接采用索引作为公共的键，而不是某一列。</p>
+<pre><code class="language-python">left=pd.DataFrame({'A':['A0','A1','A2'],
+                   'B':['B0','B1','B2']
+                  },
+                   index=['k0','k1','k2']
+                  )
+right=pd.DataFrame({'C':['C0','C1','C2'],
+                    'D':['D0','D1','D2']
+                   },
+                    index=['k0','k1','k2']
+                   )
+left.join(right)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>k0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>k1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+      <td>D1</td>
+    </tr>
+    <tr>
+      <th>k2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre><code class="language-python">left.join(right,how=&quot;outer&quot;)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>k0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>k1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>C1</td>
+      <td>D1</td>
+    </tr>
+    <tr>
+      <th>k2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>同样，inner 代表交集，Outer 代表并集。</p>
+<h2 id="数值处理">数值处理</h2>
+<h3 id="查找不重复的值">查找不重复的值</h3>
+<p>不重复的值，在一个 DataFrame 里往往是独一无二，与众不同的。找到不重复的值，在数据分析中有助于避免样本偏差。在 Pandas 里，主要用到 3 种方法：</p>
+<p>首先是 .unique() 方法。比如在下面这个 DataFrame 里，查找 col2 列中所有不重复的值：</p>
+<pre><code class="language-python">df=pd.DataFrame({'col1':[1,2,3,4],'col2':[444,555,666,444],'col3':['abc','def','ghl','xyz']})
+df.head()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>444</td>
+      <td>abc</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>555</td>
+      <td>def</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>666</td>
+      <td>ghl</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>444</td>
+      <td>xyz</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>除了列出所有不重复的值，我们还能用 .nunique() 方法，获取所有不重复值的个数：</p>
+<pre><code class="language-python">df['col2'].unique()
+</code></pre>
+<pre><code>array([444, 555, 666])
+</code></pre>
+<p>除了列出所有不重复的值，我们还能用 .nunique() 方法，获取所有不重复值的个数：</p>
+<pre><code class="language-python">df['col2'].nunique()
+</code></pre>
+<pre><code>3
+</code></pre>
+<p>此外，还可以用 .value_counts() 同时获得所有值和对应值的计数：</p>
+<pre><code class="language-python">df['col2'].value_counts()
+</code></pre>
+<pre><code>444    2
+555    1
+666    1
+Name: col2, dtype: int64
+</code></pre>
+<h2 id="apply-方法">apply() 方法</h2>
+<p>用 <code>.apply() </code>方法，可以对 DataFrame 中的数据应用自定义函数，进行数据处理。比如，我们先定义一个 square() 函数，然后对表中的 col1 列应用这个函数：</p>
+<pre><code class="language-python">def square(x):
+    return x*x
+
+df['col1'].apply(square)
+</code></pre>
+<pre><code>0     1
+1     4
+2     9
+3    16
+Name: col1, dtype: int64
+</code></pre>
+<p>在上面这个例子中，这个函数被应用到这一列里的每一个元素上。同样，我们也可以调用任意的内置函数。比如对 col3 列取长度 len ：</p>
+<pre><code class="language-python">df['col3'].apply(len)
+</code></pre>
+<pre><code>0    3
+1    3
+2    3
+3    3
+Name: col3, dtype: int64
+</code></pre>
+<p>有的时候，你定义了一个函数，而它其实只会被用到一次。那么，我们可以用 lambda 表达式来代替函数定义，简化代码。比如，我们可以用这样的 lambda 表达式代替上面 In[47] 里的函数定义：</p>
+<pre><code class="language-python">df['col1'].apply(lambda x: x*x)
+</code></pre>
+<pre><code>0     1
+1     4
+2     9
+3    16
+Name: col1, dtype: int64
+</code></pre>
+<pre><code class="language-python">df['col1'] = df['col1'].apply(lambda x: x*x)
+</code></pre>
+<h2 id="获取-dataframe-的属性">获取 DataFrame 的属性</h2>
+<p>DataFrame 的属性包括列和索引的名字。假如你不确定表中的某个列名是否含有空格之类的字符，你可以通过 <code>.columns</code> 来获取属性值，以查看具体的列名。</p>
+<pre><code class="language-python">df.columns
+</code></pre>
+<pre><code>Index(['col1', 'col2', 'col3'], dtype='object')
+</code></pre>
+<pre><code class="language-python">df.index
+</code></pre>
+<pre><code>RangeIndex(start=0, stop=4, step=1)
+</code></pre>
+<h2 id="排序">排序</h2>
+<p>如果想要将整个表按某一列的值进行排序，可以用 .sort_values() ：</p>
+<pre><code class="language-python">df.sort_values('col2')
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>444</td>
+      <td>abc</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>444</td>
+      <td>xyz</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>555</td>
+      <td>def</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>666</td>
+      <td>ghl</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>如上所示，表格变成按 col2 列的值从小到大排序。要注意的是，表格的索引 index 还是对应着排序前的行，并没有因为排序而丢失原来的索引数据。</p>
+<h2 id="查找空值">查找空值</h2>
+<p>假如你有一个很大的数据集，你可以用 Pandas 的 .isnull() 方法，方便快捷地发现表中的空值：</p>
+<pre><code class="language-python">df.isnull()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>这返回的是一个新的 DataFrame，里面用布尔值（True/False）表示原 DataFrame 中对应位置的数据是否是空值。</p>
+<h2 id="数据透视表">数据透视表</h2>
+<p>在使用 Excel 的时候，你或许已经试过数据透视表的功能了。数据透视表是一种汇总统计表，它展现了原表格中数据的汇总统计结果。Pandas 的数据透视表能自动帮你对数据进行分组、切片、筛选、排序、计数、求和或取平均值，并将结果直观地显示出来。比如，这里有个关于动物的统计表：</p>
+<pre><code class="language-python">data=pd.DataFrame({
+    'A':['Dog','Dog','Dog','Goat','Goat','Goat'],
+    'B':['Brown','Brown',&quot;Black&quot;,&quot;Black&quot;,&quot;Brown&quot;,&quot;Brown&quot;],
+    'C':['x','y','x','y','x','y'],
+    'D':[1,3,2,5,4,1]
+})
+data
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Dog</td>
+      <td>Brown</td>
+      <td>x</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Dog</td>
+      <td>Brown</td>
+      <td>y</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dog</td>
+      <td>Black</td>
+      <td>x</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Goat</td>
+      <td>Black</td>
+      <td>y</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Goat</td>
+      <td>Brown</td>
+      <td>x</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Goat</td>
+      <td>Brown</td>
+      <td>y</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>Pandas 数据透视表的语法是 <code>.pivot_table(data, values='', index=[''], columns=[''])</code> ，其中 values 代表我们需要汇总统计的数据点所在的列，index 表示按该列进行分组索引，而 columns 则表示最后结果将按该列的数据进行分列。你可以在 Pandas 的官方文档 中找到更多数据透视表的详细用法和例子。</p>
+<p>于是，我们按上面的语法，给这个动物统计表创建一个数据透视表：</p>
+<pre><code class="language-python">pd.pivot_table(data,values='D',index=['A','B'],columns='C')
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Dog</th>
+      <th>Black</th>
+      <td>2.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Brown</th>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Goat</th>
+      <th>Black</th>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>Brown</th>
+      <td>4.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>或者也可以直接调用 df 对象的方法：</p>
+<pre><code class="language-python">data.pivot_table(values='D',index=['A','B'],columns='C')
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Dog</th>
+      <th>Black</th>
+      <td>2.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Brown</th>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Goat</th>
+      <th>Black</th>
+      <td>NaN</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>Brown</th>
+      <td>4.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="导入导出数据">导入导出数据</h2>
+<p>采用类似 pd.read_ 这样的方法，你可以用 Pandas 读取各种不同格式的数据文件，包括 Excel 表格、CSV 文件、SQL 数据库，甚至 HTML 文件等。</p>
+<h3 id="读取-csv-文件">读取 CSV 文件</h3>
+<p>简单地说，只要用 pd.read_csv() 就能将 CSV 文件里的数据转换成 DataFrame 对象：</p>
+<figure data-type="image" tabindex="3"><img src="http://p1.pstatp.com/large/pgc-image/15371677266111e9c50b7b2" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>指定编码格式和分隔符，分隔符默认是用逗号</p>
+<pre><code class="language-python">df= pd.read_csv('example.csv', encoding='gbk', sep=',')
+</code></pre>
+<h3 id="写入-csv-文件">写入 CSV 文件</h3>
+<p>将 DataFrame 对象存入 .csv 文件的方法是 .to_csv()，例如，我们先创建一个 DataFrame 对象：</p>
+<figure data-type="image" tabindex="4"><img src="http://p98.pstatp.com/large/pgc-image/1537167726700912f9c23e7" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>然后我们将这个 DataFrame 对象存成 'New_dataframe' 文件，Pandas 会自动在磁盘上创建这个文件。</p>
+<figure data-type="image" tabindex="5"><img src="http://p98.pstatp.com/large/pgc-image/1537167726700912f9c23e7" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>这里传入 index=False 参数是因为不希望 Pandas 把索引列的 0~5 也存到文件中。</p>
+<p>为了确保数据已经保存好了，你可以试试用 pd.read_csv('New_dataframe') ，把这个文件的内容读取出来看看。</p>
+<h3 id="读取-excel-表格文件">读取 Excel 表格文件</h3>
+<p>Excel 文件是一个不错的数据来源。使用 pd.read_excel() 方法，我们能将 Excel 表格中的数据导入 Pandas 中。请注意，Pandas 只能导入表格文件中的数据，其他对象，例如宏、图形和公式等都不会被导入。如果文件中存在有此类对象，可能会导致 pd.read_excel() 方法执行失败。</p>
+<p>举个例子，假设我们有一个 Excel 表格 'excel_output.xlsx'，然后读取它的数据：</p>
+<figure data-type="image" tabindex="6"><img src="http://p98.pstatp.com/large/pgc-image/153716772659962fe6bf680" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>请注意，每个 Excel 表格文件都含有一个或多个工作表，传入 sheet_name='Sheet1' 这样的参数，就表示只读取 'excel_output.xlsx' 中的 Sheet1 工作表中的内容。</p>
+<h3 id="写入-excel-表格文件">写入 Excel 表格文件</h3>
+<p>跟写入 CSV 文件类似，我们可以将一个 DataFrame 对象存成 .xlsx 文件，语法是 .to_excel() ：</p>
+<figure data-type="image" tabindex="7"><img src="http://p9.pstatp.com/large/pgc-image/1537167726759e1b13ff554" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>和前面类似，把数据存到 'excel_output.xlsx' 文件中：</p>
+<figure data-type="image" tabindex="8"><img src="http://p9.pstatp.com/large/pgc-image/1537167726759e1b13ff554" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<h3 id="读取-html-文件中的数据">读取 HTML 文件中的数据</h3>
+<p>为了读取 HTML 文件，你需要安装 htmllib5，lxml 以及 BeautifulSoup4 库，在终端或者命令提示符运行以下命令来安装：</p>
+<figure data-type="image" tabindex="9"><img src="http://p3.pstatp.com/large/pgc-image/1537167726598611d4c5c5c" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<p>举个例子，我们用让 Pandas 读取这个页面的数据： https://en.wikipedia.org/wiki/Udacity 。由于一个页面上含有多个不同的表格，我们需要通过下标 [0, ..., len(tables) - 1] 访问数组中的不同元素。</p>
+<p>下面的这个例子，我们显示的是页面中的第 2 个表格：</p>
+<figure data-type="image" tabindex="10"><img src="http://p3.pstatp.com/large/pgc-image/15371677266756ead4d0063" alt="用一个月整理的Pandas的教程！最全面的教程没有之一！先收藏吧！" loading="lazy"></figure>
+<h2 id="结语">结语</h2>
+<p>恭喜！读到这里，说明你已经看完了这个教程！</p>
+<p>如果你已经学完了本文，我想你应该已经拥有足够的知识，可以好好调教 Pandas，做好分析之前的数据准备工作啦。接下来，你需要的是练习，练习，再练习！</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100  inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100  inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100  inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></br>Themed by Rocky
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white  hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white  p-4 border-l border-gray-100  z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200  transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#python-pandas%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86">Python-pandas知识梳理</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-pandas">安装 Pandas</a></li>
+<li><a href="#pandas-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">Pandas 数据结构</a></li>
+<li><a href="#%E4%BB%8E-series-%E9%87%8C%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE">从 Series 里获取数据</a></li>
+<li><a href="#dataframes">DataFrames</a>
+<ul>
+<li><a href="#%E4%BB%8Edataframe%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE">从DataFrame中获取数据</a></li>
+<li><a href="#%E4%BB%8E%E7%8E%B0%E6%9C%89%E7%9A%84%E5%88%97%E5%88%9B%E5%BB%BA%E6%96%B0%E5%88%97">从现有的列创建新列：</a></li>
+<li><a href="#%E4%BB%8E-dataframe-%E9%87%8C%E5%88%A0%E9%99%A4%E8%A1%8C%E5%88%97">从 DataFrame 里删除行/列</a></li>
+<li><a href="#%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E5%A2%9E%E5%8A%A0%E8%A1%8C%E5%88%97">指定位置增加行列</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96-dataframe-%E4%B8%AD%E7%9A%84%E4%B8%80%E8%A1%8C%E6%88%96%E5%A4%9A%E8%A1%8C%E6%95%B0%E6%8D%AE">获取 DataFrame 中的一行或多行数据</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89">条件筛选</a></li>
+<li><a href="#%E9%87%8D%E7%BD%AE-dataframe-%E7%9A%84%E7%B4%A2%E5%BC%95">重置 DataFrame 的索引</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE-dataframe-%E7%9A%84%E7%B4%A2%E5%BC%95%E5%80%BC">设置 DataFrame 的索引值</a></li>
+<li><a href="#%E5%A4%9A%E7%BA%A7%E7%B4%A2%E5%BC%95multiindex%E4%BB%A5%E5%8F%8A%E5%91%BD%E5%90%8D%E7%B4%A2%E5%BC%95%E7%9A%84%E4%B8%8D%E5%90%8C%E7%AD%89%E7%BA%A7">多级索引（MultiIndex）以及命名索引的不同等级</a></li>
+<li><a href="#%E4%BA%A4%E5%8F%89%E9%80%89%E6%8B%A9%E8%A1%8C%E5%92%8C%E5%88%97%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE">交叉选择行和列中的数据</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B8%85%E6%B4%97%E6%95%B0%E6%8D%AE">清洗数据</a>
+<ul>
+<li><a href="#%E5%88%A0%E9%99%A4%E6%88%96%E5%A1%AB%E5%85%85%E7%A9%BA%E5%80%BC">删除或填充空值</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E8%A1%8C">删除行</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%88%97">删除列：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1">分组统计</a>
+<ul>
+<li><a href="#%E8%AE%A1%E6%95%B0">计数</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B0">数据描述</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A0%86%E5%8F%A0concat">堆叠（Concat）</a></li>
+<li><a href="#%E5%BD%92%E5%B9%B6merge">归并（Merge）</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5join">连接（Join）</a></li>
+<li><a href="#%E6%95%B0%E5%80%BC%E5%A4%84%E7%90%86">数值处理</a>
+<ul>
+<li><a href="#%E6%9F%A5%E6%89%BE%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%80%BC">查找不重复的值</a></li>
+</ul>
+</li>
+<li><a href="#apply-%E6%96%B9%E6%B3%95">apply() 方法</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96-dataframe-%E7%9A%84%E5%B1%9E%E6%80%A7">获取 DataFrame 的属性</a></li>
+<li><a href="#%E6%8E%92%E5%BA%8F">排序</a></li>
+<li><a href="#%E6%9F%A5%E6%89%BE%E7%A9%BA%E5%80%BC">查找空值</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8">数据透视表</a></li>
+<li><a href="#%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE">导入导出数据</a>
+<ul>
+<li><a href="#%E8%AF%BB%E5%8F%96-csv-%E6%96%87%E4%BB%B6">读取 CSV 文件</a></li>
+<li><a href="#%E5%86%99%E5%85%A5-csv-%E6%96%87%E4%BB%B6">写入 CSV 文件</a></li>
+<li><a href="#%E8%AF%BB%E5%8F%96-excel-%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6">读取 Excel 表格文件</a></li>
+<li><a href="#%E5%86%99%E5%85%A5-excel-%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6">写入 Excel 表格文件</a></li>
+<li><a href="#%E8%AF%BB%E5%8F%96-html-%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE">读取 HTML 文件中的数据</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%93%E8%AF%AD">结语</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all " @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://xiaohanys.me/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://xiaohanys.me/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'ScErLvLfZDRZF8P8OiMN6kdi-gzGzoHsz',
+    appKey: 'nmaIQdbwYctsvJjOaagFq6jH',
+    pageSize: 10,
+    notify: true,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '来都来了，不妨评论一下',
+    visitor: true,
+    highlight: true,
+    recordIP: true,
+  })
+</script>
+  
+  
+</body>
+
+</html>

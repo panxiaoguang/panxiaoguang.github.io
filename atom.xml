@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xiaohanys.me</id>
+    <title>Guang&apos;s Home Page</title>
+    <updated>2023-07-28T10:16:10.546Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://xiaohanys.me"/>
+    <link rel="self" href="https://xiaohanys.me/atom.xml"/>
+    <subtitle>&lt;i&gt;Don&apos;t forget to be awesome!&lt;/i&gt;</subtitle>
+    <logo>https://xiaohanys.me/images/avatar.png</logo>
+    <icon>https://xiaohanys.me/favicon.ico</icon>
+    <rights>All rights reserved 2023, Guang&apos;s Home Page</rights>
+    <entry>
+        <title type="html"><![CDATA[不同的语言处理gzip压缩文件的时间对比]]></title>
+        <id>https://xiaohanys.me/E5MnLDRwS/</id>
+        <link href="https://xiaohanys.me/E5MnLDRwS/">
+        </link>
+        <updated>2023-02-27T09:10:13.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Julia 短小代码批量检测BAM文件的完整性]]></title>
+        <id>https://xiaohanys.me/K5dsVcvZs/</id>
+        <link href="https://xiaohanys.me/K5dsVcvZs/">
+        </link>
+        <updated>2023-02-15T07:07:24.000Z</updated>
+        <summary type="html"><![CDATA[<p>我们在运行bwa mem比对的时候，由于某些不明的原因会造成程序中断，例如内存超了，IO错误，计算节点崩溃等，然而BAM是否完整很难察觉，最终导致后续流程无法运行。这里，我们通过一段简短的代码来检查BAM文件的完整性，代码如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>我们在运行bwa mem比对的时候，由于某些不明的原因会造成程序中断，例如内存超了，IO错误，计算节点崩溃等，然而BAM是否完整很难察觉，最终导致后续流程无法运行。这里，我们通过一段简短的代码来检查BAM文件的完整性，代码如下：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[julia 计算为ASCAT创建GC矫正文件]]></title>
+        <id>https://xiaohanys.me/wiWxgvJVL/</id>
+        <link href="https://xiaohanys.me/wiWxgvJVL/">
+        </link>
+        <updated>2023-02-15T07:06:54.000Z</updated>
+        <summary type="html"><![CDATA[<p>如题，官方已经提供了一个R的版本<a href="https://github.com/VanLoo-lab/ascat/blob/master/LogRcorrection/createGCcontentFile.R" title="createGCcontentFile.R">createGCcontentFile.R</a> ，但是根据代码就能看出这个版本非常占内存了，首先要把基因组整个序列都load入内存中去，每次计算出的矫正数据也是储存dataframe中。为了降低内存占用，也为了提高计算速度，我写了一个julia版本的。代码如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>如题，官方已经提供了一个R的版本<a href="https://github.com/VanLoo-lab/ascat/blob/master/LogRcorrection/createGCcontentFile.R" title="createGCcontentFile.R">createGCcontentFile.R</a> ，但是根据代码就能看出这个版本非常占内存了，首先要把基因组整个序列都load入内存中去，每次计算出的矫正数据也是储存dataframe中。为了降低内存占用，也为了提高计算速度，我写了一个julia版本的。代码如下：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[用julia语言计算测序数据的Insert Size?]]></title>
+        <id>https://xiaohanys.me/KSdL4YzcT/</id>
+        <link href="https://xiaohanys.me/KSdL4YzcT/">
+        </link>
+        <updated>2023-02-15T07:06:21.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="julia读取bam的库">Julia读取BAM的库</h3>
+<p>想要计算<code>Insert size</code>，需要提供一个基因组比对后的文件，<code>sam</code>也好，<code>bam</code>也罢。那么，使用julia语言计算该值的第一步便是了解如何读取和解析<code>BAM</code>文件格式。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="julia读取bam的库">Julia读取BAM的库</h3>
+<p>想要计算<code>Insert size</code>，需要提供一个基因组比对后的文件，<code>sam</code>也好，<code>bam</code>也罢。那么，使用julia语言计算该值的第一步便是了解如何读取和解析<code>BAM</code>文件格式。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用R语言实现bedtools求交集的功能？]]></title>
+        <id>https://xiaohanys.me/4HeEYJGNT/</id>
+        <link href="https://xiaohanys.me/4HeEYJGNT/">
+        </link>
+        <updated>2023-02-15T07:04:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>Bedtools作为基因组研究的 “ 瑞士军刀 ”， 功能强大且易于操作，是生信行业不可多得的好软件。通常对bed区间的注释，我们使用其中“ 求交集 ”的功能（bedtools intersect) ，但是有一个很不方便的地方，我们通常要生成对应的bed文件，再注释完成后还需要用R语言等读入才能继续分析，所以整合度不是很好，本文希望提供R语言的思路来解决该问题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Bedtools作为基因组研究的 “ 瑞士军刀 ”， 功能强大且易于操作，是生信行业不可多得的好软件。通常对bed区间的注释，我们使用其中“ 求交集 ”的功能（bedtools intersect) ，但是有一个很不方便的地方，我们通常要生成对应的bed文件，再注释完成后还需要用R语言等读入才能继续分析，所以整合度不是很好，本文希望提供R语言的思路来解决该问题。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[再说转录组数据标准化（TPM，RPKM，FPKM）]]></title>
+        <id>https://xiaohanys.me/-RQyqR62t/</id>
+        <link href="https://xiaohanys.me/-RQyqR62t/">
+        </link>
+        <updated>2021-05-08T03:18:19.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[在搭载Apple Silicon (M1)芯片的电脑上安装原生支持的R和python]]></title>
+        <id>https://xiaohanys.me/M-aJeKNnQ/</id>
+        <link href="https://xiaohanys.me/M-aJeKNnQ/">
+        </link>
+        <updated>2021-05-08T03:17:44.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[单细胞数据如何绘制stacked violin？]]></title>
+        <id>https://xiaohanys.me/FOMEGOsob/</id>
+        <link href="https://xiaohanys.me/FOMEGOsob/">
+        </link>
+        <updated>2021-05-08T03:15:32.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[julia数据分析之DataFrames初探]]></title>
+        <id>https://xiaohanys.me/lTcV6Chhp/</id>
+        <link href="https://xiaohanys.me/lTcV6Chhp/">
+        </link>
+        <updated>2021-05-08T03:14:51.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python, perl 和julia的性能对比]]></title>
+        <id>https://xiaohanys.me/_-5RGrBD-/</id>
+        <link href="https://xiaohanys.me/_-5RGrBD-/">
+        </link>
+        <updated>2021-05-08T03:13:48.000Z</updated>
+    </entry>
+</feed>
