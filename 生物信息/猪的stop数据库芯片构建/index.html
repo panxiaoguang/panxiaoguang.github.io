@@ -43,13 +43,13 @@
   <!-- front-matter head_begin begin -->
   <!-- front-matter head_begin end -->
   <link rel="preload" href="/css/style.css" as="style">
-  <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/LXGWWenKaiGBScreen.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/LXGWWenKaiMonoGBScreen.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>猪的stop数据库芯片构建 - XiaoHanys</title>
-  <meta name="keywords" content="生物信息,CRISPR,Python,生物信息知识库,文档库,心情垃圾桶,笔记本,Bioinformatics,Notebook">
+  <meta name="keywords" content="生物信息,Python,CRISPR,生物信息知识库,文档库,心情垃圾桶,笔记本,Bioinformatics,Notebook">
   <meta desc name="description" content="项目目的
 利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-STOP的gRNA效率数据库，供做base-editing相关研究的科研人员使用。
  - XiaoGuang - XiaoHanys">
@@ -65,8 +65,8 @@
 <meta property="article:modified_time" content="2024-09-20T07:09:12.081Z">
 <meta property="article:author" content="XiaoGuang">
 <meta property="article:tag" content="生物信息">
-<meta property="article:tag" content="CRISPR">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CRISPR">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -126,7 +126,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "LXGW WenKai Mono GB Screen", "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -537,7 +537,7 @@ button {
   margin-top: 32px;
 }
 .cover-wrapper .cover-body .title {
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
   font-size: 3.125rem;
   line-height: 1.2;
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -1004,15 +1004,15 @@ button {
   }
 }
 @font-face {
-  font-family: 'UbuntuMono';
-  src: url("https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
+  font-family: 'LXGW WenKai Mono GB Screen';
+  src: url("https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/LXGWWenKaiMonoGBScreen.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
 }
 @font-face {
-  font-family: 'Varela Round';
-  src: url("https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/VarelaRound/VarelaRound-Regular.ttf");
+  font-family: 'LXGW WenKai GB Screen';
+  src: url("https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/LXGWWenKaiGBScreen.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
@@ -1135,7 +1135,7 @@ button {
   line-height: 64px;
   padding: 0 24px;
   font-size: 1.25rem;
-  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
 }
 .l_header #wrapper .nav-main .title img {
   height: 64px;
@@ -1146,7 +1146,7 @@ button {
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: "LXGW WenKai Mono GB Screen", "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1927,7 +1927,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1726819244577),
+    lastupdate: new Date(1727060009663),
     sidebar: {
       for_page: ["blogger","category","tagcloud"],
       for_post: ["toc"],
@@ -2473,6 +2473,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
           
           
+            
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>黑夜模式
+                </a>
+              <li>
+            
+          
+          
 				</ul>
 			</div>
       
@@ -2574,6 +2584,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                 </a>
                 
               </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>黑夜模式
+                </a>
+              <li>
             
           
             
@@ -2853,8 +2873,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>生物信息</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CRISPR/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>CRISPR</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Python</p></a></div>
-  <span hidden itemprop="keywords">生物信息 CRISPR Python</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>生物信息</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Python</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CRISPR/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>CRISPR</p></a></div>
+  <span hidden itemprop="keywords">生物信息 Python CRISPR</span>
 
 
         
@@ -4031,7 +4051,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/生物信息/","name":"生物信息"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/生物信息/猪的stop数据库芯片构建/","name":"猪的stop数据库芯片构建"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","文档库","心情垃圾桶","笔记本","Bioinformatics","Notebook"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"猪的stop数据库芯片构建","description":"项目目的\n利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-STOP的gRNA效率数据库，供做base-editing相关研究的科研人员使用。\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/%E7%8C%AA%E7%9A%84stop%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8A%AF%E7%89%87%E6%9E%84%E5%BB%BA/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/%E7%8C%AA%E7%9A%84stop%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8A%AF%E7%89%87%E6%9E%84%E5%BB%BA/","wordCount":159,"datePublished":"2020-05-13T06:25:13.000Z","dateModified":"2024-09-20T07:09:12.081Z","articleSection":"生物信息","keywords":"生物信息,CRISPR,Python","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/生物信息/","name":"生物信息"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/生物信息/猪的stop数据库芯片构建/","name":"猪的stop数据库芯片构建"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","文档库","心情垃圾桶","笔记本","Bioinformatics","Notebook"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"猪的stop数据库芯片构建","description":"项目目的\n利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-STOP的gRNA效率数据库，供做base-editing相关研究的科研人员使用。\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/%E7%8C%AA%E7%9A%84stop%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8A%AF%E7%89%87%E6%9E%84%E5%BB%BA/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/%E7%8C%AA%E7%9A%84stop%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8A%AF%E7%89%87%E6%9E%84%E5%BB%BA/","wordCount":159,"datePublished":"2020-05-13T06:25:13.000Z","dateModified":"2024-09-20T07:09:12.081Z","articleSection":"生物信息","keywords":"生物信息,Python,CRISPR","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
