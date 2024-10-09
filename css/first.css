@@ -932,14 +932,14 @@ button {
 }
 @font-face {
   font-family: 'LXGW WenKai Mono GB Screen';
-  src: url("https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/LXGWWenKaiMonoGBScreen.ttf");
+  src: url("");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
 }
 @font-face {
   font-family: 'LXGW WenKai GB Screen';
-  src: url("https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/LXGWWenKaiGBScreen.ttf");
+  src: url("");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
