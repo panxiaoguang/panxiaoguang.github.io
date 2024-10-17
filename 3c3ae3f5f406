@@ -34,7 +34,7 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>基因沉默效率计算方法 - XiaoHanys</title>
-  <meta name="keywords" content="Python,CRISPR,gRNA,生物信息知识库,文档库,心情垃圾桶,笔记本,Bioinformatics,Notebook">
+  <meta name="keywords" content="CRISPR,gRNA,Python,生物信息知识库,文档库,心情垃圾桶,笔记本,Bioinformatics,Notebook">
   <meta desc name="description" content="前言Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物 - XiaoGuang - XiaoHanys">
   
 <meta property="og:type" content="article">
@@ -47,9 +47,9 @@
 <meta property="article:published_time" content="2020-02-28T08:20:39.000Z">
 <meta property="article:modified_time" content="2024-09-20T07:07:29.822Z">
 <meta property="article:author" content="XiaoGuang">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="CRISPR">
 <meta property="article:tag" content="gRNA">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1910,7 +1910,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1728452813603),
+    lastupdate: new Date(1729126159772),
     sidebar: {
       for_page: ["blogger","category","tagcloud"],
       for_post: ["toc"],
@@ -2836,8 +2836,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Python</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CRISPR/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>CRISPR</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/gRNA/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>gRNA</p></a></div>
-  <span hidden itemprop="keywords">Python CRISPR gRNA</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CRISPR/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>CRISPR</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/gRNA/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>gRNA</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Python</p></a></div>
+  <span hidden itemprop="keywords">CRISPR gRNA Python</span>
 
 
         
@@ -4006,7 +4006,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/生物信息/","name":"生物信息"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/3c3ae3f5f406","name":"基因沉默效率计算方法"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","文档库","心情垃圾桶","笔记本","Bioinformatics","Notebook"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"基因沉默效率计算方法","description":"前言Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/3c3ae3f5f406"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/3c3ae3f5f406","wordCount":97,"datePublished":"2020-02-28T08:20:39.000Z","dateModified":"2024-09-20T07:07:29.822Z","articleSection":"生物信息","keywords":"Python,CRISPR,gRNA","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/生物信息/","name":"生物信息"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/3c3ae3f5f406","name":"基因沉默效率计算方法"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","文档库","心情垃圾桶","笔记本","Bioinformatics","Notebook"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"基因沉默效率计算方法","description":"前言Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/3c3ae3f5f406"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/3c3ae3f5f406","wordCount":97,"datePublished":"2020-02-28T08:20:39.000Z","dateModified":"2024-09-20T07:07:29.822Z","articleSection":"生物信息","keywords":"CRISPR,gRNA,Python","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

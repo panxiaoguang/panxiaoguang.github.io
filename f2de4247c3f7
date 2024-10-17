@@ -34,7 +34,7 @@
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>python, perl 和julia的性能对比 - XiaoHanys</title>
-  <meta name="keywords" content="r语言,julia,python,生物信息知识库,文档库,心情垃圾桶,笔记本,Bioinformatics,Notebook">
+  <meta name="keywords" content="julia,r语言,python,生物信息知识库,文档库,心情垃圾桶,笔记本,Bioinformatics,Notebook">
   <meta desc name="description" content="在生物信息学中经常用到的脚本语言主要是python和perl，他们被用来处理文本，大量统计，流程控制等等，其自身也是各有优势。比如说perl天生就为了处理文本而生，但是python确是有名的胶水语言，特别在整合C代码时显示出巨大的优势，其语法简洁易懂，易于维护更让其成为仅次于C和JAVA的第三大语言，但其糟糕的性... - XiaoGuang - XiaoHanys">
   
 <meta property="og:type" content="article">
@@ -45,10 +45,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-20T04:44:08.000Z">
-<meta property="article:modified_time" content="2024-09-20T05:21:26.095Z">
+<meta property="article:modified_time" content="2024-10-16T09:08:42.596Z">
 <meta property="article:author" content="XiaoGuang">
-<meta property="article:tag" content="r语言">
 <meta property="article:tag" content="julia">
+<meta property="article:tag" content="r语言">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png">
@@ -1910,7 +1910,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1728452813603),
+    lastupdate: new Date(1729126159772),
     sidebar: {
       for_page: ["blogger","category","tagcloud"],
       for_post: ["toc"],
@@ -2855,10 +2855,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-09-20T13:21:26+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-10-16T17:08:42+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年9月20日</p>
+    <p>更新于：2024年10月16日</p>
   </a>
 </div>
 
@@ -2867,8 +2867,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/r%E8%AF%AD%E8%A8%80/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>r语言</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/julia/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>julia</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/python/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>python</p></a></div>
-  <span hidden itemprop="keywords">r语言 julia python</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/julia/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>julia</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/r%E8%AF%AD%E8%A8%80/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>r语言</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/python/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>python</p></a></div>
+  <span hidden itemprop="keywords">julia r语言 python</span>
 
 
         
@@ -4042,7 +4042,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/编程语言/","name":"编程语言"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/f2de4247c3f7","name":"python, perl 和julia的性能对比"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","文档库","心情垃圾桶","笔记本","Bioinformatics","Notebook"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"python, perl 和julia的性能对比","description":"在生物信息学中经常用到的脚本语言主要是python和perl，他们被用来处理文本，大量统计，流程控制等等，其自身也是各有优势。比如说perl天生就为了处理文本而生，但是python确是有名的胶水语言，特别在整合C代码时显示出巨大的优势，其语法简洁易懂，易于维护更让其成为仅次于C和JAVA的第三大语言，但其糟糕的性能在处理大量循环时会让人忍不住抓狂。因此，Julia语言应运而生，其控制了python中没必要的动态性，加之使用JIT技术让其能够保有高性能的同时具备简洁的语法。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/f2de4247c3f7"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/f2de4247c3f7","wordCount":238,"datePublished":"2024-09-20T04:44:08.000Z","dateModified":"2024-09-20T05:21:26.095Z","articleSection":"编程语言","keywords":"r语言,julia,python","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/编程语言/","name":"编程语言"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/f2de4247c3f7","name":"python, perl 和julia的性能对比"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","文档库","心情垃圾桶","笔记本","Bioinformatics","Notebook"],"description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 文档库, 心情垃圾桶, 笔记本, Bioinformatics, Notebook"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"python, perl 和julia的性能对比","description":"在生物信息学中经常用到的脚本语言主要是python和perl，他们被用来处理文本，大量统计，流程控制等等，其自身也是各有优势。比如说perl天生就为了处理文本而生，但是python确是有名的胶水语言，特别在整合C代码时显示出巨大的优势，其语法简洁易懂，易于维护更让其成为仅次于C和JAVA的第三大语言，但其糟糕的性能在处理大量循环时会让人忍不住抓狂。因此，Julia语言应运而生，其控制了python中没必要的动态性，加之使用JIT技术让其能够保有高性能的同时具备简洁的语法。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/f2de4247c3f7"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/f2de4247c3f7","wordCount":238,"datePublished":"2024-09-20T04:44:08.000Z","dateModified":"2024-10-16T09:08:42.596Z","articleSection":"编程语言","keywords":"julia,r语言,python","image":{"@type":"ImageObject","url":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
