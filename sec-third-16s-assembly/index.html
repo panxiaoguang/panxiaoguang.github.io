@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="https://xiaohanys.top/sec-third-16s-assembly/"/>
+  <link rel="canonical" href="https://blog.xiaohanys.xyz/sec-third-16s-assembly/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -22,7 +22,6 @@
   <meta content="telephone=no" name="format-detection">
   <!-- import head_begin begin -->
       <link rel="shortcut icon" href="https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/bitbug_favicon.ico">
-      <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-web@1.330.1/style.min.css">
   <!-- import head_begin end -->
   <!-- Custom Files headBegin begin-->
   
@@ -30,7 +29,9 @@
   <!-- front-matter head_begin begin -->
   <!-- front-matter head_begin end -->
   <link rel="preload" href="/css/style.css" as="style">
-  
+  <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
   <!-- feed -->
   <!-- 页面元数据 -->
   <title>使用二代和三代WGS数据进行基因组组装 - XiaoHanys</title>
@@ -39,7 +40,7 @@
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用二代和三代WGS数据进行基因组组装">
-<meta property="og:url" content="https://xiaohanys.top/sec-third-16s-assembly/index.html">
+<meta property="og:url" content="https://blog.xiaohanys.xyz/sec-third-16s-assembly/index.html">
 <meta property="og:site_name" content="XiaoHanys">
 <meta property="og:description" content="本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。">
 <meta property="og:locale" content="zh_CN">
@@ -107,7 +108,7 @@ html {
   color: var(--color-text);
   width: 100%;
   height: 100%;
-  font-family: "LXGW WenKai Mono GB Screen", "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: BlinkMacSystemFont, "Helvetica Neue", Helvetica, Segoe UI, Arial, Roboto, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
   font-size: 16px;
 }
 html >::-webkit-scrollbar {
@@ -518,7 +519,7 @@ button {
   margin-top: 32px;
 }
 .cover-wrapper .cover-body .title {
-  font-family: "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: BlinkMacSystemFont, "Helvetica Neue", Helvetica, Segoe UI, Arial, Roboto, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
   font-size: 3.125rem;
   line-height: 1.2;
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -985,15 +986,15 @@ button {
   }
 }
 @font-face {
-  font-family: 'LXGW WenKai Mono GB Screen';
-  src: url("");
+  font-family: 'UbuntuMono';
+  src: url("https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
 }
 @font-face {
-  font-family: 'LXGW WenKai GB Screen';
-  src: url("");
+  font-family: 'Varela Round';
+  src: url("https://unpkg.com/volantis-static@0.0.1654736714924/media/fonts/VarelaRound/VarelaRound-Regular.ttf");
   font-weight: 'normal';
   font-style: 'normal';
   font-display: swap;
@@ -1116,7 +1117,7 @@ button {
   line-height: 64px;
   padding: 0 24px;
   font-size: 1.25rem;
-  font-family: "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-family: BlinkMacSystemFont, "Helvetica Neue", Helvetica, Segoe UI, Arial, Roboto, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
 }
 .l_header #wrapper .nav-main .title img {
   height: 64px;
@@ -1127,7 +1128,7 @@ button {
 }
 .l_header .nav-sub .title {
   font-weight: bold;
-  font-family: "LXGW WenKai Mono GB Screen", "LXGW WenKai GB Screen", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-family: BlinkMacSystemFont, "Helvetica Neue", Helvetica, Segoe UI, Arial, Roboto, "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
   line-height: 1.2;
   max-height: 64px;
   white-space: normal;
@@ -1908,7 +1909,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1743580145019),
+    lastupdate: new Date(1745997821628),
     sidebar: {
       for_page: ["blogger","category","tagcloud","webinfo"],
       for_post: ["toc"],
@@ -1928,8 +1929,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       fancybox: {"css":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.css","js":"https://unpkg.com/volantis-static@0.0.1654736714924/libs/@fancyapps/ui/dist/fancybox.umd.js"},
       
       
-      
-      rightmenus: {"enable":true,"order":["plugins.navigation","hr","plugins.inputBox","plugins.seletctText","plugins.elementCheck","plugins.elementImage","hr","menus.darkMode","plugins.articlePage","music"],"options":{"iconPrefix":"fa-solid","articleShowLink":false,"musicAlwaysShow":false},"plugins":{"navigation":[{"id":"left","name":"转到上一页","icon":"fa-solid fa-arrow-left","event":"history.back()","group":"navigation"},{"id":"right","name":"转到下一页","icon":"fa-solid fa-arrow-right","event":"history.forward()","group":"navigation"},{"id":"redo","name":"刷新当前页面","icon":"fa-solid fa-redo","event":"window.location.reload()","group":"navigation"},{"id":"up","name":"回到顶部","icon":"fa-solid fa-arrow-up","event":"VolantisApp.scrolltoElement(volantis.dom.bodyAnchor)","group":"navigation"}],"inputBox":[{"id":"copyPaste","name":"粘贴文本","icon":"fa-solid fa-paste","event":"copyPaste","group":"inputBox"}],"seletctText":[{"id":"copyText","name":"复制文本","icon":"fa-solid fa-copy","event":"copyText","group":"seletctText"},{"id":"searchWord","name":"站内搜索","icon":"fa-solid fa-search","event":"OpenSearch(__text__)","group":"seletctText"},{"id":"bingSearch","name":"必应搜索","icon":"fa-solid fa-search","event":"window.open(`https://cn.bing.com/search?q=${__text__}`)","group":"seletctText"}],"elementCheck":[{"id":"openTab","name":"新标签页打开","icon":"fa-solid fa-external-link-square-alt","event":"window.open(__link__)","group":"elementCheck"},{"id":"copyLink","name":"复制链接地址","icon":"fa-solid fa-link","event":"copyLink","group":"elementCheck"}],"elementImage":[{"id":"copyImg","name":"复制图片","icon":"fa-solid fa-image","event":"copyImg","group":"elementImage"},{"id":"googleImg","name":"谷歌识图","icon":"fa-solid fa-images","event":"window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)","group":"elementImage"}],"articlePage":[{"id":"printMode","name":"打印页面","icon":"fa-solid fa-print","event":"printMode","group":"articlePage"},{"id":"readMode","name":"阅读模式","icon":"fa-solid fa-book-open","event":"readMode","group":"articlePage"}]},"menus":{"link":[{"id":"help","name":"常见问题","icon":"fa-solid fa-question","link":"https://volantis.js.org/faqs/","group":"link"},{"id":"examples","name":"示例博客","icon":"fa-solid fa-rss","link":"https://volantis.js.org/examples/","group":"link"},{"id":"contributors","name":"加入社区","icon":"fa-solid fa-fan","link":"https://volantis.js.org/contributors/","group":"link"},"hr",{"id":"source_docs","name":"本站源码","icon":"fa-solid fa-code-branch","link":"https://github.com/volantis-x/volantis-docs/","group":"link"},{"id":"source_theme","name":"主题源码","icon":"fa-solid fa-code-branch","link":"https://github.com/volantis-x/hexo-theme-volantis/","group":"link"}],"darkMode":[{"id":"darkMode","name":"暗黑模式","icon":"fa-solid fa-moon","event":"volantis.dark.toggle()","group":"darkMode"}]}}
       
     }
   }
@@ -2709,7 +2708,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 <div id="l_main" class=''>
   <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="https://xiaohanys.top/sec-third-16s-assembly/">
+  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/sec-third-16s-assembly/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="XiaoHanys">
   </span>
@@ -3012,7 +3011,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                 
               
                 
-                  <p>本文永久链接是：<a href="https://xiaohanys.top/sec-third-16s-assembly/">https://xiaohanys.top/sec-third-16s-assembly/</a></p>
+                  <p>本文永久链接是：<a href="https://blog.xiaohanys.xyz/sec-third-16s-assembly/">https://blog.xiaohanys.xyz/sec-third-16s-assembly/</a></p>
                 
               
             </blockquote>
@@ -3057,7 +3056,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://xiaohanys.top/sec-third-16s-assembly/&title=使用二代和三代WGS数据进行基因组组装 - XiaoHanys&summary=本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.xiaohanys.xyz/sec-third-16s-assembly/&title=使用二代和三代WGS数据进行基因组组装 - XiaoHanys&summary=本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。"
           
           >
           
@@ -3069,7 +3068,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://xiaohanys.top/sec-third-16s-assembly/&title=使用二代和三代WGS数据进行基因组组装 - XiaoHanys&summary=本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.xiaohanys.xyz/sec-third-16s-assembly/&title=使用二代和三代WGS数据进行基因组组装 - XiaoHanys&summary=本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。"
           
           >
           
@@ -3081,7 +3080,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://xiaohanys.top/sec-third-16s-assembly/&title=使用二代和三代WGS数据进行基因组组装 - XiaoHanys&summary=本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.xiaohanys.xyz/sec-third-16s-assembly/&title=使用二代和三代WGS数据进行基因组组装 - XiaoHanys&summary=本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。"
           
           >
           
@@ -3095,7 +3094,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class='hoverbox'>
           <a class='share'><img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/wechat.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/wechat.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></a>
           <div class='target'>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAAAAACi5bZQAAADBElEQVR42u3aQXLjMAwEQP3/09kHJC4RA8QrOM2bElui2pcpDK8v68d1IQADBgwYMGDWwFzh+nbDw8+fXr96zqvvTb0PGDBgwIABA2YfzHEAutlQ9T7d599dl+8HBgwYMGDAgFkLMxXQUpDT4JYGxtvPgwEDBgwYMGD+HEwa2KrBcXp/YMCAAQMGDBgw3cBVLsbAgAEDBgwYMGCGCq/qgKla2J3u8zFNJBgwYMCAAQPmbTDdoPW06/h9wIABAwYMGDBrYLrrt4NddTDVfh8wYMCAAQMGzBqYNCClL5AeEKoWaPH+wYABAwYMGDBrYKYGRNOFXBUyBb0dVIEBAwYMGDBg1sB0g1NadFUDY3wwKA14YMCAAQMGDJjHwqQb6Qa40/tWf7hqsAMDBgwYMGDA7IM5HUilG+sWa13o8g8NBgwYMGDAgFkLkw540sFX9XvVfceFGxgwYMCAAQPm8TBTg6P0xapFXPV5ZUAwYMCAAQMGzDqY+KDN0MAqDXpVoPbBITBgwIABAwbM42CmCq908NUdZHWDJhgwYMCAAQNmH8x1uNJg1z2YVH1O9f9gwIABAwYMmL0w1YNBKWR1YFQdcKU/VLuJBAMGDBgwYMD8d5i0GOsWddUAmA7OjoMrGDBgwIABA2YdzPRBnqmg1j2oVB54gQEDBgwYMGDWwKQFWzXYpcXZu2DBgAEDBgwYMHthqg9OX+xdRVv8OTBgwIABAwbMx8GkB4qnC72pQHo8qAIDBgwYMGDArIM5La7SIBUXYlMHhNKABwYMGDBgwIB5DEx3dQdVV7jGCra7E1VgwIABAwYMmMfCdDfWBaoGxypUGRIMGDBgwIABsw6mG+iqLzwV7FJQMGDAgAEDBsznwXQDVDXwncJNDbriJhIMGDBgwIAB8/Ew1WDXHUilz3v5dzBgwIABAwbMn4XpDrSqBVkX4jHJFwwYMGDAgAHz9sKtOnA63eBvBTkwYMCAAQMGzOfBjBdX1QHRMNgtwGnhBgYMGDBgwIB5LIwFBgwYMGDAgFm2/gG2y+MssJAlNQAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAAAAACi5bZQAAADAUlEQVR42u3aS1LDQAwFwNz/0rAHUqOfiZX07AyOPWpvVE/z+LL+XA8EYMCAAQMGzBqYR3H9euCTv5/ec7o/+/9uPWDAgAEDBgyYfTDhBujng4KFdjc+9YGO9YABAwYMGDBg1sIcG6DghqqA1fdN1QMGDBgwYMCA+TyYagM3FVCBAQMGDBgwYMCkH9QcpEUbwSosGDBgwIABA+ZzYLIDqv86GJQFfPkkEgwYMGDAgAHzbzDVgOmu1+V6wIABAwYMGDBrYK5a3Q1nDxyN7RsMGDBgwIABswam21CdYLorGpBVgzUwYMCAAQMGzF6YaiOVHbxF788W3h34HYMqMGDAgAEDBsxtYbrBUbawqYNKVZjxSSQYMGDAgAED5uUw5WCnuPFww1X8UJcneGDAgAEDBgyYl8N0N54NuqIHg7rBU3lQCAYMGDBgwIBZBzPVmEULjTaYV0E//T0YMGDAgAEDZg1Md2BWHWx1A68sUPgDggEDBgwYMGDWwlQLzxaUfW81sEoDgwEDBgwYMGDWwGRXFmQKottIjg/cwIABAwYMGDC3gYkGOdnfTQVh3YFf9AODAQMGDBgwYPbBZIOlqcYuO1DrDu7CAzcwYMCAAQMGzDqYqYFbFDYbXHUHeeWBGxgwYMCAAQPmdjBTB3KqAVV0ENf9YOHnggEDBgwYMGDWwHRfFN3wVLDUBQYDBgwYMGDAvA9MNujpHiiqBmNTAzUwYMCAAQMGzPvAVDc0df3qQOs4iQQDBgwYMGDA3Bam22BNB03TcGDAgAEDBgyY94XprmzjNQU/feAJDBgwYMCAAbMP5lFc0YKqDV4VphuQgQEDBgwYMGD2wWQbuu6Bne5ArxqsHesDAwYMGDBgwKyFiQZP0xu+euAW3jcYMGDAgAED5mNgsoFVuwELDtrK+wUDBgwYMGDAfAxM9PfTDWMV5ngNBgwYMGDAgFkL0x24dYFP93efWw6qwIABAwYMGDC3hZkaXF39nC7UEQwMGDBgwIABswbGetLgWWDAgAEDBsxd1zexwyIKnxrRvwAAAABJRU5ErkJggg==">
           </div>
         </div>
       
@@ -3367,267 +3366,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="rightmenu-wrapper">
-  <ul class="list-v rightmenu" id="rightmenu-content">
-    
-  <li class='navigation menuNavigation-Content'>
-
-
-    <a class="nav icon-only fix-cursor-default" onclick="history.back()"><i class="fa-solid fa-arrow-left fa-fw"></i></a>
-
-
-
-    <a class="nav icon-only fix-cursor-default" onclick="history.forward()"><i class="fa-solid fa-arrow-right fa-fw"></i></a>
-
-
-
-    <a class="nav icon-only fix-cursor-default" onclick="window.location.reload()"><i class="fa-solid fa-redo fa-fw"></i></a>
-
-
-
-    <a class="nav icon-only fix-cursor-default" onclick="VolantisApp.scrolltoElement(volantis.dom.bodyAnchor)"><i class="fa-solid fa-arrow-up fa-fw"></i></a>
-
-
-  </li>
-
-
-    <hr class="menuLoad-Content" >
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="copyPaste" data-event="copyPaste" data-group="inputBox">
-      <i class="fa-solid fa-paste fa-fw"></i>
-      粘贴文本
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="copyText" data-event="copyText" data-group="seletctText">
-      <i class="fa-solid fa-copy fa-fw"></i>
-      复制文本
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="searchWord" data-event="OpenSearch(__text__)" data-group="seletctText">
-      <i class="fa-solid fa-search fa-fw"></i>
-      站内搜索
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="bingSearch" data-event="window.open(`https://cn.bing.com/search?q=${__text__}`)" data-group="seletctText">
-      <i class="fa-solid fa-search fa-fw"></i>
-      必应搜索
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="openTab" data-event="window.open(__link__)" data-group="elementCheck">
-      <i class="fa-solid fa-external-link-square-alt fa-fw"></i>
-      新标签页打开
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="copyLink" data-event="copyLink" data-group="elementCheck">
-      <i class="fa-solid fa-link fa-fw"></i>
-      复制链接地址
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="copyImg" data-event="copyImg" data-group="elementImage">
-      <i class="fa-solid fa-image fa-fw"></i>
-      复制图片
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="googleImg" data-event="window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)" data-group="elementImage">
-      <i class="fa-solid fa-images fa-fw"></i>
-      谷歌识图
-    </span>
-  </li>
-
-
-
-    <hr class="menuLoad-Content" >
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="darkMode" data-event="volantis.dark.toggle()" data-group="darkMode">
-      <i class="fa-solid fa-moon fa-fw"></i>
-      暗黑模式
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="printMode" data-event="printMode" data-group="articlePage">
-      <i class="fa-solid fa-print fa-fw"></i>
-      打印页面
-    </span>
-  </li>
-
-
-
-  <li class="menuLoad-Content">
-    <span class="vlts-menu fix-cursor-default event" id="readMode" data-event="readMode" data-group="articlePage">
-      <i class="fa-solid fa-book-open fa-fw"></i>
-      阅读模式
-    </span>
-  </li>
-
-
-<div id="menuMusic">
-  <li class='music name menuOption-Content'>
-    <p class='nav music-title fix-cursor-default'></p>
-  </li>
-  <li class='music ctrl'>
-    <a class='nav icon-only backward fix-cursor-default' href="/" onclick="return false;" title="backward">
-      <i class='fa-solid fa-step-backward fa-fw'></i>
-    </a>
-    <a class='nav icon-only toggle fix-cursor-default' href="/" onclick="return false;" title="toggle">
-      <i class='fa-solid fa-play fa-fw'></i>
-    </a>
-    <a class='nav icon-only forward fix-cursor-default' href="/" onclick="return false;" title="forward">
-      <i class='fa-solid fa-step-forward fa-fw'></i>
-    </a>
-  </li>
-  <li class='music volume'>
-    <div class='nav volume'>
-      <div class="aplayer-volume-bar-wrap">
-        <div class="aplayer-volume-bar fix-cursor-pointer">
-          <div class="aplayer-volume"></div>
-          <i class='left fa-solid fa-volume-off fa-fw'></i>
-          <i class='right fa-solid fa-volume-up fa-fw'></i>
-        </div>
-      </div>
-    </div>
-  </li>
-</div>
-
-  </ul>
-</div>
-<script src="/js/plugins/rightMenus.js"></script>
-<script>
-  const RightMenusFunction = {};
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  //RightMenusFunction['copyPaste'] = (fun) => {fun()}
-
-
-
-
-
-  //RightMenusFunction['copyText'] = (fun) => {fun()}
-
-
-
-
-
-  RightMenusFunction['searchWord'] = (__text__) => {OpenSearch(__text__)}
-
-
-
-
-
-  RightMenusFunction['bingSearch'] = (__text__) => {window.open(`https://cn.bing.com/search?q=${__text__}`)}
-
-
-
-
-
-  RightMenusFunction['openTab'] = (__link__) => {window.open(__link__)}
-
-
-
-
-
-  //RightMenusFunction['copyLink'] = (fun) => {fun()}
-
-
-
-
-
-  //RightMenusFunction['copyImg'] = (fun) => {fun()}
-
-
-
-
-
-  RightMenusFunction['googleImg'] = (__link__) => {window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)}
-
-
-
-
-
-
-
-  RightMenusFunction['darkMode'] = () => {volantis.dark.toggle()}
-
-
-
-
-
-  //RightMenusFunction['printMode'] = (fun) => {fun()}
-
-
-
-
-
-  //RightMenusFunction['readMode'] = (fun) => {fun()}
-
-
-
-
-
-</script>
 
 
 
@@ -4217,7 +3955,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://xiaohanys.top/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://xiaohanys.top/categories/生物信息/","name":"生物信息"}},{"@type":"ListItem","position":3,"item":{"@id":"https://xiaohanys.top/sec-third-16s-assembly/","name":"使用二代和三代WGS数据进行基因组组装"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://xiaohanys.top/","keywords":["生物信息知识库","编程","前端","Python","网站搭建","人工智能"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://xiaohanys.top/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://xiaohanys.top?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"使用二代和三代WGS数据进行基因组组装","description":"本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiaohanys.top/sec-third-16s-assembly/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://xiaohanys.top/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://xiaohanys.top/sec-third-16s-assembly/","wordCount":74,"datePublished":"2024-09-20T05:12:14.000Z","dateModified":"2024-10-18T05:32:48.022Z","articleSection":"生物信息","keywords":"生物信息","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.xiaohanys.xyz/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.xiaohanys.xyz/categories/生物信息/","name":"生物信息"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.xiaohanys.xyz/sec-third-16s-assembly/","name":"使用二代和三代WGS数据进行基因组组装"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","keywords":["生物信息知识库","编程","前端","Python","网站搭建","人工智能"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.xiaohanys.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"使用二代和三代WGS数据进行基因组组装","description":"本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.xiaohanys.xyz/sec-third-16s-assembly/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.xiaohanys.xyz/sec-third-16s-assembly/","wordCount":74,"datePublished":"2024-09-20T05:12:14.000Z","dateModified":"2024-10-18T05:32:48.022Z","articleSection":"生物信息","keywords":"生物信息","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
