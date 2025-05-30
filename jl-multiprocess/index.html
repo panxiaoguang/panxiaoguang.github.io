@@ -39,17 +39,17 @@
   <!-- 页面元数据 -->
   <title>julia多线程 - XiaoHanys</title>
   <meta name="keywords" content="julia,生物信息知识库,编程,前端,Python,网站搭建,人工智能">
-  <meta desc name="description" content="julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 - XiaoGuang - XiaoHanys">
+  <meta desc name="description" content="julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数：... - XiaoGuang - XiaoHanys">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="julia多线程">
 <meta property="og:url" content="https://blog.xiaohanys.xyz/jl-multiprocess/index.html">
 <meta property="og:site_name" content="XiaoHanys">
-<meta property="og:description" content="julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率">
+<meta property="og:description" content="julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数： Threads.nthreads() 10  如何多线程？ julia提供了一个简单">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2024-09-20T04:56:28.000Z">
-<meta property="article:modified_time" content="2024-10-18T05:33:53.124Z">
+<meta property="article:modified_time" content="2025-05-30T03:33:49.749Z">
 <meta property="article:author" content="XiaoGuang">
 <meta property="article:tag" content="julia">
 <meta name="twitter:card" content="summary">
@@ -2293,7 +2293,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1748569004454),
+    lastupdate: new Date(1748582301078),
     cdn: {
       izitoast_css: 'https://unpkg.com/izitoast@1.4.0/dist/css/iziToast.min.css',
       izitoast_js: 'https://unpkg.com/izitoast@1.4.0/dist/js/iziToast.min.js',
@@ -2707,14 +2707,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
     <p><code>julia</code>本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率</p>
-<span id="more"></span>
-
+<!-- more -->
 
 <h3 id="多线程的启动"><a href="#多线程的启动" class="headerlink" title="多线程的启动"></a>多线程的启动</h3><p><code>julia</code>从1.5开始新添加了命令行参数<code>-t num_procs</code>，例如，你想启动一个10个线程的julia，那么就可以执行：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">julia -t 10</span><br></pre></td></tr></table></figure>
 
 <p>进入<code>REPL</code>后，可以查看当前线程数：</p>
 <figure class="highlight julia"><table><tr><td class="code"><pre><span class="line">Threads.nthreads()</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="如何多线程？"><a href="#如何多线程？" class="headerlink" title="如何多线程？"></a>如何多线程？</h3><p><code>julia</code>提供了一个简单的宏函数，来快速的包装<code>for</code>循环，使其可以将任务拆分为<code>n</code>份，每分独立执行</p>
 <figure class="highlight julia"><table><tr><td class="code"><pre><span class="line">Threads.<span class="meta">@threads</span></span><br></pre></td></tr></table></figure>
 
@@ -2724,13 +2724,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>非常简单的，可以快速将你的单线程函数转化为多线程。</p>
 <h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>举个例子：</p>
 <figure class="highlight julia"><table><tr><td class="code"><pre><span class="line">acc = <span class="built_in">Ref</span>(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@threads</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">1000</span></span><br><span class="line">    acc[] += <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
 <p>正常情况下，该流程计算的是从累加1000个1，结果应该是1000才对，但是因为多线程调度，导致acc最终的结果并非为1000，即得到了错误的计算结果。</p>
 <p>第一个解决办法是使用<strong>原子操作</strong></p>
 <figure class="highlight julia"><table><tr><td class="code"><pre><span class="line">acc = Atomic&#123;<span class="built_in">Int64</span>&#125;(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@threads</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">1000</span></span><br><span class="line">    atomic_add!(acc, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>另一种方法是在变量上添加线程锁，使其同一时间有且只有一个线程可以操作该变量</p>
 <figure class="highlight julia"><table><tr><td class="code"><pre><span class="line">acc = <span class="built_in">Ref</span>(<span class="number">0</span>)</span><br><span class="line">l = <span class="built_in">ReentrantLock</span>()</span><br><span class="line"></span><br><span class="line"><span class="meta">@threads</span> <span class="keyword">for</span> i=<span class="number">1</span>:<span class="number">1000</span></span><br><span class="line">    lock(l) <span class="keyword">do</span> </span><br><span class="line">        acc[]+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
 
 <p>当然，举例只是为了说明多线程的安全问题，该变量的累积添加了线程锁后其实和单线程操作没有任何区别，反而因为线程调度影响了性能。因此，需要综合考虑你的项目是否需要多线程。</p>
 
@@ -2774,10 +2774,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2024-10-18T13:33:53+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-05-30T11:33:49+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2024年10月18日</p>
+    <p>更新于：2025年5月30日</p>
   </a>
 </div>
 
@@ -2824,7 +2824,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.xiaohanys.xyz/jl-multiprocess/&title=julia多线程 - XiaoHanys&summary=julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率"
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.xiaohanys.xyz/jl-multiprocess/&title=julia多线程 - XiaoHanys&summary=julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数： Threads.nthreads() 10  如何多线程？ julia提供了一个简单..."
           
           >
           
@@ -2836,7 +2836,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.xiaohanys.xyz/jl-multiprocess/&title=julia多线程 - XiaoHanys&summary=julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率"
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.xiaohanys.xyz/jl-multiprocess/&title=julia多线程 - XiaoHanys&summary=julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数： Threads.nthreads() 10  如何多线程？ julia提供了一个简单..."
           
           >
           
@@ -2848,7 +2848,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.xiaohanys.xyz/jl-multiprocess/&title=julia多线程 - XiaoHanys&summary=julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率"
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.xiaohanys.xyz/jl-multiprocess/&title=julia多线程 - XiaoHanys&summary=julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数： Threads.nthreads() 10  如何多线程？ julia提供了一个简单..."
           
           >
           
@@ -3026,7 +3026,7 @@ WGS的下机数据经常出现在fastq2里。所以程序会从fastq...</p>
 
 
   <div class='content'>
-    <ul class="list entry navigation"><li><a class="widget-last" href="/16s-long-analysis/"><div class="item"><time>2025-05-29</time><span>生物信息</span></div><span>16S rRNA基因扩增子分析</span></a></li><li><a class="widget-last" href="/vercel-based-qexo/"><div class="item"><time>2025-05-29</time><span>网站搭建</span></div><span>Vercel搭建Hexo后台Qexo的方法</span></a></li><li><a class="widget-last" href="/create-ai-image-api/"><div class="item"><time>2025-05-20</time><span>网站搭建</span></div><span>免费创建Flux生图API</span></a></li><li><a class="widget-last" href="/AI-share1/"><div class="item"><time>2025-05-19</time><span>网站分享</span></div><span>打破信息差：2024好用的AI工具分享</span></a></li><li><a class="widget-last" href="/Py-shiny-AIpaint/"><div class="item"><time>2025-03-14</time><span>网站搭建</span></div><span>用Shiny 打造一个简易但功能完善的AI 绘画APP</span></a></li></ul>
+    <ul class="list entry navigation"><li><a class="widget-last" href="/vercel-based-qexo/"><div class="item"><time>2025-05-30</time><span>网站搭建</span></div><span>Vercel搭建Hexo后台Qexo的方法</span></a></li><li><a class="widget-last" href="/jl-multiprocess/"><div class="item"><time>2025-05-30</time><span>编程语言</span></div><span>julia多线程</span></a></li><li><a class="widget-last" href="/16s-long-analysis/"><div class="item"><time>2025-05-29</time><span>生物信息</span></div><span>16S rRNA基因扩增子分析</span></a></li><li><a class="widget-last" href="/create-ai-image-api/"><div class="item"><time>2025-05-20</time><span>网站搭建</span></div><span>免费创建Flux生图API</span></a></li><li><a class="widget-last" href="/AI-share1/"><div class="item"><time>2025-05-19</time><span>网站分享</span></div><span>打破信息差：2024好用的AI工具分享</span></a></li></ul>
   </div>
 </section>
 
@@ -3823,7 +3823,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.xiaohanys.xyz/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.xiaohanys.xyz/categories/编程语言/","name":"编程语言"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.xiaohanys.xyz/jl-multiprocess/","name":"julia多线程"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","keywords":["生物信息知识库","编程","前端","Python","网站搭建","人工智能"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.xiaohanys.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"julia多线程","description":"julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.xiaohanys.xyz/jl-multiprocess/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.xiaohanys.xyz/jl-multiprocess/","wordCount":55,"datePublished":"2024-09-20T04:56:28.000Z","dateModified":"2024-10-18T05:33:53.124Z","articleSection":"编程语言","keywords":"julia","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.xiaohanys.xyz/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.xiaohanys.xyz/categories/编程语言/","name":"编程语言"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.xiaohanys.xyz/jl-multiprocess/","name":"julia多线程"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","keywords":["生物信息知识库","编程","前端","Python","网站搭建","人工智能"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.xiaohanys.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"julia多线程","description":"julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数： Threads.nthreads() 10  如何多线程？ julia提供了一个简单...","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.xiaohanys.xyz/jl-multiprocess/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.xiaohanys.xyz/jl-multiprocess/","wordCount":203,"datePublished":"2024-09-20T04:56:28.000Z","dateModified":"2025-05-30T03:33:49.749Z","articleSection":"编程语言","keywords":"julia","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

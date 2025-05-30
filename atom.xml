@@ -6,7 +6,7 @@
   <link href="https://blog.xiaohanys.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.xiaohanys.xyz/"/>
-  <updated>2025-05-29T05:46:36.377Z</updated>
+  <updated>2025-05-30T05:12:32.434Z</updated>
   <id>https://blog.xiaohanys.xyz/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.xiaohanys.xyz/vercel-based-qexo/"/>
     <id>https://blog.xiaohanys.xyz/vercel-based-qexo/</id>
     <published>2025-05-29T05:46:33.521Z</published>
-    <updated>2025-05-29T05:46:36.377Z</updated>
+    <updated>2025-05-30T05:12:32.434Z</updated>
     
     
     <summary type="html">&lt;p&gt;鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。&lt;/p&gt;
@@ -293,9 +293,9 @@
     
     <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
     
-    <category term="前端" scheme="https://blog.xiaohanys.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
-    
     <category term="后端" scheme="https://blog.xiaohanys.xyz/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="前端" scheme="https://blog.xiaohanys.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -415,9 +415,9 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -525,10 +525,10 @@
     <link href="https://blog.xiaohanys.xyz/jl-multiprocess/"/>
     <id>https://blog.xiaohanys.xyz/jl-multiprocess/</id>
     <published>2024-09-20T04:56:28.000Z</published>
-    <updated>2024-10-18T05:33:53.124Z</updated>
+    <updated>2025-05-30T03:33:49.749Z</updated>
     
     
-    <summary type="html">&lt;p&gt;&lt;code&gt;julia&lt;/code&gt;本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率&lt;/p&gt;</summary>
+    <summary type="html">julia本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率 多线程的启动 julia从1.5开始新添加了命令行参数-t num_procs，例如，你想启动一个10个线程的julia，那么就可以执行： julia -t 10  进入REPL后，可以查看当前线程数： Threads.nthreads() 10  如何多线程？ julia提供了一个简单...</summary>
     
     
     
@@ -667,11 +667,11 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -690,11 +690,11 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -858,11 +858,11 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -883,11 +883,11 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -908,11 +908,11 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -933,11 +933,11 @@
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     
-    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
-    
     <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
     
     <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
     
   </entry>
   
