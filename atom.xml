@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>XiaoHanys</title>
+  
+  <subtitle>Dont&#39;t forget to be awesome!</subtitle>
+  <link href="https://blog.xiaohanys.xyz/atom.xml" rel="self"/>
+  
+  <link href="https://blog.xiaohanys.xyz/"/>
+  <updated>2025-05-29T05:46:36.377Z</updated>
+  <id>https://blog.xiaohanys.xyz/</id>
+  
+  <author>
+    <name>XiaoGuang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vercel搭建Hexo后台Qexo的方法</title>
+    <link href="https://blog.xiaohanys.xyz/vercel-based-qexo/"/>
+    <id>https://blog.xiaohanys.xyz/vercel-based-qexo/</id>
+    <published>2025-05-29T05:46:33.521Z</published>
+    <updated>2025-05-29T05:46:36.377Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。&lt;/p&gt;
+&lt;p&gt;在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（&lt;strong&gt;是 Hexo源码，不是生成后的静态博客源码&lt;/strong&gt;）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 &lt;strong&gt;Qexo服务可以交互的编辑和提交内容到 Github仓库&lt;/strong&gt;，这样我们在云端编辑的博文&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用Shiny 打造一个简易但功能完善的AI 绘画APP</title>
+    <link href="https://blog.xiaohanys.xyz/Py-shiny-AIpaint/"/>
+    <id>https://blog.xiaohanys.xyz/Py-shiny-AIpaint/</id>
+    <published>2025-03-14T02:43:11.000Z</published>
+    <updated>2025-03-14T03:15:15.964Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;众所周知，Shiny 是 Rstudio 开发的一款基于 R 语言的网页应用程序，允许用户将 R 功能脚本编写成简易的 UI 界面，从而允许不懂编程的人使用，但是 R 语言的语法和功能较为复杂，且执行效率较低，对并发的支持也不好。幸好，Rstudio 同时开发了基于 Python 的 Shiny 程序，且最近新推出的 Express 功能让代码更加的简洁，本文将介绍如何使用 Shiny Express 开发一个简易但功能完善的 AI 绘画 APP。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免费创建Flux生图API</title>
+    <link href="https://blog.xiaohanys.xyz/create-ai-image-api/"/>
+    <id>https://blog.xiaohanys.xyz/create-ai-image-api/</id>
+    <published>2024-11-20T09:11:44.000Z</published>
+    <updated>2025-05-20T02:14:52.500Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;众所周知，Flux 是一个 120 亿参数的大模型，普通人本地根本跑不起来，那么今天我来教大家免费白嫖一个无服务器容器类的网站，帮我们一键化构建一个生图API, 每个人每个月有免费的30 刀的赠费，可以使用H100, A100 等超强显卡资源。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何使用 Python 调用 CloudFlare WorkerAI 提供的 Flux 模型</title>
+    <link href="https://blog.xiaohanys.xyz/py-cf-flux/"/>
+    <id>https://blog.xiaohanys.xyz/py-cf-flux/</id>
+    <published>2024-10-24T09:16:39.000Z</published>
+    <updated>2024-10-24T09:22:28.842Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前面的文章&lt;a href=&quot;https://xiaohanys.top/AI-share1/&quot;&gt;打破信息差&lt;/a&gt;有提到过，CloudFlare 提供了一些免费的开源模型的 API，而 Flux 的生图模型就在其中。不过，这个模型的 API 最终返回给我们的是 Base64 数据，而不是可直观查看的图片，所以我们需要将图片数据写入文件并上传到云端，然后通过 URL 访问它。另外，我们还希望支持写中文的提示词，所以我们需要在其中增加一个大模型的翻译层，这样就可以把中文的提示词翻译成英文，从而被 Flux 识别。今天，我就通过 Python 代码的方式来实现上述的功能。 🚀&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="网站分享" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>打破信息差：2024好用的AI工具分享</title>
+    <link href="https://blog.xiaohanys.xyz/AI-share1/"/>
+    <id>https://blog.xiaohanys.xyz/AI-share1/</id>
+    <published>2024-10-19T08:39:04.000Z</published>
+    <updated>2025-05-19T08:08:25.636Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;2024 年，靠套壳 AI 挣钱的团队已经从写文拓展到了卖课，从赚信息差拓展到了贩卖焦虑，背后靠 API 转发获利的老板们许多也已经赚得盆满钵满。&lt;wavy&gt;我相信很多朋友都没听过什么是 API，也对这种无聊的计算机术语不感兴趣，但这就是一种信息差。&lt;/wavy&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站分享" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="网站分享" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2024最新免费使用Flux全模型网站分享</title>
+    <link href="https://blog.xiaohanys.xyz/flux-new-model/"/>
+    <id>https://blog.xiaohanys.xyz/flux-new-model/</id>
+    <published>2024-10-18T05:12:00.000Z</published>
+    <updated>2024-10-18T07:44:23.227Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在快速发展的 AI 图像生成领域，出现了一个新的参与者，它将重新定义AI绘画的可能性。Flux.1 就是由黑森林实验室开发的一套开创性的模型，它正在席卷 AI 社区。让我们深入了解 Flux.1 的特别之处，以及它为何被誉为图像合成领域的新王？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站分享" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="网站分享" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小白如何用reflex搭建一个AI应用?</title>
+    <link href="https://blog.xiaohanys.xyz/reflex-ai-app/"/>
+    <id>https://blog.xiaohanys.xyz/reflex-ai-app/</id>
+    <published>2024-10-16T09:12:34.000Z</published>
+    <updated>2024-10-18T05:33:05.164Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note quote&quot;&gt;&lt;p&gt;我们在一年前启动了 Reflex，以便任何了解 Python 的人都可以轻松构建 Web 应用程序并与世界分享，而无需学习新语言和拼凑一堆不同的工具。&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;note quote&quot;&gt;&lt;p&gt;Web 开发是最流行的编程用例之一。 Python 是世界上最流行的编程语言之一。那么为什么我们不能用 Python 构建 Web 应用程序呢？&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;以上来自Reflex构建者发布的博客，原文链接如下：&lt;/p&gt;
+&lt;div class=&quot;tag link&quot;&gt;&lt;a class=&quot;link-card&quot; title=&quot;设计纯Python Web框架&quot; href=&quot;https://reflex.dev/blog/2024-03-21-reflex-architecture/&quot;&gt;&lt;div class=&quot;left&quot;&gt;&lt;img src=&quot;https://reflex.dev/logos/light/reflex.svg&quot;/&gt;&lt;/div&gt;&lt;div class=&quot;right&quot;&gt;&lt;p class=&quot;text&quot;&gt;设计纯Python Web框架&lt;/p&gt;&lt;p class=&quot;url&quot;&gt;https://reflex.dev/blog/2024-03-21-reflex-architecture/&lt;/p&gt;&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    <category term="前端" scheme="https://blog.xiaohanys.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何在Reflex里面使用IGV浏览器？</title>
+    <link href="https://blog.xiaohanys.xyz/reflex-igv/"/>
+    <id>https://blog.xiaohanys.xyz/reflex-igv/</id>
+    <published>2024-10-09T04:49:48.000Z</published>
+    <updated>2024-10-18T05:32:23.667Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;note Reflex 是一个开源库，旨在使用纯 Python 构建全栈 Web 应用程序。它的设计理念是让开发者能够完全使用 Python 编写应用的前端和后端，无需学习 JavaScript。这对于那些希望专注于 Python 编程语言的开发者来说是一个重大的福音。&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;上面说的都是场面话，这都依托于它自身包装的第三方应用够丰富。但是，对于一些冷门的应用，比如我这里要说的IGV浏览器，就没有那么容易了。这里我就来分享一下我是如何在 Reflex 里面使用 IGV 浏览器的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用二代和三代WGS数据进行基因组组装</title>
+    <link href="https://blog.xiaohanys.xyz/sec-third-16s-assembly/"/>
+    <id>https://blog.xiaohanys.xyz/sec-third-16s-assembly/</id>
+    <published>2024-09-20T05:12:14.000Z</published>
+    <updated>2024-10-18T05:32:48.022Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本教程中，我们的目标是使用第二代和第三代全基因组测序 (WGS) 数据组装细菌基因组。我们将以此为例来探讨WGS数据分析，并探讨测序技术之间的差异。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用NART通过读取分类进行长扩增子分析</title>
+    <link href="https://blog.xiaohanys.xyz/nart-16s-long/"/>
+    <id>https://blog.xiaohanys.xyz/nart-16s-long/</id>
+    <published>2024-09-20T05:11:35.000Z</published>
+    <updated>2024-10-18T05:32:57.411Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;code&gt;NART&lt;/code&gt;设计用于基于图谱的纳米孔扩增子（&lt;strong&gt;实时&lt;/strong&gt;）分析，例如 16S rRNA 基因。&lt;code&gt;NART&lt;/code&gt;由&lt;code&gt;NART&lt;/code&gt;（Nanopore Amplicon Real-Time entry）和 &lt;code&gt;NAWF&lt;/code&gt;（Nanopore Amplicon &lt;code&gt;snakemake&lt;/code&gt; WorkFlow entry）组成。通过基于映射的策略提供从基础调用读取到最终计数矩阵的（实时）端到端解决方案。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用LACA从长扩增子中从头挑选OTU</title>
+    <link href="https://blog.xiaohanys.xyz/laca-16s-long/"/>
+    <id>https://blog.xiaohanys.xyz/laca-16s-long/</id>
+    <published>2024-09-20T05:10:53.000Z</published>
+    <updated>2024-10-18T05:32:50.996Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;code&gt;LACA&lt;/code&gt;是用于长扩增子一致性分析（例如 16S rRNA 基因扩增子分析）的可重复且可扩展的工作流程。它使用用&lt;code&gt;snakemake&lt;/code&gt;管理工作流程以及&lt;code&gt;conda来&lt;/code&gt;管理环境。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>16S rRNA基因扩增子分析</title>
+    <link href="https://blog.xiaohanys.xyz/16s-long-analysis/"/>
+    <id>https://blog.xiaohanys.xyz/16s-long-analysis/</id>
+    <published>2024-09-20T05:10:07.000Z</published>
+    <updated>2025-05-29T08:04:00.967Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在此工作流程中，介绍了 Qiime2 和 R 中 16S rRNA 基因扩增子数据分析的主要步骤。本教程是为哥本哈根大学食品科学系的 MAC 2023 课程准备的。尽管这些步骤是为 Oxford Nanopore Tech (ONT) 测序设计的，但也在 Ilumina 短读长上进行了测试。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用VueJS和Fastapi通过websocket实现进度条追踪</title>
+    <link href="https://blog.xiaohanys.xyz/vue-fastapi-websocket/"/>
+    <id>https://blog.xiaohanys.xyz/vue-fastapi-websocket/</id>
+    <published>2024-09-20T05:09:13.000Z</published>
+    <updated>2024-10-18T05:33:21.867Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;在我们的应用小程序中，我们是前后端分离的。前端页面只负责渲染，而后端需要处理数据。但是如果遇到数据量很大的情况下，我们处理起来就很缓慢，如果我们想通过AJAX的方法追踪后台数据变化的进度，需要用到轮询的方案，这个是非常消耗资源的。这里我们用VueJS和Fastapi的小例子演示前端传递数据，后台用10秒处理数据并实时反应进度给前台的实现。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="前端" scheme="https://blog.xiaohanys.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="后端" scheme="https://blog.xiaohanys.xyz/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生信小白如何用vuejs简单创建一个交互式网页</title>
+    <link href="https://blog.xiaohanys.xyz/vue-web-app/"/>
+    <id>https://blog.xiaohanys.xyz/vue-web-app/</id>
+    <published>2024-09-20T05:08:07.000Z</published>
+    <updated>2024-10-18T05:32:27.495Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;什么是Vue-js&quot;&gt;&lt;a href=&quot;#什么是Vue-js&quot; class=&quot;headerlink&quot; title=&quot;什么是Vue.js&quot;&gt;&lt;/a&gt;什么是Vue.js&lt;/h3&gt;&lt;p&gt;VueJS是一个渐进式的前端框架，所谓渐进式的意思就是你可以用它快速完成原型创作，然后在此基础上逐步完善。他可以足够简单，也可以足够完善，那么对于新手小白来说，这简直就是福利！&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="前端" scheme="https://blog.xiaohanys.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>把Fastapi部署到免费的Deta Space上</title>
+    <link href="https://blog.xiaohanys.xyz/fastapi-dataspace/"/>
+    <id>https://blog.xiaohanys.xyz/fastapi-dataspace/</id>
+    <published>2024-09-20T05:06:48.000Z</published>
+    <updated>2024-10-18T05:31:55.220Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;上一篇文章我们写了一个Streamlit的程序来全栈的执行我们的任务，但是我们也看到了它的一个缺点：&lt;strong&gt;前端界面非异步，UI定制缺乏灵活性&lt;/strong&gt;。那么，我们接下来尝试采用&lt;strong&gt;前后端分离&lt;/strong&gt;的方式来完成&lt;a href=&quot;/blogs/c6-streamlit-data-app&quot;&gt;上次&lt;/a&gt;的任务。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="后端" scheme="https://blog.xiaohanys.xyz/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Julia语言编写Needleman Wunsch全局比对算法</title>
+    <link href="https://blog.xiaohanys.xyz/jl-global-alignment/"/>
+    <id>https://blog.xiaohanys.xyz/jl-global-alignment/</id>
+    <published>2024-09-20T05:05:46.000Z</published>
+    <updated>2024-10-18T05:34:04.469Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;输入是两个字符串，输出是对齐后的两个字符串。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Julia语言模仿BAM文件的pileup类似操作</title>
+    <link href="https://blog.xiaohanys.xyz/jl-bam-pileup/"/>
+    <id>https://blog.xiaohanys.xyz/jl-bam-pileup/</id>
+    <published>2024-09-20T05:05:01.000Z</published>
+    <updated>2024-10-18T05:34:07.454Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;使用过&lt;code&gt;pysam&lt;/code&gt;和&lt;code&gt;samtools&lt;/code&gt;的小伙伴肯定了解 &lt;code&gt;pileup&lt;/code&gt;的操作，如果把BAM文件看作表格的话，那么通常我们是按行去解析它的record，进而获得一些信息，例如比对到哪条染色体，比对的开始位置和结束位置等. 另一种情况下，我们想要按照列去循环解析，得到这个列上的具体信息，典型的就是这个列上比对序列的碱基是什么？比对序列的位置是什么？以及是Match or Mismatch or indel 等。那么，该操作就需要引入&lt;code&gt;pileup&lt;/code&gt;操作了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python编写拆分Barcode的脚本，并用Codon编译为Native code</title>
+    <link href="https://blog.xiaohanys.xyz/py-barcode-split/"/>
+    <id>https://blog.xiaohanys.xyz/py-barcode-split/</id>
+    <published>2024-09-20T05:04:10.000Z</published>
+    <updated>2024-10-18T05:34:10.194Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h3&gt;&lt;p&gt;成对的reads中，read_2的开头包含两份barcode序列，分别长10bp,中间有一段固定长度为15bp的序列分割，例如&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ATCTATGACATGTTACGTTAACTCCNATCTATCACTTAGCGCTGNCCCTGTCCTCTACACTCCACCCCCTCCCCACCAGACTAAACAACGCCCTTTCCCC&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;该序列中&lt;code&gt;ATTTATGACA&lt;/code&gt;及&lt;code&gt;AATCTATCAA&lt;/code&gt;为barcode序列。要注意，barcode因为测序的原因存在一定的错配，需要对其有一定的容纳。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单细胞数据如何绘制stacked violin?</title>
+    <link href="https://blog.xiaohanys.xyz/scrna-stack-violin/"/>
+    <id>https://blog.xiaohanys.xyz/scrna-stack-violin/</id>
+    <published>2024-09-20T05:03:11.000Z</published>
+    <updated>2024-10-18T05:32:03.082Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Python的&lt;code&gt;Scanpy&lt;/code&gt;包和&lt;code&gt;Seurat&lt;/code&gt;包一样，是单细胞数据处理的利器，其中，&lt;code&gt;Scanpy&lt;/code&gt;中有一种堆积的小提琴图，可以很好的展示marker的表达情况，但是在&lt;code&gt;Seurat&lt;/code&gt;中并没有内置命令。因此，我自己尝试提取数据并用&lt;code&gt;ggplot2&lt;/code&gt;包来画该图。&lt;/p&gt;
+&lt;p&gt;首先来展示以下画图的成果，如图&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>不同的语言处理gzip压缩文件的时间对比</title>
+    <link href="https://blog.xiaohanys.xyz/gzip-decompress-eff/"/>
+    <id>https://blog.xiaohanys.xyz/gzip-decompress-eff/</id>
+    <published>2024-09-20T05:01:02.000Z</published>
+    <updated>2024-10-18T05:31:59.362Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;首先在shell中测试如下命令&quot;&gt;&lt;a href=&quot;#首先在shell中测试如下命令&quot; class=&quot;headerlink&quot; title=&quot;首先在shell中测试如下命令&quot;&gt;&lt;/a&gt;首先在shell中测试如下命令&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#!/bin/sh&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;time gzip -d -c risearch_chr1:143971112-143971134:+:FAM72C.out.gz &amp;gt; risearch_chr1:143971112-143971134:+:FAM72C.out&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用R语言实现bedtools求交集的功能?</title>
+    <link href="https://blog.xiaohanys.xyz/r-bedtools-intersect/"/>
+    <id>https://blog.xiaohanys.xyz/r-bedtools-intersect/</id>
+    <published>2024-09-20T05:00:06.000Z</published>
+    <updated>2024-10-18T05:33:02.069Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Bedtools作为基因组研究的 “ 瑞士军刀 ”， 功能强大且易于操作，是生信行业不可多得的好软件。通常对bed区间的注释，我们使用其中“ 求交集 ”的功能（bedtools intersect) ，但是有一个很不方便的地方，我们通常要生成对应的bed文件，再注释完成后还需要用R语言等读入才能继续分析，所以整合度不是很好，本文希望提供R语言的思路来解决该问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Julia短小代码批量检测BAM文件的完整性</title>
+    <link href="https://blog.xiaohanys.xyz/jl-bam-check/"/>
+    <id>https://blog.xiaohanys.xyz/jl-bam-check/</id>
+    <published>2024-09-20T04:59:18.000Z</published>
+    <updated>2024-10-18T05:33:50.310Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;我们在运行bwa mem比对的时候，由于某些不明的原因会造成程序中断，例如内存超了，IO错误，计算节点崩溃等，然而BAM是否完整很难察觉，最终导致后续流程无法运行。这里，我们通过一段简短的代码来检查BAM文件的完整性，代码如下：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>julia计算为ASCAT创建GC矫正文件</title>
+    <link href="https://blog.xiaohanys.xyz/jl-gc-correct/"/>
+    <id>https://blog.xiaohanys.xyz/jl-gc-correct/</id>
+    <published>2024-09-20T04:58:23.000Z</published>
+    <updated>2024-10-18T05:33:55.805Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;如题，官方已经提供了一个R的版本&lt;a href=&quot;https://github.com/VanLoo-lab/ascat/blob/master/LogRcorrection/createGCcontentFile.R&quot; title=&quot;createGCcontentFile.R&quot;&gt;createGCcontentFile.R&lt;/a&gt; ，但是根据代码就能看出这个版本非常占内存了，首先要把基因组整个序列都load入内存中去，每次计算出的矫正数据也是储存dataframe中。为了降低内存占用，也为了提高计算速度，我写了一个julia版本的。代码如下：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用julia语言计算测序数据的Insert Size?</title>
+    <link href="https://blog.xiaohanys.xyz/jl-insert-size/"/>
+    <id>https://blog.xiaohanys.xyz/jl-insert-size/</id>
+    <published>2024-09-20T04:57:17.000Z</published>
+    <updated>2024-10-18T05:33:16.777Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;Julia读取BAM的库&quot;&gt;&lt;a href=&quot;#Julia读取BAM的库&quot; class=&quot;headerlink&quot; title=&quot;Julia读取BAM的库&quot;&gt;&lt;/a&gt;Julia读取BAM的库&lt;/h3&gt;&lt;p&gt;想要计算&lt;code&gt;Insert size&lt;/code&gt;，需要提供一个基因组比对后的文件，&lt;code&gt;sam&lt;/code&gt;也好，&lt;code&gt;bam&lt;/code&gt;也罢。那么，使用julia语言计算该值的第一步便是了解如何读取和解析&lt;code&gt;BAM&lt;/code&gt;文件格式。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>julia多线程</title>
+    <link href="https://blog.xiaohanys.xyz/jl-multiprocess/"/>
+    <id>https://blog.xiaohanys.xyz/jl-multiprocess/</id>
+    <published>2024-09-20T04:56:28.000Z</published>
+    <updated>2024-10-18T05:33:53.124Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;code&gt;julia&lt;/code&gt;本身是一门很快速的语言，但是现代计算机往往具有多核心多线程设计，因此，充分发挥硬件，能进一步提高效率&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于Julia语言的多线程barcode拆分</title>
+    <link href="https://blog.xiaohanys.xyz/jl-barcode-split/"/>
+    <id>https://blog.xiaohanys.xyz/jl-barcode-split/</id>
+    <published>2024-09-20T04:55:29.000Z</published>
+    <updated>2024-10-18T05:32:17.350Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;拆分原理&quot;&gt;&lt;a href=&quot;#拆分原理&quot; class=&quot;headerlink&quot; title=&quot;拆分原理&quot;&gt;&lt;/a&gt;拆分原理&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;软件的逻辑是首先获取barcode列表。然后采用多线程分别在fastq文件中并行提取对应barcode的reads。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WGS的下机数据经常出现在fastq2里。所以程序会从fastq中自动查找是否存在对应barcode。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;程序可以自动检测barcode始于开始还是末尾，计算hanming距离，运行1bp的mismatch。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Julia计算相关性检验</title>
+    <link href="https://blog.xiaohanys.xyz/jl-correlation/"/>
+    <id>https://blog.xiaohanys.xyz/jl-correlation/</id>
+    <published>2024-09-20T04:54:29.000Z</published>
+    <updated>2024-10-18T05:33:58.522Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;众所周知，计算相关性非常的简单，因为&lt;code&gt;R&lt;/code&gt; 语言中有函数&lt;code&gt;cor.test()&lt;/code&gt;,该函数可以计算多种方法的相关性检验，返回相关性，Pvalue等检验值，但是这个函数在&lt;code&gt;Julia&lt;/code&gt;中并不存在，让Julia作为一门科学计算语言显得并不完美。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用julia实现bedtools的intersect-bed功能</title>
+    <link href="https://blog.xiaohanys.xyz/jl-intersect/"/>
+    <id>https://blog.xiaohanys.xyz/jl-intersect/</id>
+    <published>2024-09-20T04:53:40.000Z</published>
+    <updated>2024-10-18T05:33:14.314Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;自己写的好几种算法企图实现bedtools的功能，虽然julia性能足够好，但都难以在效率上达到bedtools的性能，于是最后只能借助轮子了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>julia 入门指难</title>
+    <link href="https://blog.xiaohanys.xyz/jl-intro/"/>
+    <id>https://blog.xiaohanys.xyz/jl-intro/</id>
+    <published>2024-09-20T04:52:36.000Z</published>
+    <updated>2024-10-18T05:34:01.839Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;如何安装Julia&quot;&gt;&lt;a href=&quot;#如何安装Julia&quot; class=&quot;headerlink&quot; title=&quot;如何安装Julia&quot;&gt;&lt;/a&gt;如何安装Julia&lt;/h3&gt;&lt;p&gt;有很多方法，其中最简单的就是去各大景象站点下载编译好的二进制包，例如&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://mirrors.tuna.tsinghua.edu.cn/help/julia-releases/&quot;&gt;清华大学开源软件镜像站&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://mirrors.bfsu.edu.cn/help/julia-releases/&quot;&gt;北京外国语大学开源软件镜像站&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://mirrors.sjtug.sjtu.edu.cn/julia-releases/&quot;&gt;上海交通大学软件源镜像服务&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;另外，可以使用包管理工具&lt;a href=&quot;https://github.com/johnnychen94/jill.py&quot;&gt;jill&lt;/a&gt;下载安装，&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>再说转录组数据标准化（TPM，RPKM，FPKM）</title>
+    <link href="https://blog.xiaohanys.xyz/transcriptome-normlize/"/>
+    <id>https://blog.xiaohanys.xyz/transcriptome-normlize/</id>
+    <published>2024-09-20T04:51:44.000Z</published>
+    <updated>2024-10-18T05:33:24.846Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;基础概念讲解&quot;&gt;&lt;a href=&quot;#基础概念讲解&quot; class=&quot;headerlink&quot; title=&quot;基础概念讲解&quot;&gt;&lt;/a&gt;基础概念讲解&lt;/h3&gt;&lt;p&gt;在RNA-Seq的分析中，我们常用&lt;strong&gt;RPKM、FPKM和TPM&lt;/strong&gt;作为转录组数据定量的表示方法。&lt;/p&gt;
+&lt;p&gt;它们都是对表达量进行标准化的方法，为何不直接用read数表示，而选标准化呢?&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="转录组" scheme="https://blog.xiaohanys.xyz/tags/%E8%BD%AC%E5%BD%95%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单细胞数据如何混合亚类和大类做点图分析Marker基因</title>
+    <link href="https://blog.xiaohanys.xyz/scrna-markplot/"/>
+    <id>https://blog.xiaohanys.xyz/scrna-markplot/</id>
+    <published>2024-09-20T04:50:55.000Z</published>
+    <updated>2024-10-18T05:32:06.207Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;单细胞数据数据量很大，加重了分析的负担，但只要掌握好的方法和工具，就可以无往而不利。今年要说的这个如题，是因为在区分亚类的时候，提取了大类型并调整分辨率重新聚类计算的亚类。针对这种情况，该如何实现呢？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ClusterProfiler:真的不只是富集分析</title>
+    <link href="https://blog.xiaohanys.xyz/clusterprofiler-not-enrichment/"/>
+    <id>https://blog.xiaohanys.xyz/clusterprofiler-not-enrichment/</id>
+    <published>2024-09-20T04:48:58.000Z</published>
+    <updated>2024-10-18T05:33:32.114Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;网上很多教程都在讲Y叔的clusterprofile富集分析的教程，但是查阅了官方文档后才知道，这个包真的不仅仅只有这个功能，其他功能也很强大。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python, perl 和julia的性能对比</title>
+    <link href="https://blog.xiaohanys.xyz/jl-py-pr-compair/"/>
+    <id>https://blog.xiaohanys.xyz/jl-py-pr-compair/</id>
+    <published>2024-09-20T04:44:08.000Z</published>
+    <updated>2024-10-18T05:32:11.134Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在生物信息学中经常用到的脚本语言主要是&lt;code&gt;python&lt;/code&gt;和&lt;code&gt;perl&lt;/code&gt;，他们被用来&lt;strong&gt;处理文本&lt;/strong&gt;，&lt;strong&gt;大量统计&lt;/strong&gt;，&lt;strong&gt;流程控制&lt;/strong&gt;等等，其自身也是各有优势。比如说&lt;code&gt;perl&lt;/code&gt;天生就为了处理文本而生，但是&lt;code&gt;python&lt;/code&gt;确是有名的胶水语言，特别在整合&lt;code&gt;C&lt;/code&gt;代码时显示出巨大的优势，其语法简洁易懂，易于维护更让其成为仅次于&lt;code&gt;C&lt;/code&gt;和&lt;code&gt;JAVA&lt;/code&gt;的第三大语言，但其糟糕的性能在处理大量循环时会让人忍不住抓狂。因此，&lt;code&gt;Julia&lt;/code&gt;语言应运而生，其控制了&lt;code&gt;python&lt;/code&gt;中没必要的动态性，加之使用JIT技术让其能够保有高性能的同时具备简洁的语法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程语言" scheme="https://blog.xiaohanys.xyz/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="julia" scheme="https://blog.xiaohanys.xyz/tags/julia/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用streamlit搭建数据交互式app</title>
+    <link href="https://blog.xiaohanys.xyz/streamlit-app/"/>
+    <id>https://blog.xiaohanys.xyz/streamlit-app/</id>
+    <published>2024-09-20T01:50:21.000Z</published>
+    <updated>2024-10-18T05:33:19.179Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;streamlit的有趣特点&quot;&gt;&lt;a href=&quot;#streamlit的有趣特点&quot; class=&quot;headerlink&quot; title=&quot;streamlit的有趣特点&quot;&gt;&lt;/a&gt;streamlit的有趣特点&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;所有的程序，只要是前端交互页面发生变动或者说交互，代码就会从头到尾执行一遍&lt;/li&gt;
+&lt;li&gt;提供了非常多数据交互的组件，每个组件都可以返回数值，用来和别的组件交流&lt;/li&gt;
+&lt;li&gt;有特殊的缓存系统，防止长时间运行的程序成为瓶颈&lt;/li&gt;
+&lt;li&gt;因为程序从头至尾的顺序执行，异步的支持较差&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="前端" scheme="https://blog.xiaohanys.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>猪的stop数据库芯片构建</title>
+    <link href="https://blog.xiaohanys.xyz/pig-stop-chip/"/>
+    <id>https://blog.xiaohanys.xyz/pig-stop-chip/</id>
+    <published>2020-05-13T06:25:13.000Z</published>
+    <updated>2024-10-18T05:33:29.700Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;项目目的&quot;&gt;&lt;a href=&quot;#项目目的&quot; class=&quot;headerlink&quot; title=&quot;项目目的&quot;&gt;&lt;/a&gt;项目目的&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;利用CBE的碱基编辑能将正常氨基酸密码子转换成终止密码子的性能，设计出针对人类、猪、小鼠的全部基因的CBE-STOP芯片。通过TRAP系统的细胞内测试，检测分析所有gRNA介导的STOP效率，最终建立人类、猪、小鼠的CBE-STOP的gRNA效率数据库，供做base-editing相关研究的科研人员使用。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="CRISPR" scheme="https://blog.xiaohanys.xyz/tags/CRISPR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基因沉默效率计算方法</title>
+    <link href="https://blog.xiaohanys.xyz/gene-stop-eff/"/>
+    <id>https://blog.xiaohanys.xyz/gene-stop-eff/</id>
+    <published>2020-02-28T08:20:39.000Z</published>
+    <updated>2024-10-18T05:32:14.274Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;Crispr基因编辑正越来越广泛的应用在各个方面，包括科研，医疗等等，针对经过筛选的药物靶向基因设计gRNA，使其由原始的基因序列突变为终止密码子，从而无法表达蛋白，进而治疗疾病或者抵抗药物&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="Python" scheme="https://blog.xiaohanys.xyz/tags/Python/"/>
+    
+    <category term="CRISPR" scheme="https://blog.xiaohanys.xyz/tags/CRISPR/"/>
+    
+    <category term="gRNA" scheme="https://blog.xiaohanys.xyz/tags/gRNA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何批量计算相关性</title>
+    <link href="https://blog.xiaohanys.xyz/batch-correlate/"/>
+    <id>https://blog.xiaohanys.xyz/batch-correlate/</id>
+    <published>2020-02-17T07:13:03.000Z</published>
+    <updated>2024-10-18T05:32:20.439Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;1-只计算相关性，不考虑显著性检验：&quot;&gt;&lt;a href=&quot;#1-只计算相关性，不考虑显著性检验：&quot; class=&quot;headerlink&quot; title=&quot;1.只计算相关性，不考虑显著性检验：&quot;&gt;&lt;/a&gt;1.只计算相关性，不考虑显著性检验：&lt;/h2&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;library&lt;span class=&quot;punctuation&quot;&gt;(&lt;/span&gt;corrr&lt;span class=&quot;punctuation&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;library&lt;span class=&quot;punctuation&quot;&gt;(&lt;/span&gt;dplyr&lt;span class=&quot;punctuation&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;data&lt;span class=&quot;punctuation&quot;&gt;(&lt;/span&gt;mtcars&lt;span class=&quot;punctuation&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mtcars&lt;span class=&quot;operator&quot;&gt;%&amp;gt;%&lt;/span&gt;correlate&lt;span class=&quot;punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;%&amp;gt;%&lt;/span&gt;rearrange&lt;span class=&quot;punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;%&amp;gt;%&lt;/span&gt;stretch&lt;span class=&quot;punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;punctuation&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文读懂lncRNA分析</title>
+    <link href="https://blog.xiaohanys.xyz/lncrna-analysis/"/>
+    <id>https://blog.xiaohanys.xyz/lncrna-analysis/</id>
+    <published>2020-02-17T04:46:19.000Z</published>
+    <updated>2024-10-18T05:33:11.723Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note warning&quot;&gt;&lt;p&gt;文章已经过时，请去官网查阅相关文档&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;1-对测序下机数据进行质量检测（QC）&quot;&gt;&lt;a href=&quot;#1-对测序下机数据进行质量检测（QC）&quot; class=&quot;headerlink&quot; title=&quot;1:对测序下机数据进行质量检测（QC）&quot;&gt;&lt;/a&gt;1:对测序下机数据进行质量检测（QC）&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="转录组" scheme="https://blog.xiaohanys.xyz/tags/%E8%BD%AC%E5%BD%95%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>教程：整合刺激性和对照性PBMC数据集，以学习细胞类型特异性反应</title>
+    <link href="https://blog.xiaohanys.xyz/scrna-diff/"/>
+    <id>https://blog.xiaohanys.xyz/scrna-diff/</id>
+    <published>2019-10-20T05:02:08.000Z</published>
+    <updated>2024-10-18T05:33:27.315Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note warning&quot;&gt;&lt;p&gt;文章已经过时，请去官网查阅相关文档&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;本教程介绍了&lt;a href=&quot;https://www.nature.com/articles/nbt.4042&quot;&gt;Kang等人（2017)&lt;/a&gt;的两组PBMC的对齐方式。在该实验中，将PBMC分为刺激组和对照组，并用干扰素β治疗刺激组。对干扰素的反应引起细胞类型特异性基因表达的变化，这使得对所有数据进行联合分析变得困难，并且细胞按刺激条件和细胞类型聚类。在这里，我们证明了我们的整合策略，如&lt;a href=&quot;https://www.biorxiv.org/content/early/2018/11/02/460147&quot;&gt;Stuart和Butler等人（2018年）&lt;/a&gt;所述，用于执行整合分析以促进常见细胞类型的鉴定并进行比较分析。尽管此示例演示了两个数据集（条件）的集成，但这些方法已扩展到多个数据集。这个&lt;a href=&quot;https://satijalab.org/seurat/pancreas_integration_label_transfer.html&quot;&gt;工作流程&lt;/a&gt;提供了整合四个胰岛数据集的示例。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Seurat3.1的灵活操作指南</title>
+    <link href="https://blog.xiaohanys.xyz/seurat3-operate/"/>
+    <id>https://blog.xiaohanys.xyz/seurat3-operate/</id>
+    <published>2019-10-20T04:47:57.000Z</published>
+    <updated>2024-10-18T05:34:12.793Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note warning&quot;&gt;&lt;p&gt;文章已经过时，请去官网查阅相关文档&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;下面演示了一些与Seurat对象进行交互的有用功能。出于演示目的，我们将使用在第一个指导教程中创建的2700 PBMC对象。您可以在此处下载预先计算的对象。为了模拟有两个重复的情况，将一半命名为“rep1”,另一半命名为”rep2”&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Monocle3对多样本单细胞数据进行伪时间分析</title>
+    <link href="https://blog.xiaohanys.xyz/scrna-monocle/"/>
+    <id>https://blog.xiaohanys.xyz/scrna-monocle/</id>
+    <published>2019-09-20T04:50:01.000Z</published>
+    <updated>2024-10-18T05:32:54.311Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note warning&quot;&gt;&lt;p&gt;文章已经过时，请去官网查阅相关文档&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;在发育过程中，细胞对刺激作出反应，并在整个生命过程中，从一种功能“状态”过渡到另一种功能“状态”。不同状态的细胞表达不同的基因，产生蛋白质和代谢物的动态重复序列，从而完成它们的工作。当细胞在状态之间移动时，它们经历一个转录重组的过程，一些基因被沉默，另一些基因被激活。这些瞬时状态通常很难描述，因为在更稳定的端点状态之间纯化细胞可能是困难的或不可能的。单细胞RNA-Seq可以使您在不需要纯化的情况下看到这些状态。然而，要做到这一点，我们必须确定每个cell在可能的状态范围内的位置。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文读懂单细胞测序分析流程</title>
+    <link href="https://blog.xiaohanys.xyz/scRNA-seurat/"/>
+    <id>https://blog.xiaohanys.xyz/scRNA-seurat/</id>
+    <published>2019-04-16T04:42:30.000Z</published>
+    <updated>2024-10-18T05:33:08.808Z</updated>
+    
+    
+    <summary type="html">&lt;div class=&quot;note warning&quot;&gt;&lt;p&gt;文章已经过时，请去官网查阅相关文档&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h3&gt;&lt;p&gt;一文介绍单细胞测序生物信息分析完整流程，这可能是最新也是最全的流程&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    
+    <category term="单细胞测序" scheme="https://blog.xiaohanys.xyz/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/"/>
+    
+    <category term="生物信息" scheme="https://blog.xiaohanys.xyz/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
+    
+    <category term="R语言" scheme="https://blog.xiaohanys.xyz/tags/R%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+</feed>

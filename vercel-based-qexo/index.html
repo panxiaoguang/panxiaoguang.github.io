@@ -5,8 +5,8 @@
   <meta name="Volantis" content="6.0.0-alpha.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://blog.xiaohanys.xyz/tags/ai/"/>
+  
+  <link rel="canonical" href="https://blog.xiaohanys.xyz/vercel-based-qexo/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -37,24 +37,22 @@
   <!-- feed -->
       <link rel="alternate" href="/atom.xml" title="XiaoHanys" type="application/atom+xml">
   <!-- 页面元数据 -->
-  <title>标签：AI - XiaoHanys</title>
-  <meta name="keywords" content="生物信息知识库,编程,前端,Python,网站搭建,人工智能">
-  <meta desc name="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI - XiaoGuang - XiaoHanys">
+  <title>Vercel搭建Hexo后台Qexo的方法 - XiaoHanys</title>
+  <meta name="keywords" content="网站搭建,生物信息知识库,编程,前端,Python,网站搭建,人工智能">
+  <meta desc name="description" content="鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。
+在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（是 Hexo源码，不是生成后的静态博客源码）托管到 Github仓库中，然后通过... - XiaoGuang - XiaoHanys">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="XiaoHanys">
-<meta property="og:url" content="https://blog.xiaohanys.xyz/tags/AI/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vercel搭建Hexo后台Qexo的方法">
+<meta property="og:url" content="https://blog.xiaohanys.xyz/vercel-based-qexo/index.html">
 <meta property="og:site_name" content="XiaoHanys">
-<meta property="og:description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
+<meta property="og:description" content="鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。 在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（是 Hexo源码，不是生成后的静态博客源码）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 Qexo服务可以交互的编辑和提">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2025-05-29T05:46:33.521Z">
+<meta property="article:modified_time" content="2025-05-29T05:46:36.377Z">
 <meta property="article:author" content="XiaoGuang">
-<meta property="article:tag" content="生物信息知识库">
-<meta property="article:tag" content="编程">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="网站搭建">
-<meta property="article:tag" content="人工智能">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2288,7 +2286,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2613,35 +2611,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/Py-shiny-AIpaint/">
+  <article itemscope itemtype="https://schema.org.cn/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/vercel-based-qexo/">
   <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
     <meta itemprop="name" content="XiaoHanys">
   </span>
@@ -2650,374 +2622,327 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/Py-shiny-AIpaint/"  itemprop="url">
-        用Shiny 打造一个简易但功能完善的AI 绘画APP
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      <p>众所周知，Shiny 是 Rstudio 开发的一款基于 R 语言的网页应用程序，允许用户将 R 功能脚本编写成简易的 UI 界面，从而允许不懂编程的人使用，但是 R 语言的语法和功能较为复杂，且执行效率较低，对并发的支持也不好。幸好，Rstudio 同时开发了基于 Python 的 Shiny 程序，且最近新推出的 Express 功能让代码更加的简洁，本文将介绍如何使用 Shiny Express 开发一个简易但功能完善的 AI 绘画 APP。</p>
+    
+      <h1 class="title" itemprop="name headline">
+        Vercel搭建Hexo后台Qexo的方法
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="https://schema.org.cn/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/bitbug_favicon.ico" class="lazyload" data-srcset="https://gcore.jsdelivr.net/gh/panxiaoguang/nuxt-blog-guang/assets/bitbug_favicon.ico" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">潘晓光</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  
+  
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
+        <a href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" itemprop="url"><span itemprop="name">网站搭建</span></a>
+      </span>
     
   </div>
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2025-03-14T10:43:11+08:00">2025-03-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" itemprop="url"><span itemprop="name">网站搭建</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/Py-shiny-AIpaint/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
 
+
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-05-29T13:46:33+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2025年5月29日</p>
+  </a>
 </div>
 
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：2.1k 字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：8 分钟</p>
+    </a>
+  </div>
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
+      </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <p>鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。</p>
+<p>在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（<strong>是 Hexo源码，不是生成后的静态博客源码</strong>）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 <strong>Qexo服务可以交互的编辑和提交内容到 Github仓库</strong>，这样我们在云端编辑的博文</p>
+<span id="more"></span>
+
+<p>就可以自动的上传到 Github仓库了，<strong>所以这个 Github仓库一定要是私有</strong>的，否则你的源码就泄露了。然后我们添加一个 Github Action, 当在云端编辑好了后，我们用 <strong>Action来编译出静态博客来推送到 Github Pages</strong>. 然后我们可以在 Vercel或者CloudFlare关联我们的 Github Pages，这样相比 Pages会有更好的访问速度和 SEO。</p>
+<h1 id="部署-Qexo-环境"><a href="#部署-Qexo-环境" class="headerlink" title="部署 Qexo 环境"></a>部署 Qexo 环境</h1><p>官方提供了四种方式来部署 Qexo 环境，其中一种允许你在本地进行部署，另外三种各自使用了不同网站提供的免费数据库服务。综合考虑操作便捷性和成功率，这里选用 Vercel 提供的免费 PostgreSQL 服务进行部署。</p>
+<p>首先点击<a target="_blank" rel="noopener" href="https://github.com/am-abudu/Qexo">这里</a>进入Qexo 的仓库克界面，我们点击右上角的 Fork按钮将仓库克隆到我们自己的仓库里，然后打开 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a>登录你得 Github账号，并且使用刚才克隆得仓库来部署一个服务，这样可以让我们及时得同步上游版本，从而更好的更新 Qexo系统版本。</p>
+<p>设置好仓库名称后，点击 <code>Create</code> 创建，下边会有一个 <code>Deploy</code> 界面。Vercel 在创建和更改仓库时会自动进行一次部署，因此创建完毕后部署将会自动启动，并且这第一次部署是一定会失败的。因为 Qexo 所依赖的数据库还没有配置。因此点击网页左上角的三角形符号，不出意外的话，界面将是这个样子：</p>
+<p><img src="https://tncache1-f1.v3mh.com/image/2025/05/29/c692309b99f17ea0e03cc59325b4347d.png" class="lazyload" data-srcset="https://tncache1-f1.v3mh.com/image/2025/05/29/c692309b99f17ea0e03cc59325b4347d.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">(我这里是已经配置好了 Qexo)</p>
+<p>然后我们开始配置 PostgreSQL 数据库，在 <code>Storage</code> 界面可以申请，点击右上角 <code>Create Database</code>并选择<code>Neon</code> 或者 <code>Supabase</code>，Vercel 使用外部服务提供 PostgreSQL服务，如果你先前没有配置过——点击 <code>Continue</code>进入数据库连接配置，在<code>Connect</code>界面选择地区为<code>Washington DC</code>或者<code>USA (east)</code>。创建完毕后，在 <code>Storage</code>选项卡里选择进入你创建的数据库配置界面。在左侧边栏点击<code>Project</code>，接着点击 <code>Connect Project</code>：</p>
+<p><img src="https://tncache1-f1.v3mh.com/image/2025/05/29/f490c2f579fd6715345592f60b6f2c53.png" class="lazyload" data-srcset="https://tncache1-f1.v3mh.com/image/2025/05/29/f490c2f579fd6715345592f60b6f2c53.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image"></p>
+<p>在上面 <code>Search Projects...</code>选择自己想要部署 Qexo 的仓库即可，Vercel这里的好处就是它可以全自动的执行前端和数据库的链接，可以保证完全正确的链接，这里我们回到项目build界面，点击<code>Build Logs</code>按钮，点击 <code>Redeploy</code>按钮即可以成功部署了。</p>
+<div class="note info"><p>这里需要注意的是，因为 Vercel在国内是无法访问的，但是添加一个自定义的域名，然后基于该域名提供的 DNS 服务就可以正确打开了，所以推荐你设置一下自定义域名。添加域名的操作就很简单了，直接点击Settings-&gt;Domain就可以了，这里就不再赘述了。</p></div>
+
+<h1 id="初始化-Qexo"><a href="#初始化-Qexo" class="headerlink" title="初始化 Qexo"></a>初始化 Qexo</h1><h2 id="Github配置"><a href="#Github配置" class="headerlink" title="Github配置"></a>Github配置</h2><p>部署完毕后，切换到绑定的域名，本例中我们转到 <code>https://admin.xiaohanys.xyz</code>。首先需要你填写用户名和密码，Token留空即可。接下来设置 Github链接，如果你使用 Hexo，并在 Github 上托管，在 Github 的配置界面，你会看到这几项：<br>‍‍‍‍‍‌‌‌‍<img src="https://tncache1-f1.v3mh.com/image/2025/05/29/9c4e2249835de24d20437d0ce00155c0.png" class="lazyload" data-srcset="https://tncache1-f1.v3mh.com/image/2025/05/29/9c4e2249835de24d20437d0ce00155c0.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="image"></p>
+<p>Github 密钥这一项，你需要在<a target="_blank" rel="noopener" href="https://github.com/settings/tokens">Github设置</a>中申请。右上角选择 <code>Generate New Token</code>，有两个选项，选择 <code>classic</code>。接着完成身份验证。改变如下几项：</p>
+<p><img src="https://tncache1-f1.v3mh.com/image/2025/05/29/40448fb24c06861e4f029a03416ea761.png" class="lazyload" data-srcset="https://tncache1-f1.v3mh.com/image/2025/05/29/40448fb24c06861e4f029a03416ea761.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p><code>Note</code> 必填，作为这个token的使用目的；<code>Expiration</code> 是生效期限，安全起见建议设置一个较短的期限，然后定时重置，重新配置Qexo设置，这里我选择的是永久有效；在下边的生效条目里，保证 <code>repo</code> 下的复选框全部勾选，建议同时勾选 <code>workflow</code>，但官方不建议给出所有权限。这么做的目的是保证Qexo有足够权限访问Github API从而在线修改Github博客源码的内容。</p>
+<p>申请完毕后复制下来，出于安全，Github仅在token初次创建完毕后给出复制选项，所以尽快保存，并填入初始化界面的“Github 密钥”文本框中。</p>
+<p>然后在Github里新建仓库，用于存放博客源码。我建议各位使用 Github官方的客户端来执行仓库推送的过程，用命令难免会出错，出错还不方便 Debug。且如果是 Windows电脑不用安装 Git bash命令了。Github的官方客户端从此<a target="_blank" rel="noopener" href="https://github.com/apps/desktop">下载</a>。</p>
+<div class="note info"><p>:使用 Github Desktop要做的就是把我们的所有 hexo的源码推送到一个私有的仓库里， 刚才设置界面的“Github 仓库”这一项就填刚刚创建并上传的源码仓库，格式是 <code>&lt;username&gt;/&lt;repo&gt;</code>（例：<code>XXX/xiaohanys</code>）。 “项目分支”填源代码仓库的主要分支，一般是 <code>master</code>；“博客路径”留空即可。</p></div>
+
+<h2 id="Vercel-配置"><a href="#Vercel-配置" class="headerlink" title="Vercel 配置"></a>Vercel 配置</h2><p>设置好 Github的链接后就是需要我们设置 Vercel的密钥，“VERCEL_TOKEN”一项，需要在<a target="_blank" rel="noopener" href="https://vercel.com/account/tokens">这里</a>生成。</p>
+<p>同样是填写 token 名称、生效范围（这里选择 <code>xxx&#39;s projetcs</code>）和生效期限（建议期限短些）。完毕后点击 <code>Create</code> 生成密钥，也是需要尽快复制下来，粘贴到“VERCEL_TOKEN”里。</p>
+<p>“PROJECT_ID”则需要回到Vercel对应的项目的 <code>Settings</code> 里，在 <code>General</code> 选项卡中向下翻到 <code>Project ID</code> 并复制内容，粘贴到 <code>PROJECT_ID</code> 中就完成 Vercel 配置了。</p>
+<p>接下来你还需要设置管理员账号密码，设置完毕后就可以从 <code>https://admin.xiaohanys.xyz</code> 快捷进入管理界面了。</p>
+<h2 id="Github-Action"><a href="#Github-Action" class="headerlink" title="Github Action"></a>Github Action</h2><p>在我们本地的博客源码根目录（就是你执行 <code>hexo clean &amp; hexo g &amp; hexo d</code> 的文件夹）创建一个文件，路径为<code>.github/workflows/main.yml</code>，然后我们将下面的代码复制进来：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">auto</span> <span class="string">deploy</span> <span class="string">Hexo</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="string">workflow_dispatch</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">submodules:</span> <span class="literal">true</span></span><br><span class="line">  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">install</span> <span class="string">Pandoc</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">nikeee/setup-pandoc@v1</span></span><br><span class="line">  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">setup</span> <span class="string">Node.js</span> <span class="number">23.10</span><span class="number">.0</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&quot;23.10.0&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">install</span> <span class="string">Hexo</span> <span class="string">CI</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          export TS=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">cache</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v4</span></span><br><span class="line">        <span class="attr">id:</span> <span class="string">cache-dependencies</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;runner.OS&#125;&#125;-$&#123;&#123;hashFiles(&#x27;**/package-lock.json&#x27;)&#125;&#125;</span></span><br><span class="line">  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          # Install Plugins with &#x27;npm install&#x27;</span></span><br><span class="line"><span class="string"></span>  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">install</span> <span class="string">plugins</span></span><br><span class="line">        <span class="attr">if:</span> <span class="string">steps.cache-dependencies.outputs.cache-hit</span> <span class="type">!=</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string"></span>  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Generate</span> <span class="string">static</span> <span class="string">pages</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line">  </span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">page</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">personal_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br><span class="line">          <span class="attr">external_repository:</span> <span class="string">panxiaoguang/panxiaoguang.github.io</span></span><br><span class="line">          <span class="attr">publish_branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>这里我们使用手动触发<code>workflow_dispatch</code>,是因为 Qexo改动一个文件就会push一次代码，比如我们只是创建了一个新的博客文件，还没有写内容，这样就会自动构建一次，非常消耗资源，这也是我觉得需要改进的地方。目前我们只有手动控制才能更加精准。</p>
+<p>最后一步将生成的博客内容部署到 Pages，如果你打算直接部署到当前仓库的 gh-pages分支，那么可以不需要添加<code>external_repository</code>, 你只需要<code>github_token</code>和<code>publish_dir</code> 即可。例如这样：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">  <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v4</span></span><br><span class="line">  <span class="attr">with:</span></span><br><span class="line">    <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></table></figure>
+
+<p>但是如果你打算把博客文章部署到其他的仓库，那么你需要把 <code>github_token</code>改成<code>personal_token</code>。你可以在<a target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens">此处</a>申请,并尽可能的开通全部读和写的权限，防止失败。</p>
+<h1 id="博客生成流程"><a href="#博客生成流程" class="headerlink" title="博客生成流程"></a>博客生成流程</h1><p>最后，打开你得 Hexo云端后台，点击文章，新建文章，然后随意写一篇博客，推送到 Github, 然后手动开启 Github Action, 你就可以在你得博客地址看到你得博客上线了。</p>
+<p>如果你需要更多的内容，请查询以下的网站：</p>
+<div class="tag link"><a class="link-card" title="Qexo文档" target="_blank" rel="noopener" href="https://www.oplog.cn/qexo/"><div class="left"><img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Qexo文档</p><p class="url">https://www.oplog.cn/qexo/</p></div></a></div>
+
+<div class="tag link"><a class="link-card" title="Qexo搭建教程" target="_blank" rel="noopener" href="https://justpureh2o.cn/articles/17536/"><div class="left"><img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">Qexo搭建教程</p><p class="url">https://justpureh2o.cn/articles/17536/</p></div></a></div>
+
+<div class="tag link"><a class="link-card" title="actions-gh-pages官放文档" target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages"><div class="left"><img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/256/safari.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/256/safari.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">actions-gh-pages官放文档</p><p class="url">https://github.com/peaceiris/actions-gh-pages</p></div></a></div>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
+      
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+        
+          <div class='copyright'>
+            <blockquote>
+              
+                
+                  <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+                
+              
+                
+                  <p>本文永久链接是：<a href="https://blog.xiaohanys.xyz/vercel-based-qexo/">https://blog.xiaohanys.xyz/vercel-based-qexo/</a></p>
+                
+              
+            </blockquote>
           </div>
         
       
+      <!-- 打赏组件 -->
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/create-ai-image-api/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="XiaoHanys">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="XiaoHanys">
-    <meta itemprop="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
-  </span>
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-05-29T13:46:36+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2025年5月29日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
   
   
   
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>网站搭建</p></a></div>
+  <span hidden itemprop="keywords">网站搭建</span>
+  
+
+
+        
+      
+        
+          
+
+
+<div class="new-meta-item browse">
+  <a class='notlink'>
+    <p>
+      <i class="fa-solid fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="twikoo_visitors">
+        <i class="fa-solid fa-loader fa-spin fa-fw" aria-hidden="true"></i>
+      </span>
+        
+      <span>次浏览</span>
+    </p>
+  </a>
+</div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://blog.xiaohanys.xyz/vercel-based-qexo/&title=Vercel搭建Hexo后台Qexo的方法 - XiaoHanys&summary=鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。
+在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（是 Hexo源码，不是生成后的静态博客源码）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 Qexo服务可以交互的编辑和提交内容到 Github仓库，这样我们在云端编辑的博文"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.xiaohanys.xyz/vercel-based-qexo/&title=Vercel搭建Hexo后台Qexo的方法 - XiaoHanys&summary=鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。
+在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（是 Hexo源码，不是生成后的静态博客源码）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 Qexo服务可以交互的编辑和提交内容到 Github仓库，这样我们在云端编辑的博文"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://blog.xiaohanys.xyz/vercel-based-qexo/&title=Vercel搭建Hexo后台Qexo的方法 - XiaoHanys&summary=鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。
+在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（是 Hexo源码，不是生成后的静态博客源码）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 Qexo服务可以交互的编辑和提交内容到 Github仓库，这样我们在云端编辑的博文"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        
+        <div class='hoverbox'>
+          <a class='share'><img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/wechat.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/wechat.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></a>
+          <div class='target'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAAAAACi5bZQAAADAklEQVR42u3aQXLjMAwEQP3/09kHbLaEASiV4W3e7MgU2bmgMLh+rF/XhQAMGDBgwIBZA3M1118b/uPv6efqftXfpfcBAwYMGDBgwOyDKRdAN89PL57uV31feX8wYMCAAQMGzFqY2wLo0Ofq/tXfHbsPGDBgwIABA+a/hakWhCng9HxgwIABAwYMGDBvPX864AMDBgwYMGDAfD9MHFAVD1ItBKsFYTcQfC2JBAMGDBgwYMC8BpOu0wHc04Fe+T5gwIABAwYMmDUw05U2kk4VbmkhV74PGDBgwIABA2YNTLdA6gJWIaeDQ+2GGRgwYMCAAQNmLcw0uLo7aArSHRxKvwcDBgwYMGDA7IOZFk5VyGmh2G14xecEAwYMGDBgwKyHqb6gO2CUBnZd2HajCgwYMGDAgAHz8TBPBVdd0FMFW1qwggEDBgwYMGD2wYwLojAgm4JNC0YwYMCAAQMGzPfBlAdrhkFZt2DsFnLxc2DAgAEDBgyYtTBpEJcGZaeDti5MnESCAQMGDBgwYNbAnA6y3oKLIaqNKjBgwIABAwbMx8GcfsE0sEuBp/uBAQMGDBgwYPbDPNW4Sgd3TheeMTgYMGDAgAEDZj3MqUGhLlj6XDWIAwMGDBgwYMB8H8x0425DKoUtN5y6gR4YMGDAgAEDZh1Mt6BKD3CFq3uebkEJBgwYMGDAgNkLc+qAaSOqGwB2G2dxgQcGDBgwYMCAWQNTLZy6jatu4DZtZN3+48GAAQMGDBgw62HSF5wu4NLn4gGhpypfMGDAgAEDBsxrMNPVbWh1L9wdNIoDNzBgwIABAwbMx8NczXW68EobUE8NGIEBAwYMGDBg9sF0B3FODQ5N4bug5cANDBgwYMCAAfPxMN0CajrQM22AdQvT40kkGDBgwIABA2YdTFowphdMwdv3AwMGDBgwYMCAORS8xYHZzb630GDAgAEDBgyYtTBpYZZ+HzeOmg2n7u/BgAEDBgwYMPtgusHVNAA7BXVsgAkMGDBgwIABswbGAgMGDBgwYMAsW38ApU/l/6wTfSsAAAAASUVORK5CYII=">
+          </div>
+        </div>
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/Py-shiny-AIpaint/'>
+          <p class='title'>用Shiny 打造一个简易但功能完善的AI 绘画APP<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>众所周知，Shiny 是 Rstudio 开发的一款基于 R 语言的网页应用程序，允许用户将 R 功能脚本编写成简易的 UI 界面，从而允许不懂编程的人使用，但是 R 语言的语法和功能较为复杂，...</p>
+        </a>
+      
+    </div>
+  
+  <!-- 文章推荐 -->
+  
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+      <meta itemprop="discussionUrl" content="/vercel-based-qexo/index.html#comments">
     </span>
-  
-  
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/create-ai-image-api/"  itemprop="url">
-        免费创建Flux生图API
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <p>众所周知，Flux 是一个 120 亿参数的大模型，普通人本地根本跑不起来，那么今天我来教大家免费白嫖一个无服务器容器类的网站，帮我们一键化构建一个生图API, 每个人每个月有免费的30 刀的赠费，可以使用H100, A100 等超强显卡资源。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-11-20T17:11:44+08:00">2024-11-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" itemprop="url"><span itemprop="name">网站搭建</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/create-ai-image-api/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
 
-</div>
+    <div id="layoutHelper-comments"></div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/py-cf-flux/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="XiaoHanys">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="XiaoHanys">
-    <meta itemprop="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/py-cf-flux/"  itemprop="url">
-        如何使用 Python 调用 CloudFlare WorkerAI 提供的 Flux 模型
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <p>前面的文章<a target="_blank" rel="noopener" href="https://xiaohanys.top/AI-share1/">打破信息差</a>有提到过，CloudFlare 提供了一些免费的开源模型的 API，而 Flux 的生图模型就在其中。不过，这个模型的 API 最终返回给我们的是 Base64 数据，而不是可直观查看的图片，所以我们需要将图片数据写入文件并上传到云端，然后通过 URL 访问它。另外，我们还希望支持写中文的提示词，所以我们需要在其中增加一个大模型的翻译层，这样就可以把中文的提示词翻译成英文，从而被 Flux 识别。今天，我就通过 Python 代码的方式来实现上述的功能。 🚀</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-10-24T17:16:39+08:00">2024-10-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url"><span itemprop="name">编程语言</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/py-cf-flux/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/AI-share1/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="XiaoHanys">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="XiaoHanys">
-    <meta itemprop="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/AI-share1/"  itemprop="url">
-        打破信息差：2024好用的AI工具分享
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <p>2024 年，靠套壳 AI 挣钱的团队已经从写文拓展到了卖课，从赚信息差拓展到了贩卖焦虑，背后靠 API 转发获利的老板们许多也已经赚得盆满钵满。<wavy>我相信很多朋友都没听过什么是 API，也对这种无聊的计算机术语不感兴趣，但这就是一种信息差。</wavy></p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-10-19T16:39:04+08:00">2024-10-19</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/">网站分享</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/" itemprop="url"><span itemprop="name">网站分享</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/AI-share1/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/flux-new-model/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="XiaoHanys">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="XiaoHanys">
-    <meta itemprop="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/flux-new-model/"  itemprop="url">
-        2024最新免费使用Flux全模型网站分享
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <p>在快速发展的 AI 图像生成领域，出现了一个新的参与者，它将重新定义AI绘画的可能性。Flux.1 就是由黑森林实验室开发的一套开创性的模型，它正在席卷 AI 社区。让我们深入了解 Flux.1 的特别之处，以及它为何被誉为图像合成领域的新王？</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-10-18T13:12:00+08:00">2024-10-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/">网站分享</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/" itemprop="url"><span itemprop="name">网站分享</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/flux-new-model/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="https://schema.org.cn/Article" >
-  <link itemprop="mainEntityOfPage" href="https://blog.xiaohanys.xyz/reflex-ai-app/">
-  <span hidden itemprop="publisher" itemscope itemtype="https://schema.org.cn/Organization">
-    <meta itemprop="name" content="XiaoHanys">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="https://schema.org.cn/Post">
-    <meta itemprop="name" content="XiaoHanys">
-    <meta itemprop="description" content="生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/reflex-ai-app/"  itemprop="url">
-        小白如何用reflex搭建一个AI应用?
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <div class="note quote"><p>我们在一年前启动了 Reflex，以便任何了解 Python 的人都可以轻松构建 Web 应用程序并与世界分享，而无需学习新语言和拼凑一堆不同的工具。</p></div>
-
-<div class="note quote"><p>Web 开发是最流行的编程用例之一。 Python 是世界上最流行的编程语言之一。那么为什么我们不能用 Python 构建 Web 应用程序呢？</p></div>
-
-<p>以上来自Reflex构建者发布的博客，原文链接如下：</p>
-<div class="tag link"><a class="link-card" title="设计纯Python Web框架" target="_blank" rel="noopener" href="https://reflex.dev/blog/2024-03-21-reflex-architecture/"><div class="left"><img src="https://reflex.dev/logos/light/reflex.svg" class="lazyload" data-srcset="https://reflex.dev/logos/light/reflex.svg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div><div class="right"><p class="text">设计纯Python Web框架</p><p class="url">https://reflex.dev/blog/2024-03-21-reflex-architecture/</p></div></a></div>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2024-10-16T17:12:34+08:00">2024-10-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="https://schema.org.cn/Thing">
-              <a href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" itemprop="url"><span itemprop="name">网站搭建</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/reflex-ai-app/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-    
-  
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="https://schema.org.cn/WPSideBar">
   
@@ -3098,51 +3023,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-  
-  <section class="widget category desktop">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/" href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"
-            active-action="action-categoriesE7949FE789A9E4BFA1E681AF"
-            ><div class='name'>生物信息</div><div class='badge'>(16)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"
-            active-action="action-categoriesE7BC96E7A88BE8AFADE8A880"
-            ><div class='name'>编程语言</div><div class='badge'>(15)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/" href="/categories/%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/"
-            active-action="action-categoriesE7BD91E7AB99E58886E4BAAB"
-            ><div class='name'>网站分享</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"
-            active-action="action-categoriesE7BD91E7AB99E690ADE5BBBA"
-            ><div class='name'>网站搭建</div><div class='badge'>(9)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
 
 <section class="widget desktop mobile">
   
@@ -3158,6 +3038,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 </section>
 
+    
+  
+
+  
+    
+    
+      
     
   
 
@@ -3230,12 +3117,33 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <div class="widget-sticky">
 
+  
+  
+
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Github%E9%85%8D%E7%BD%AE"><span class="toc-text">Github配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vercel-%E9%85%8D%E7%BD%AE"><span class="toc-text">Vercel 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github-Action"><span class="toc-text">Github Action</span></a></li></ol>
+  </div>
+</section>
+
+  
+
 </div>
 
   <!-- Custom Files side begin -->
   
   <!-- Custom Files side end -->
 </aside>
+
 
 
         </div>
@@ -3852,7 +3760,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.xiaohanys.xyz/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.xiaohanys.xyz/tags/AI/","name":"AI"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","keywords":["生物信息知识库","编程","前端","Python","网站搭建","人工智能"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.xiaohanys.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"https://schema.org.cn","@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"https://schema.org.cn","@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","sameAs":["https://github.com/volantis-x"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},{"@context":"https://schema.org.cn","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blog.xiaohanys.xyz/","name":"XiaoHanys"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blog.xiaohanys.xyz/categories/网站搭建/","name":"网站搭建"}},{"@type":"ListItem","position":3,"item":{"@id":"https://blog.xiaohanys.xyz/vercel-based-qexo/","name":"Vercel搭建Hexo后台Qexo的方法"}}]},{"@context":"https://schema.org.cn","@type":"WebSite","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","keywords":["生物信息知识库","编程","前端","Python","网站搭建","人工智能"],"description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI","author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/","description":"生物信息知识库, 编程, 前端, 网站搭建, 人工智能, AI"},"publisher":{"@type":"Organization","name":"XiaoHanys","url":"https://blog.xiaohanys.xyz/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://blog.xiaohanys.xyz?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"https://schema.org.cn","@type":"BlogPosting","headline":"Vercel搭建Hexo后台Qexo的方法","description":"鉴于 Qexo 官方文档内容非常简略（简陋），在尝试无数次失败（主要是网上的教程都有很多问题）后，将成功搭建的流程和方法记录在本文中。\n在开始之前，我需要简单介绍一下我们云端 Hexo 后台的搭建原理：就是首先你得把所有博客的源代码（是 Hexo源码，不是生成后的静态博客源码）托管到 Github仓库中，然后通过设置一系列的 Key, 允许我们搭建在 Vercel的 Qexo服务可以交互的编辑和提交内容到 Github仓库，这样我们在云端编辑的博文","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.xiaohanys.xyz/vercel-based-qexo/"},"author":{"@type":"Person","name":"XiaoGuang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://blog.xiaohanys.xyz/"},"publisher":{"@type":"Organization","name":"XiaoHanys","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://blog.xiaohanys.xyz/vercel-based-qexo/","wordCount":226,"datePublished":"2025-05-29T05:46:33.521Z","dateModified":"2025-05-29T05:46:36.377Z","articleSection":"网站搭建","keywords":"网站搭建","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

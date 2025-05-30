@@ -593,7 +593,7 @@ article#tag .all-tags ul li span:before {
   overflow: auto;
   background: var(--color-codeblock);
   font-size: 0.8125rem;
-  font-family: Monaco, "Cascadia Code", "Cascadia Mono", Consolas, monospace, courier, sans-serif;
+  font-family: Menlo, "Cascadia Code", UbuntuMono, Monaco, monospace, courier, sans-serif, monospace, courier, sans-serif;
   border: 1px solid #ffebcb;
   padding: 16px;
   border-radius: 4px;
@@ -613,7 +613,7 @@ article#tag .all-tags ul li span:before {
   color: rgba(68,68,68,0.9);
 }
 .article code {
-  font-family: Monaco, "Cascadia Code", "Cascadia Mono", Consolas, monospace, courier, sans-serif;
+  font-family: Menlo, "Cascadia Code", UbuntuMono, Monaco, monospace, courier, sans-serif, monospace, courier, sans-serif;
 }
 .article code:not([class]) {
   word-break: break-all;
@@ -5600,7 +5600,7 @@ p.p.logo {
 }
 span.p.code,
 p.p.code {
-  font-family: Monaco, "Cascadia Code", "Cascadia Mono", Consolas, monospace, courier, sans-serif;
+  font-family: Menlo, "Cascadia Code", UbuntuMono, Monaco, monospace, courier, sans-serif, monospace, courier, sans-serif;
 }
 span.p.left,
 p.p.left {
@@ -6085,7 +6085,7 @@ div.timenode:hover .meta:after {
   -ms-transform: scale(1);
 }
 .article mjx-container {
-  font-family: Monaco, "Cascadia Code", "Cascadia Mono", Consolas, monospace, courier, sans-serif;
+  font-family: Menlo, "Cascadia Code", UbuntuMono, Monaco, monospace, courier, sans-serif, monospace, courier, sans-serif;
   padding: 16px 8px;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -6544,7 +6544,7 @@ div.timenode:hover .meta:after {
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-appearance: none;
-  font-family: Menlo, Monaco, "Cascadia Code", "Cascadia Mono", Consolas, monospace, courier, sans-serif;
+  font-family: Menlo, Menlo, "Cascadia Code", UbuntuMono, Monaco, monospace, courier, sans-serif, monospace, courier, sans-serif;
   font-size: 11px;
   font-weight: bold;
   padding: 4px 8px;
@@ -6890,7 +6890,7 @@ pre {
   display: block;
   background: var(--color-block);
   font-size: 0.8125rem;
-  font-family: Monaco, "Cascadia Code", "Cascadia Mono", Consolas, monospace, courier, sans-serif;
+  font-family: Menlo, "Cascadia Code", UbuntuMono, Monaco, monospace, courier, sans-serif, monospace, courier, sans-serif;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   line-height: 1.5;
@@ -7052,18 +7052,6 @@ pre {
     --text-p1: #fff;
     --text-p3: #777;
     --card: #fff;
-    --waline-white: #000 !important;
-    --waline-light-grey: #666 !important;
-    --waline-dark-grey: #999 !important;
-    --waline-text-color: #888 !important;
-    --waline-bg-color: #1e1e1e !important;
-    --waline-bg-color-light: #272727 !important;
-    --waline-border-color: #333 !important;
-    --waline-disable-bgcolor: #444 !important;
-    --waline-disable-color: #272727 !important;
-    --waline-bq-color: #272727 !important;
-    --waline-info-bgcolor: #272727 !important;
-    --waline-info-color: #666 !important;
   }
   :root:not([color-scheme]) fa-solid,
   :root:not([color-scheme]) fa-regular,
@@ -7146,24 +7134,35 @@ pre {
   :root:not([color-scheme]) .btn-copy:hover {
     background: var(--color-site-body);
   }
+  :root:not([color-scheme]) .OwO .OwO-body {
+    color: #c0c0c0 !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  :root:not([color-scheme]) .OwO .OwO-body .OwO-bar {
+    border-top: 1px solid #4a4b50 !important;
+    background: #4a4b50 !important;
+    color: #ccc !important;
+  }
+  :root:not([color-scheme]) .OwO .OwO-body .OwO-bar .OwO-packages li:hover {
+    background-color: #252627 !important;
+  }
+  :root:not([color-scheme]) .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active {
+    background-color: #252627 !important;
+  }
+  :root:not([color-scheme]) .OwO .OwO-body .OwO-items .OwO-item {
+    background: #4a4b50 !important;
+    color: #ccc !important;
+  }
+  :root:not([color-scheme]) .OwO .OwO-body .OwO-items-image .OwO-item:hover {
+    background-color: #252627 !important;
+  }
 }
 [color-scheme='dark'] {
   --block-hover: #1c1c1c;
   --text-p1: #fff;
   --text-p3: #777;
   --card: #fff;
-  --waline-white: #000 !important;
-  --waline-light-grey: #666 !important;
-  --waline-dark-grey: #999 !important;
-  --waline-text-color: #888 !important;
-  --waline-bg-color: #1e1e1e !important;
-  --waline-bg-color-light: #272727 !important;
-  --waline-border-color: #333 !important;
-  --waline-disable-bgcolor: #444 !important;
-  --waline-disable-color: #272727 !important;
-  --waline-bq-color: #272727 !important;
-  --waline-info-bgcolor: #272727 !important;
-  --waline-info-color: #666 !important;
 }
 [color-scheme='dark'] fa-solid,
 [color-scheme='dark'] fa-regular,
@@ -7245,4 +7244,27 @@ pre {
 }
 [color-scheme='dark'] .btn-copy:hover {
   background: var(--color-site-body);
+}
+[color-scheme='dark'] .OwO .OwO-body {
+  color: #c0c0c0 !important;
+  background-color: #252627 !important;
+  border-color: #4a4b50 !important;
+}
+[color-scheme='dark'] .OwO .OwO-body .OwO-bar {
+  border-top: 1px solid #4a4b50 !important;
+  background: #4a4b50 !important;
+  color: #ccc !important;
+}
+[color-scheme='dark'] .OwO .OwO-body .OwO-bar .OwO-packages li:hover {
+  background-color: #252627 !important;
+}
+[color-scheme='dark'] .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active {
+  background-color: #252627 !important;
+}
+[color-scheme='dark'] .OwO .OwO-body .OwO-items .OwO-item {
+  background: #4a4b50 !important;
+  color: #ccc !important;
+}
+[color-scheme='dark'] .OwO .OwO-body .OwO-items-image .OwO-item:hover {
+  background-color: #252627 !important;
 }
