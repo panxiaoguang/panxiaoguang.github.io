@@ -6,7 +6,7 @@
   <link href="https://blog.xiaohanys.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.xiaohanys.xyz/"/>
-  <updated>2025-05-30T05:12:32.434Z</updated>
+  <updated>2025-05-30T06:29:22.736Z</updated>
   <id>https://blog.xiaohanys.xyz/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>免费搭建个人的云端Chat应用!</title>
+    <link href="https://blog.xiaohanys.xyz/free-host-ai-chat/"/>
+    <id>https://blog.xiaohanys.xyz/free-host-ai-chat/</id>
+    <published>2025-05-30T06:29:22.310Z</published>
+    <updated>2025-05-30T06:29:22.736Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;如今AI 大语言模型内卷严重，各种大语言模型层出不穷，今天 gpt 的生图模型很强大，明天 Gemini-pro-2.5 又突破天际，后天 Claude 4.0 又横空出世。用户可能需要不断的去开通各个大模型的服务，极度浪费金钱。那么最简单的方法或许就是使用 API 服务商提供的服务了，一个 API 可以用到所有的模型，而且按量付费，不用不花钱。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="AI" scheme="https://blog.xiaohanys.xyz/tags/AI/"/>
+    
+    <category term="网站搭建" scheme="https://blog.xiaohanys.xyz/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Vercel搭建Hexo后台Qexo的方法</title>
